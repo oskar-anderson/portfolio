@@ -21,7 +21,7 @@
         "src": "/static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail_h400.png",
         "alt": "tempsens"
     },
-    "readMoreLink": "posts/Tempsens"
+    "readMoreLink": "/posts/Tempsens"
 }
 ---
 Developed entire full stack Sirowa warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
@@ -43,7 +43,7 @@ The CSV can subsequently be uploaded in Tempsens front-end application that uses
 
 
 <figure>
-    <img src="/static/img/posts/tempsens/tempsens-logic-diagram-3.png" alt="Tempsens application flow diagram." />
+    <img src="/static/img/posts/tempsens/tempsens-logic-diagram-4.png" alt="Tempsens application flow diagram." />
     <figcaption>Tempsens application flow diagram.</figcaption>
 </figure>
 

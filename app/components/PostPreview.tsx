@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import { PostMetadataModel } from "./PostMetadataModel";
 
 const PostPreview = (props: { postMetadata: PostMetadataModel, index: number} ) => {

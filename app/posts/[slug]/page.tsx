@@ -28,12 +28,17 @@ const PostPage = (props: any) => {
     const slug = props.params.slug;
     const post = getPostContent(slug);
     return (
-        <div className="content-container px-4">
-            <div className="mt-5 mb-3">
-                <h2>{ post.data.title }</h2>
+        <>
+            <a style={{ position: "fixed", top: "40px", left: "50px", textDecoration: "none", fontSize: "1.2rem", fontFamily: "Consolas" }} href="/">
+                ← Back
+            </a>
+            <div className="content-container px-4">
+                <div className="mt-5 mb-3">
+                    <h2>{ post.data.title }</h2>
+                </div>
+                <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]}>{ post.content }</ReactMarkdown>
             </div>
-            <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]}>{ post.content }</ReactMarkdown>
-        </div>
+        </>
     )
 }
 

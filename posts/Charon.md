@@ -1,7 +1,7 @@
 ---
 {
     "title": "Charon",
-    "description": "Worked in an agile team at TalTech to improve functionality of Moodle plugin for programming assignments that is used by about 1000 students every semester. Charon allows teachers to track coding submissions and defenses, manage grading and provide feedback.",
+    "description": "Worked in an agile team at TalTech to improve functionality of Moodle plugin for programming assignments used by about 1000 students every semester. Charon allows teachers to track coding submissions and defenses, manage grading and provide feedback.",
     "techStack": [
         "Laravel", 
         "PHP", 
@@ -19,7 +19,7 @@
     ],
     "image":
     {
-        "src": "/static/img/posts/charon/charon-popup-with-favicon.png",
+        "src": "/static/img/posts/charon/charon-task-description-headless.png",
         "alt": "Charon popup"
     },
     "readMoreLink": "/posts/Charon"
@@ -57,23 +57,53 @@ Bugs were something that I stumbled upon completely by accident or taking educat
 Here some of the bugs I found:
 * String injection on PHP to JS variable assignment. Can you spot the mistake? `window.course_name = '{!! $course->fullname !!}';`
 * Rich text input not stripping out script tags is XSS vulnerability
-* Missing favicon
 * UI mismatch between different pages and components
 * Database tables missing foreign keys
 * Data seeding logic not matching application rules
 * Error accessing hierarchy list at 0 index caused by always expecting list to contain root node
-* Inconsistent use of spinners
 
 
 
 During sprints we worked as a team to improve different aspects of the application:
 
-**Feature based development** - 
-Implement moderator role. 
-Moderators are allowed to change Charon configuration feature flags. 
+**Implement feature flags** - 
+Feature flags allow to modify system behavior without changing code.
 Feature based development accelerated product release cycle as the release process no longer has to go through Moodle team and bigger epics can now be release partially.
+This required implementation of an admin section, where plugin config could be modified by moderators.
+Moderator role also needed to be implement.
+Editing config would also trigger email notifications to be sent to all moderators.
+
 
 **Better activity messages** - 
 Reduce number of messages generated when leaving feedback and grading students to improve overall message quality.
 This would make it easier to track TA (teacher assistant) activity and detect malicious use (giving better grades to friends).
+
+
+### Pictures
+
+
+<figure>
+    <img src="/static/img/posts/charon/charon-task-description.png" alt="Student view of the assignment" />
+    <figcaption>Student view of the assignment (This is tecnically also available to teachers).</figcaption>
+</figure>
+<figure>
+    <img src="/static/img/posts/charon/
+charon-create.png" alt="Creating a Charon programming assigment" />
+    <figcaption>Creating a Charon programming assigment.</figcaption>
+</figure>
+
+<figure>
+    <img src="/static/img/posts/charon/charon-popup.png" alt="Teacher picking a student submission for grading" />
+    <figcaption>Teacher picking a student submission for grading.</figcaption>
+</figure>
+
+<figure>
+    <img src="/static/img/posts/charon/charon-add-defense-registration.png" alt="Teacher adding student submission to defense registration" />
+    <figcaption>Teacher adding student submission to defense registration.</figcaption>
+</figure>
+
+<figure>
+    <img src="/static/img/posts/charon/charon-erd.png" alt="Charon ERD schema (with missing FKs)" />
+    <figcaption>Charon ERD schema (with missing FKs).</figcaption>
+</figure>
 

@@ -17,7 +17,7 @@
         "src": "/static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png",
         "alt": "Maanteeamet Timescanner"
     },
-    "readMoreLink": "posts/MaanteeametTimescanner"
+    "readMoreLink": "/posts/MaanteeametTimescanner"
 }
 ---
 Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times.

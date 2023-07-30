@@ -4,7 +4,7 @@ import PostPreview from "./components/PostPreview"
 
 const HomePage = () => {
   const postMetadata = new PostMetadata().getPostMetadata();
-  const postsToShowMetadata = ["Charon", "Maanteeamet Timescanner", "Tempsens"]
+  const postsToShowMetadata = ["Charon", "Raster Modeler", "Tempsens", "Maanteeamet Timescanner"]
     .map(title => postMetadata.find(metadata => metadata.title === title)!);
   
   return (
