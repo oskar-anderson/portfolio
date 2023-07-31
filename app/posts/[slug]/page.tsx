@@ -5,6 +5,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import rehypeHighlight from "rehype-highlight/lib";
 import rehypeRaw from "rehype-raw";
 import PostMetadata from "@/app/components/PostMetadata";
+import remarkGfm from "remark-gfm";
 
 const getPostContent = (slug: string) => {
     const folder = "posts/";
@@ -36,7 +37,7 @@ const PostPage = (props: any) => {
                 <div className="mt-5 mb-3">
                     <h2>{ post.data.title }</h2>
                 </div>
-                <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]}>{ post.content }</ReactMarkdown>
+                <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]} remarkPlugins={[ remarkGfm ]}>{ post.content }</ReactMarkdown>
             </div>
         </>
     )
