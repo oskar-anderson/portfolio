@@ -77,75 +77,75 @@ Cannot add class="table" to this ASCII table so unfortunately must write in html
     <tbody style="text-align: center;">
     <tr>
         <td style="text-align: left;">DrawSQL</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">Vertabelo</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">Lucidchart</td>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">QuickDBD</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">diagrams.net</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">wwwsqldesigner</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">MySQL Workbench</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">DbSchema</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
     </tr>
     <tr>
         <td style="text-align: left;">DBeaver</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #9EFF9E">0</td>
+        <td style="background: #FFC7C7">0</td>
     </tr>
     </tbody>
 </table>
@@ -180,7 +180,59 @@ Deployment is setup using **Github Pages** using **Github Actions** CI/CD script
 
 ### Execution
 
-The application implement undo/redo functionality through the command pattern.
+While most of the application development process felt natural and perhaps too mundane to discuss further.
+The application does use two interesting programming aspects worth diving into.
+
+#### Command pattern
+Most applications have a functionality to undo user actions. 
+This functionality is usually implemented through a programming design pattern called command pattern. 
+I tried to find answers in the classical Gang of Four design patterns book, but found it unhelpful.
+Here is the solution I ended up using.
+
+First we need a interface that all commands must implement:
+```js
+export interface ICommand<T extends IHydratable<T>> {
+    context: Draw;
+    args: T;
+    redo(): void; 
+    undo(): void
+}
+
+export interface IHydratable<T> {
+    hydrate(): T
+}
+```
+Here we are saying that all commands must have 2 instance properties `context` and `args` that will be instantiated on new command creation.
+Commands have all the data to execute any time, but in practice they are only created when needed to execute.
+`context` is the data the command will modify and `args` is the hydratable payload.
+Hydratable means that the data should be serializable into JSON and the same data type can later be deserialized into a class instance. 
+This is just needed to emulate `JsonSerializer.Deserialize<T>(args);` from a strongly typed language.
+Next there is 2 parameterless methods that modify the context state by executing or unexecuting commands.
+
+Here is what a concrete command implementation looks like:
+```js
+export class CommandCreateTable implements ICommand<CommandCreateTableArgs> {
+    context: Draw;
+    args: CommandCreateTableArgs;
+
+    constructor(context: Draw, args: CommandCreateTableArgs) {
+        this.context = context;
+        this.args = args;
+    }
+
+    redo() {
+        let newTable = this.args.table.mapToTable();
+        this.context.schemaPushAndUpdate(newTable);
+    }
+
+    undo() {
+        this.context.schemaPopAndUpdate();
+    }
+}
+```
+As the sample above show the 
+
+
 The table relations are drawn using a greedy A* algorithm with diagonal movement tweak using a cost based grid.
 
 The app is built as a SPA with a drawing page and a scripting page.
