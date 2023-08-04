@@ -234,6 +234,3 @@ As the sample above show the
 
 
 The table relations are drawn using a greedy A* algorithm with diagonal movement tweak using a cost based grid.
-
-The app is built as a SPA with a drawing page and a scripting page.
-This allows the canvas element to be loaded only once reducing the time it takes switch between the pages.
