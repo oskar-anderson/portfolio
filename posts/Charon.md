@@ -7,7 +7,7 @@
         "PHP", 
         "Vue",
         "JS",
-        "MariaDb",
+        "MariaDB",
         "REST",
         "Moodle API"
     ],
@@ -34,18 +34,18 @@ When students commit into their repository a git hook sends a request to Charon 
 The tester runs the student code against teachers tests that will return info on passed tests and code style back to Charon backend where it will be processed and saved into a database.
 The students may then have to defend their assignments to receive a grade.
 
-The tech stack consist of a Laravel backend that provides MVC for Moodle and API for frontend.
+The tech stack consists of a Laravel backend that provides MVC for Moodle and API for frontend.
 The backend mainly provides APIs for communication between MariaDB and Vue frontend, but also interacting with Moodle, sending out emails and gluing together Gitlab/Github and Arete testing framework services.
 The frontend is mostly done in Vue. Frontend provides a grading environment for teachers to check student submissions along with attached files, leave comments and give points.
 The frontend provides a better user experience then would be available through Moodle itself, by showing submission data about single student.
 
-This system was built initially as a bachelors degree thesis in 2017. 
+This system was built initially as a bachelor’s degree thesis in 2017. 
 You can read more about it [here](https://digikogu.taltech.ee/et/item/b628d504-57e3-4d90-9c60-4bcd6bea3d61).
 
 ### What I did
 
-I was part of an 5 member fullstack agile Scrum development team.
-Our work process was divided into 2 week sprints with individual demos and sprint retros.
+I was part of a 5-member fullstack agile Scrum development team.
+Our work process was divided into 2-week sprints with individual demos and sprint retros.
 Our agile was a mix of Kanban and XP (pair programming) depending on circumstances.
 
 My work broadly fits into 3 categories:
@@ -56,7 +56,6 @@ My work broadly fits into 3 categories:
 Bugs were something that I stumbled upon completely by accident or taking educated guesses on where things could break.
 Here some of the bugs I found:
 * String injection on PHP to JS variable assignment. Can you spot the mistake? `window.course_name = '{!! $course->fullname !!}';`
-* Rich text input not stripping out script tags is XSS vulnerability
 * UI mismatch between different pages and components
 * Database tables missing foreign keys
 * Data seeding logic not matching application rules
@@ -70,7 +69,7 @@ During sprints we worked as a team to improve different aspects of the applicati
 Feature flags allow to modify system behavior without changing code.
 Feature based development accelerated product release cycle as the release process no longer has to go through Moodle team and bigger epics can now be release partially.
 This required implementation of an admin section, where plugin config could be modified by moderators.
-Moderator role also needed to be implement.
+Moderator role also needed to be implemented.
 Editing config would also trigger email notifications to be sent to all moderators.
 
 
@@ -84,12 +83,12 @@ This would make it easier to track TA (teacher assistant) activity and detect ma
 
 <figure>
     <img src="/static/img/posts/charon/charon-task-description.png" alt="Student view of the assignment" />
-    <figcaption>Student view of the assignment (This is tecnically also available to teachers).</figcaption>
+    <figcaption>Student view of the assignment (This is technically also available to teachers).</figcaption>
 </figure>
 <figure>
     <img src="/static/img/posts/charon/
-charon-create.png" alt="Creating a Charon programming assigment" />
-    <figcaption>Creating a Charon programming assigment.</figcaption>
+charon-create.png" alt="Creating a Charon programming assignment" />
+    <figcaption>Creating a Charon programming assignment.</figcaption>
 </figure>
 
 <figure>

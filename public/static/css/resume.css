@@ -1,0 +1,48 @@
+
+
+@page { size: A4 }
+:root {
+    --primary-hl-color: rgb(255, 161, 54); 
+}
+* {
+    margin: 0;
+}
+
+a {
+    color: var(--primary-hl-color);
+    text-decoration: none;
+}
+
+body {
+    font-size: 11pt;
+    font-family: Roboto, Verdana, Tahoma, sans-serif;
+}
+
+.o-list-item-std-vertical-margin + .o-list-item-std-vertical-margin {
+    margin-top: 0.2em;
+}
+
+.o-std-margin-bottom {
+    margin-bottom: 0.2em;
+}
+
+.section-heading {
+    text-transform: uppercase;
+    font-family: 'Ubuntu';
+    font-size: 20px;
+}
+
+.flex-gap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-gap > div {
+    margin: 0 0.8em;
+}
+
+.grid-item {
+    border-radius: 6px;
+    padding: 4px 14px;
+    overflow: clip;
+}

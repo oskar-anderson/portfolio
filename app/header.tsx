@@ -11,10 +11,10 @@ export default function Header() {
                             <a className="nav-link" href="/">Home</a>
                         </li>
                         <li className="nav-item mx-3 flex-row">
-                            <a className="nav-link" href="/">Resume</a>
+                            <a className="nav-link" href="/resume">Resume</a>
                         </li>
                         <li className="nav-item mx-3 flex-row">
-                            <a className="nav-link" asp-page="Contact">Contact</a>
+                            <a className="nav-link" href="/contact">Contact</a>
                         </li>
                     </ul>
                 </nav>

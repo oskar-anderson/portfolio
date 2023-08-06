@@ -4,7 +4,7 @@ export interface PostMetadataModel {
     techStack: string[],
     links: {
         display: string,
-        src: string
+        href: string
     }[],
     image: {
         src: string,
