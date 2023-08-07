@@ -45,7 +45,7 @@ function getData(): Props {
                 },
                 {
                     CategoryName: "Frameworks",
-                    List: ["ASP.NET Core", "Slim Framework", "Aurelia", "Vue", "React", "Spring Boot"]
+                    List: ["ASP.NET Core", "Slim Framework", "Laravel", "Vue", "React", "Spring Boot"]
                 },
                 {
                     CategoryName: "Databases",
@@ -72,7 +72,7 @@ function getData(): Props {
                     Company: "TalTech",
                     Period: "June 2023 – Aug 2023",
                     MarkDownContent: `
-                        Worked on a programming assignment management Moodle plugin as a full-stack developer in an agile team.
+                        Worked on a programming assignment management Moodle plugin as a full stack developer in an agile team.
                         Vue, PHP, Laravel, REST, MariaDB <a href="/posts/Charon">[link]</a>
                     `,
                 },
@@ -82,9 +82,9 @@ function getData(): Props {
                     Period: "Mar 2021 – June 2021",
                     MarkDownContent: `
                         Developed a full stack warehouse temperature and humidity monitoring system.
-                        Created a polished frontend and well structured backend with both SOAP and REST APIs.
+                        Created a Bootstrap frontend and a backend with both SOAP and REST APIs.
                         Implemented binning and clustering algorithms for data visualization and alert observation. 
-                        PHP, JS, Bootstrap, Google Charts, MySQL <a href="/posts/Tempsens">[link]</a>
+                        PHP, REST, SOAP, JS, Bootstrap, Google Charts, MySQL <a href="/posts/Tempsens">[link]</a>
                     `,
                 }
             ],
@@ -98,7 +98,7 @@ function getData(): Props {
                 {
                     MarkDownContent: `
                         Database visualization tool with scripting support written in TypeScript and React
-                        <a href="https://github.com/oskar-anderson/RasterModeler">
+                        <a href="https://oskar-anderson.com/posts/Tempsens">
                             [link]
                         </a>
                     `
@@ -106,7 +106,7 @@ function getData(): Props {
                 {
                     MarkDownContent: `
                         Maanteeamet driving exam automation using Python and Selenium
-                        <a href="https://github.com/oskar-anderson/maanteeamet-timescanner">
+                        <a href="https://oskar-anderson.com/posts/MaanteeametTimescanner">
                             [link]
                         </a>
                     `
