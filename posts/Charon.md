@@ -75,7 +75,7 @@ Editing config would also trigger email notifications to be sent to all moderato
 
 **Better activity messages** - 
 Reduce number of messages generated when leaving feedback and grading students to improve overall message quality.
-This would make it easier to track TA (teacher assistant) activity and detect malicious use (giving better grades to friends).
+This would make it easier to track TA (teacher assistant) activity for payment, reporting and understanding the contributions of each TA.
 
 
 ### Pictures
