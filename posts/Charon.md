@@ -1,35 +1,33 @@
 ---
 {
-    "title": "Charon",
-    "description": "Worked in an agile team at TalTech to improve functionality of Moodle plugin for programming assignments used by about 1000 students every semester. Charon allows teachers to track coding submissions and defenses, manage grading and provide feedback.",
-    "techStack": [
-        "Laravel", 
-        "PHP", 
-        "Vue",
-        "JS",
-        "MariaDB",
-        "REST",
-        "Moodle API"
+  "title": "Charon",
+  "description": "Worked in an agile team at TalTech to improve functionality of Moodle plugin for programming assignments used by about 1000 students every semester. Charon allows teachers to track coding submissions and defenses, manage grading and provide feedback.",
+  "techStack": ["Laravel", "PHP", "Vue", "JS", "MariaDB", "REST", "Moodle API"],
+  "links":
+    [
+      {
+        "display": "IT doc",
+        "href": "https://ained.pages.taltech.ee/it-doc/moodle/charon/index.html",
+      },
     ],
-    "links": [
-        {
-            "display": "IT doc",
-            "href": "https://ained.pages.taltech.ee/it-doc/moodle/charon/index.html"
-        }
-    ],
-    "image":
+  "image":
     {
-        "src": "/static/img/posts/charon/charon-task-description-headless.png",
-        "alt": "Charon popup"
+      "src": "/static/img/posts/charon/charon-task-description-headless.png",
+      "alt": "Charon popup",
     },
-    "readMoreLink": "/posts/Charon"
+  "readMoreLink": "/posts/Charon",
 }
 ---
+
 Charon is a plugin for integrating Moodle learning management system with an automated tester for managing student programming assignments submissions, feedback, defense registrations and grading.
 This plugin is used actively by TalTech programming teachers, teacher assistants and students.
-
+<figure>
+    <img src="/static/img/posts/charon/charon-task-description.png" alt="Assignment view" />
+    <figcaption>Assignment view.</figcaption>
+</figure>
 
 ### Background
+
 When students commit into their repository a git hook sends a request to Charon that will forward it to a tester.
 The tester runs the student code against teachers tests that will return info on passed tests and code style back to Charon backend where it will be processed and saved into a database.
 The students may then have to defend their assignments to receive a grade.
@@ -39,7 +37,7 @@ The backend mainly provides APIs for communication between MariaDB and Vue front
 The frontend is mostly done in Vue. Frontend provides a grading environment for teachers to check student submissions along with attached files, leave comments and give points.
 The frontend provides a better user experience then would be available through Moodle itself, by showing submission data about single student.
 
-This system was built initially as a bachelor’s degree thesis in 2017. 
+This system was built initially as a bachelor’s degree thesis in 2017.
 You can read more about it [here](https://digikogu.taltech.ee/et/item/b628d504-57e3-4d90-9c60-4bcd6bea3d61).
 
 ### What I did
@@ -48,61 +46,26 @@ I was part of a 5-member fullstack agile Scrum development team.
 Our work process was divided into 2-week sprints with individual demos and sprint retros.
 Our agile was a mix of Kanban and XP (pair programming) depending on circumstances.
 
-My work broadly fits into 3 categories:
-* Solving issues
-* Doing merge reviews
-* Finding bugs
-
-Bugs were something that I stumbled upon completely by accident or taking educated guesses on where things could break.
-Here some of the bugs I found:
-* String injection on PHP to JS variable assignment. Can you spot the mistake? `window.course_name = '{!! $course->fullname !!}';`
-* UI mismatch between different pages and components
-* Database tables missing foreign keys
-* Data seeding logic not matching application rules
-* Error accessing hierarchy list at 0 index caused by always expecting list to contain root node
+My daily work consisted of solving issues, doing merge reviews and hunting bugs - string injection, missing hierarchy list root node, missing foreign key constraint, outdated data seeding logic, etc.
+The issues were either miscellaneous tasks or part of a larger epic goal.
 
 
-
-During sprints we worked as a team to improve different aspects of the application:
-
-**Implement feature flags** - 
-Feature flags allow to modify system behavior without changing code.
-Feature based development accelerated product release cycle as the release process no longer has to go through Moodle team and bigger epics can now be release partially.
-This required implementation of an admin section, where plugin config could be modified by moderators.
-Moderator role also needed to be implemented.
-Editing config would also trigger email notifications to be sent to all moderators.
-
-
-**Better activity messages** - 
-Reduce number of messages generated when leaving feedback and grading students to improve overall message quality.
-This would make it easier to track TA (teacher assistant) activity for payment, reporting and understanding the contributions of each TA.
-
-
-### Pictures
-
+I contributed to solving an epic user story related to logging teacher/TA(teacher assistant) activities needed for tracking TA contributions and therefore payment. I modified grading logic API to also save concrete teacher activity message and designed an independent Vue component used on 3 different pages along with reactive server side 4 field filtering options.
 
 <figure>
-    <img src="/static/img/posts/charon/charon-task-description.png" alt="Student view of the assignment" />
-    <figcaption>Student view of the assignment (This is technically also available to teachers).</figcaption>
-</figure>
-<figure>
-    <img src="/static/img/posts/charon/
-charon-create.png" alt="Creating a Charon programming assignment" />
-    <figcaption>Creating a Charon programming assignment.</figcaption>
+    <img src="/static/img/posts/charon/charon-teacher-activity-component.png" alt="Teacher activity component" />
+    <figcaption>Teacher activity log.</figcaption>
 </figure>
 
-<figure>
-    <img src="/static/img/posts/charon/charon-popup.png" alt="Teacher picking a student submission for grading" />
-    <figcaption>Teacher picking a student submission for grading.</figcaption>
-</figure>
+I created an admin section page with the main goal of speeding up development process by both bypassing Moodle team for configuring global settings and adopting feature flag based development.
+This included creating API and middleware for handling settings changes in the backend and creating the page along with conditional navigation link in the frontend.
 
 <figure>
-    <img src="/static/img/posts/charon/charon-add-defense-registration.png" alt="Teacher adding student submission to defense registration" />
-    <figcaption>Teacher adding student submission to defense registration.</figcaption>
+    <img src="/static/img/posts/charon/charon-admin-settings.png" alt="Admin settings" />
+    <figcaption>Admin settings.</figcaption>
 </figure>
 
-<figure>
-    <img src="/static/img/posts/charon/charon-erd.png" alt="Charon ERD schema (with missing FKs)" />
-    <figcaption>Charon ERD schema (with missing FKs).</figcaption>
-</figure>
+## Final words
 
+Overall it was a great opportunity to improve something that I had used previously and create a better experience for future students and teachers.
+I gained a lot of experince on agile methodologies, general software development cycle and teamwork.
