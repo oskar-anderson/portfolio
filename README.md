@@ -1,8 +1,4 @@
-# Astro Crash Course
-
-Website built with Astro from my [YouTube crash course](https://youtu.be/Oi9z5gfIHJs).
-
-<img src="/src/images/screen.png">
+# Portfolio
 
 ## Usage
 
@@ -17,6 +13,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
 | `npm run astro --help` | Get help using the Astro CLI                       |
 
-## HTML & CSS Theme
+## Hosting
+Hosted on Vercel. Change config here - https://vercel.com/oskar-anderson
 
-All of the .html files, style.css and images are in the `astro-website-theme` folder.
+Site should be available from domain - https://oskar-anderson.com/
