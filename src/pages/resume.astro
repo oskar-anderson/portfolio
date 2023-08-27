@@ -1,0 +1,484 @@
+---
+import "paper-css/paper.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+let model: Props = {
+    Name: "Karl Oskar Anderson",
+    Title: "IT Systems Developer",
+    IntroText: `
+        Determined and persistent person that strives for accuracy.
+        Looking to apply skills learned during bachelor's studies in real world projects.
+    `,
+    ProfilePictureSrc: "/static/img/profile-25-01-2023_cropped-300-300.png",
+    SideInfo: [
+        {
+            Svg: "bi bi-geo-alt-fill",
+            Text: "Tallinn",
+            Link: null
+        },
+        {
+            Svg: "bi bi-telephone-fill",
+            Text: "5141103",
+            Link: null
+        },
+        {
+            Svg: "bi bi-envelope-fill",
+            Text: "andersonkarloskar@gmail.com",
+            Link: null
+        },
+        {
+            Svg: "bi bi-house-door-fill",
+            Text: "https://oskar-anderson.com/",
+            Link: "https://oskar-anderson.com/"
+        }
+    
+
+    ],
+    CategorizedListSections: {
+        Heading: {
+            Svg: "bi bi-gem",
+            Title: "Skills"
+        },
+        Content: [
+            {
+                CategoryName: "Languages",
+                List: [".NET/C#", "PHP", "JavaScript", "TypeScript", "Python", "Java", "SQL", "HTML/CSS"],
+            },
+            {
+                CategoryName: "Frameworks",
+                List: ["ASP.NET Core", "Slim Framework", "Laravel", "Vue", "React", "Spring Boot"]
+            },
+            {
+                CategoryName: "Databases",
+                List: ["PostgreSQL", "MySQL", "SQLite"]
+            },
+            {
+                CategoryName: "Software",
+                List: ["JetBrains IDEs", "Git", "Postman"]
+            },
+            {
+                CategoryName: "Other",
+                List: ["Native Estonian", "Proficent English", "Driving: B, C"]
+            }
+        ],
+    },
+    WorkSection: {
+        Heading: {
+            Svg: "bi bi-bookmark-star-fill",
+            Title: "Work"
+        },
+        Content: [
+            {
+                Title: "Software developer intern",
+                Company: "TalTech",
+                Period: "June 2023 – Aug 2023",
+                Text: "Worked on a programming assignment management Moodle plugin as a full stack developer in an agile team. Vue, PHP, Laravel, REST, MariaDB",
+                Link: {
+                    Src: "/posts/Charon",
+                    Text: "[link]"
+                }
+            },
+            {
+                Title: "Software developer intern",
+                Company: "Sirowa Tallinn AS",
+                Period: "Mar 2021 – June 2021",
+                Text: "Developed a full stack warehouse temperature and humidity monitoring system. Created a Bootstrap frontend and a backend with both SOAP and REST APIs. Implemented binning and clustering algorithms for data visualization and alert observation. PHP, REST, SOAP, JS, Bootstrap, Google Charts, MySQL",
+                Link: {
+                    Src: "/posts/Tempsens",
+                    Text: "[link]"
+                }
+            }
+        ],
+    },
+    PersonalProjectsSection: {
+        Heading: {
+            Svg: "bi bi-briefcase-fill",
+            Title: "Personal Projects"
+        },
+        Content: [
+            {
+                Text: "Database visualization tool with scripting support written in TypeScript and React",
+                Link: {
+                    Src: "https://oskar-anderson.com/posts/Tempsens",
+                    Text: "[link]"  
+                }
+            },
+            {
+                Text: "Maanteeamet driving exam automation using Python and Selenium",
+                Link: {
+                    Src: "https://oskar-anderson.com/posts/MaanteeametTimescanner",
+                    Text: "[link]"  
+                }
+            },
+            {
+                Text: "Full stack app for a customized meal ordering system written in .NET and Aurelia",
+                Link: {
+                    Src: "https://github.com/oskar-anderson/PitsaRiina",
+                    Text: "[link]"  
+                }
+            },
+            {
+                Text: "Algorithm for finding Minimum Spanning Tree written in Java",
+                Link: {
+                    Src: "https://github.com/oskar-anderson/MinimumSpanningTree",
+                    Text: "[Link]"
+                }
+            },
+            {
+                Text: "CSS font animations playground",
+                Link: {
+                    Src: "https://github.com/oskar-anderson/Kapsas",
+                    Text: "[Link]"
+                }
+            }
+        ],
+    },
+    EducationSection: {
+        Heading: {
+            Svg: "bi bi-mortarboard-fill",
+            Title: "Education"
+        },
+        Content: [
+            {
+                DateFinished: "Jan 2023",
+                Text: "IT Systems Development Bachelor's degree - TalTech",
+            },
+            {
+                DateFinished: "June 2022",
+                Text: "Estonian Cyber Command conscript - Ämari Air Base",
+            },
+            {
+                DateFinished: "June 2018",
+                Text: "High School - Tallinn Lilleküla Gymnasium",
+            }
+        ],
+    },
+}
+
+
+interface SectionHeading {
+    Svg: string;
+    Title: string;
+}
+
+export interface Props {
+    Name: string;
+    Title: string;
+    IntroText: string;
+    ProfilePictureSrc: string;
+    SideInfo: {
+        Svg: string;
+        Text: string;
+        Link: string | null;
+    }[];
+    CategorizedListSections: {
+        Heading: SectionHeading;
+        Content: {
+            CategoryName: string;
+            List: string[];
+        }[];
+    };
+    WorkSection: {
+        Heading: SectionHeading;
+        Content: {
+            Title: string;
+            Company: string;
+            Period: string;
+            Text: string;
+            Link: {
+                Src: string,
+                Text: string
+            }
+        }[];
+    };
+    PersonalProjectsSection: {
+        Heading: SectionHeading;
+        Content:
+        {
+            Text: string,
+            Link: {
+                Src: string,
+                Text: string
+            }
+        }[];
+    };
+    EducationSection: {
+        Heading: SectionHeading;
+        Content: {
+            DateFinished: string;
+            Text: string;
+        }[];
+    };
+}
+
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" /> 
+        <title>Document</title>
+    </head>
+
+<body style={{ lineHeight: "normal" }} class="A4">
+    <div class="resume" style={{ display: 'grid' }} id="root">
+        <section class="sheet" style={{ display: "flex" }}>
+            <div style={{ overflow: "hidden" }}>
+                <div style={{ display: "flex", margin: "10mm 10mm 1.2em 10mm" }}>
+                    <img
+                        src={model.ProfilePictureSrc}
+                        alt="profile-pic"
+                        width="120px"
+                        height="120px"
+                    />
+                    <div style={{ marginLeft: "34px" }}>
+                        <header style={{ marginBottom: "20px" }}>
+                            <h1
+                                style={{
+                                    fontSize: "32px",
+                                    marginTop: "0px",
+                                    marginBottom: "0px",
+                                    fontFamily: "Arial",
+                                    fontWeight: 700
+                                }}
+                            >
+                                {model.Name}
+                            </h1>
+                            <div style={{ fontSize: "13pt" }}>{model.Title}</div>
+                        </header>
+                        <div style={{ textAlign: "justify" }}>{model.IntroText}</div>
+                    </div>
+                </div>
+                <div
+                    style={{
+                        backgroundColor: "#f1f1f1",
+                        justifyContent: "center",
+                        padding: "0.8em 10mm",
+                        lineHeight: "1.8em",
+                        fontSize: "12px",
+                    }}
+                    class="flex-gap"
+                >
+                    {
+                        model.SideInfo.map((x) => {
+                        return (
+                            <div style={{ display: "flex" }}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        marginRight: "0.8em",
+                                    }}
+                                >
+                                    <i style={{ fontSize: 16 }} class={x.Svg}></i>
+                                </div>
+                                <div style={{ color: "#000"}}>
+                                    {x.Link ? 
+                                        <a href={x.Link}>
+                                            {x.Text}
+                                        </a> :
+                                        x.Text
+                                    }
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <div style={{ margin: "8px 10mm 10mm 10mm" }}>
+                    <div>
+                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <i style={{ fontSize: 16 }} class={model.CategorizedListSections.Heading.Svg}></i>
+                            </div>
+                            <span style={{ marginLeft: "4px" }} class="section-heading">
+                                {model.CategorizedListSections.Heading.Title}
+                            </span>
+                        </h2>
+                        <div style={{ display: "grid", rowGap: "8px" }}>
+                            {model.CategorizedListSections.Content.map((x, i) => {
+                                let color = i % 2 === 0 ? "#f1f1f1" : "#ffffff";
+                                return (
+                                    <div
+                                        style={{
+                                            display: "grid",
+                                            gridTemplateColumns: "repeat(4, 1fr)",
+                                            marginLeft: "20px",
+                                            backgroundColor: color,
+                                            borderRadius: "6px",
+                                        }}>
+                                        {x.List.map((xx) => {
+                                            return <div class="grid-item">{xx}</div>;
+                                        })}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            margin: "12px 0",
+                            borderBottom: "1px solid #ccc",
+                            color: "transparent",
+                        }}
+                    />
+                    <div>
+                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <i style={{ fontSize: 16 }} class={model.WorkSection.Heading.Svg}></i>
+                            </div>
+                            <span style={{ marginLeft: "4px" }} class="section-heading">
+                                {model.WorkSection.Heading.Title}
+                            </span>
+                        </h2>
+                        <div style={{ marginLeft: "20px" }}>
+                            {
+                                model.WorkSection.Content.map(x => {
+                                    return (
+                                        <div style={{ position: "relative" }}>
+                                            <div
+                                                class="o-std-margin-bottom"
+                                                style={{ display: "flex", justifyContent: "space-between" }}
+                                            >
+                                                <div style={{ fontWeight: "bold" }}>
+                                                    {x.Company} – {x.Title}
+                                                </div>
+                                                <div style={{ alignItems: "center", display: "flex" }}>
+                                                    {x.Period}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                {x.Text}
+                                                <a href={x.Link.Src}>{x.Link.Text}</a>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            margin: "12px 0",
+                            borderBottom: "1px solid #ccc",
+                            color: "transparent",
+                        }}
+                    />
+                    <div>
+                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <i style={{ fontSize: 16 }} class={model.PersonalProjectsSection.Heading.Svg}></i>
+                            </div>
+                            <span style={{ marginLeft: "4px" }} class="section-heading">
+                                {model.PersonalProjectsSection.Heading.Title}
+                            </span>
+                        </h2>
+                        <div>
+                            <ul>
+                                {model.PersonalProjectsSection.Content.map(x => {
+                                    return (
+                                        <li class="o-list-item-std-vertical-margin">
+                                            <div class="mb-0">
+                                                {x.Text}
+                                                {x.Link ? <a href={x.Link.Src}>{x.Link.Text}</a> : null} 
+                                                
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            margin: "12px 0",
+                            borderBottom: "1px solid #ccc",
+                            color: "transparent",
+                        }}
+                    />
+                    <div>
+                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <i style={{ fontSize: 16 }} class={model.EducationSection.Heading.Svg}></i>
+                            </div>
+                            <span style={{ marginLeft: "4px" }} class="section-heading">
+                                {model.EducationSection.Heading.Title}
+                            </span>
+                        </h2>
+                        <div>
+                            <ul>
+                                {model.EducationSection.Content.map(x => {
+                                    return (
+                                        <li 
+                                            class="o-list-item-std-vertical-margin"
+                                            style={{ position: "relative" }}
+                                        >
+                                            <div>
+                                                {x.Text}
+                                            </div>
+                                            <div style={{ position: "absolute", right: 0, top: 0 }}>
+                                                {x.DateFinished}
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+<style>
+    
+
+@page { size: A4 }
+:root {
+    --primary-hl-color: rgb(255, 161, 54); 
+}
+* {
+    margin: 0;
+}
+
+a {
+    color: var(--primary-hl-color);
+    text-decoration: none;
+}
+
+body {
+    font-size: 11pt;
+    font-family: Roboto, Verdana, Tahoma, sans-serif;
+}
+
+.o-list-item-std-vertical-margin + .o-list-item-std-vertical-margin {
+    margin-top: 0.2em;
+}
+
+.o-std-margin-bottom {
+    margin-bottom: 0.2em;
+}
+
+.section-heading {
+    text-transform: uppercase;
+    font-family: 'Ubuntu';
+    font-size: 20px;
+}
+
+.flex-gap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-gap > div {
+    margin: 0 0.8em;
+}
+
+.grid-item {
+    border-radius: 6px;
+    padding: 4px 14px;
+    overflow: clip;
+}
+</style>

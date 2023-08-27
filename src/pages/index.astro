@@ -1,0 +1,46 @@
+---
+import PostPreview from '../components/PostPreview.astro';
+import Layout from '../layouts/Layout.astro';
+
+let allPosts = await Astro.glob("../posts/*.md")
+let postsToShow = ["charon", "raster-modeler", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
+	return allPosts.filter(x => x.frontmatter.slug === postToShow)[0]
+});
+---
+
+<Layout title='Hello'>
+    <div>
+		<section class="banner" style={{
+		  backgroundImage: "url('static/img/banner.jpg')",
+		  backgroundPosition: "0 20%",
+		  backgroundRepeat: "no-repeat",
+		  backgroundSize: "cover",
+		  height: "66vw",
+		  maxHeight: "500px"
+		}}>
+		  <div style={{
+			width: "100%",
+			height: "100%",
+			display: "flex",
+			justifyContent: "center",
+			alignItems: "center"
+		  }}>
+			<h2 style={{ color: "#fff" }}>
+			  Portfolio
+			</h2>
+		  </div>
+		</section>
+  
+  
+		<div class="content-container-lg">
+		  <div class="py-5">
+			<div>
+			  {postsToShow.map((project, i) =>
+				<PostPreview index={i} postMetadata={project.frontmatter as any} />
+			  )}
+			</div>
+		  </div>
+  
+		</div>
+	  </div>
+</Layout>

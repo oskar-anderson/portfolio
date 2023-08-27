@@ -1,0 +1,21 @@
+---
+export interface RelevantLinksProps {
+    links: {
+        href: string
+        display: string
+    }[]
+}
+
+const { links } = Astro.props as RelevantLinksProps;
+---
+    {links.length !== 0 &&
+        <>
+            <span>Project related links: </span> 
+            {links.map((link, i) => (
+                <span>
+                    {i > 0 && ", "}
+                    <a href={link.href}>{link.display}</a>
+                </span>
+            ))}
+        </>
+    }

@@ -1,0 +1,35 @@
+---
+import RelevantLinks from "../../components/RelevantLinks.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const posts = await Astro.glob('../../posts/*.md');
+
+    return posts.map(post => ({
+        params: {
+            slug: post.frontmatter.slug
+        },
+        props: {
+            post
+        }
+    }));
+};
+
+const { Content, frontmatter } = Astro.props.post;
+---
+
+<Layout>
+    
+    <a style={{ position: "fixed", top: "40px", left: "50px", textDecoration: "none" }} href="/">
+        <span style={{ fontSize: "1.2rem", fontFamily: "Consolas" }}>←</span> Back
+    </a>
+    
+    <div class="content-container px-4 mb-5">
+        <div class="mt-5 mb-3">
+            <h2>{frontmatter.title}</h2>
+            <RelevantLinks links={frontmatter.links ?? []}></RelevantLinks>
+        </div>
+        <Content />
+        <RelevantLinks links={frontmatter.links ?? []}></RelevantLinks>
+    </div>
+</Layout>
