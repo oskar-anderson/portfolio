@@ -2,10 +2,7 @@
 title: "Raster Modeler"
 slug: "raster-modeler"
 description: "Developed a open source web app for visualizing databases as ERD schemas to help fellow students in Database Basics (ICA0005) course."
-techStack: [
-        "React", 
-        "TypeScript"
-]
+techStack: ["React", "TypeScript"]
 image:
     src: "/static/img/posts/raster-modeler/main-view-horse.png"
     alt: "Main view"
@@ -274,28 +271,31 @@ export class History {
         command.redo();
     }
 
-    private getICommandInstance(command: CommandPattern, context: Draw): ICommand<any> {
-        if (command.commandName === CommandCreateTable.name) {
-            let unhydratedArgs = command.args as CommandCreateTableArgs;
-            let args = new CommandCreateTableArgs(unhydratedArgs.table).hydrate();
-            return new CommandCreateTable(context, args);
+    private getInstance(command: CommandPattern, context: Draw): ICommand<any> {
+        let args = (<any> command.args).hydrate();
+        switch (command.commandName) {
+            case CommandMoveTableRelative.name:
+                return new CommandMoveTableRelative(context, args);
+            case CommandModifyTable.name:
+                return new CommandModifyTable(context, args);
+            // ... list of all registered commands
+            default:
+                throw Error(`Unregistered ${command.commandName} command given!`);
         }
-        // ommitted list of all registered commands
-        throw Error(`Unknown command given! commandName: ${command.commandName}`);
     }
 
     redo(context: Draw) {
         if (this.redoHistory.length === 0) return;
         let command = JSON.parse(this.redoHistory.pop()!) as CommandPattern;
         this.undoHistory.push(JSON.stringify(command));
-        this.getICommandInstance(command, context).redo();
+        this.getInstance(command, context).redo();
     }
 
     undo(context: Draw) {
         if (this.undoHistory.length === 0) return;
         let command = JSON.parse(this.undoHistory.pop()!) as CommandPattern;
         this.redoHistory.push(JSON.stringify(command));
-        this.getICommandInstance(command, context).undo();
+        this.getInstance(command, context).undo();
     }
 }
 
@@ -365,7 +365,7 @@ getNeighborCost(orig: { x: number, y: number}, neighbor: { x: number, y: number}
     return cost + nudge;
 }
 ```
-This solution seemes to work rather well, but a less computationally expensive solution might need to be added in the future.
+This solution seems to work rather well, but a less computationally expensive solution might need to be added in the future.
 
 ### Results
 All the set requirements were fulfilled by the final product.

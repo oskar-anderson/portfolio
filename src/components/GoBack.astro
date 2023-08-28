@@ -1,0 +1,12 @@
+---
+
+export default interface Props {
+    href: string
+}
+
+let { href } = Astro.props as Props
+---
+
+<a class="btn btn-primary" style={{ position: "fixed", top: "40px", left: "50px", textDecoration: "none", padding: "0 6px", borderRadius: "100vw" }} href={href}>
+    <span style={{ fontSize: "1.2rem", fontFamily: "Consolas" }}>←</span> Back
+</a>

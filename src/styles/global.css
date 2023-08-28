@@ -1,11 +1,13 @@
 :root {
     --bs-border-radius: 0.125em;
+    --bs-nav-link-hover-color: rgb(13, 110, 253);
   }
   
   [data-bs-theme="light"] {
     --bs-body-color: rgb(33, 37, 41);
-    --bs-heading-color: rgb(0, 0, 0);
-    --bs-link-color-rgb: rgb(13, 110, 253)
+    --bs-heading-color: #4b4b4b;
+    --bs-link-color-rgb: rgb(13, 110, 253);
+    --bs-navbar-hover-color: rgb(13, 110, 253);
   }
   
   [data-bs-theme="dark"] {
@@ -105,19 +107,11 @@
     margin-bottom: 16px;
   }
   
-  .flex50-responsive {
-    flex: 1 1 50%;
-  }
-  @media (max-width: 992px) {
-    .flex50-responsive {
-      flex: 1 1 100%;
-    }
-  }
-  
   pre {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 1em 1.5em;
+    margin: 2em 0;
   }
   
   img {
@@ -131,15 +125,24 @@
     padding: 0.75em 0
   }
   
-  pre {
-    margin: 2em 0;
-  }
   
   figcaption {
     text-align: center;
-  }
-  
-  figcaption {
     font-size: 0.875em;
     color: var(--bs-secondary-color);
   }
+
+img:not(figcaption > img) {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 1.6em;
+  margin-bottom: 0.8em;
+}
+
+.hover-border-highlight {
+  border: 2px solid transparent;
+  border-radius: 6px;
+}
+.hover-border-highlight:hover {
+  border-color: rgb(var(--bs-link-color-rgb));
+}

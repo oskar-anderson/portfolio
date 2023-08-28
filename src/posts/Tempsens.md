@@ -4,7 +4,7 @@ slug: "tempsens"
 description: "Developed a full stack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for backend and chart visualization for frontend. Implemented binning and clustering algorithms for data visualization and alert observation."
 techStack: ["PHP", "Slim", "JS", "Bootstrap", "Google Charts", "MySQL"]
 image:
-    src: "/static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail_h400.png"
+    src: "/static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail-2.png"
     alt: "tempsens"
 slugDirectory: "/posts/"
 ---
@@ -79,33 +79,43 @@ Large data sizes demand bucket filtering operation to be optimized.
 This means reducing time complexity from O(n^2) to O(n) by making use of ordered array properties. 
 
 ```js
-function filterSortedArrayValuesBetweenDates(sortedByDateObjArr, before, after, low) {
+for (let sensor of sensors) {
+    let lowRef = { value: 0 }; // pass by reference trick
+    for (let { row, startDate, endDate } of buckets) {
+        let rowValues = filterArrBetween(sensor.readings, startDate, endDate, lowRef);
+
+        // ... ommitted derive one value from rowValues and add to row
+    }
+}
+function filterArrBetween(sortedByDateObjArr, before, after, lowRef) {
     // sortedByDateObjArr.filter(x => before <= x.date && after > x.date);  // too slow
     let result = [];
-    while (low < sortedByDateObjArr.length) {
-        let obj = sortedByDateObjArr[low];
+    while (lowRef.value < sortedByDateObjArr.length) {
+        let obj = sortedByDateObjArr[lowRef.value];
         if (after <= obj.date) break;
         if (before <= obj.date) result.push(obj);
-        low++;
+        lowRef.value++;
     }
-    return {
-        result: result,
-        low: low
-    };
+    return result;
 }
 ```
 
 Clustering allows chaining multiple readings for more accurate way to show sensor alerts for both 'value out of bounds' errors and 'missing value' errors. 
 
 ```php
-public function createChain(array $sortedByDateObjArr, callable $isPartOfSameChainCallback): array {
+function createChain(array $sortedByDateObjArr, callable $isPartOfSameChainFn): array {
     $result = [];
     $chain = [];
     // ... ommitted special cases for size 1 and 0
     for ($i = 0; $i < sizeof($sortedByDateObjArr) - 1; $i++) {
         $current = $sortedByDateObjArr[$i];
         $next = $sortedByDateObjArr[$i + 1];
-        $state = $this->getState($current, $next, $isPartOfSameChainCallback, sizeof($chain));
+        $isPartOfSameChain = $isPartOfSameChainFn($current, $next);
+        $state = match (true) {
+            $isPartOfSameChain => "isPartOfSameChain",
+            sizeof($chain) > 1 && ! $isPartOfSameChain => "isPartOfChainBreak",
+            sizeof($chain) === 0 && ! $isPartOfSameChain => "isNotPartOfChain",
+        };
         $isLast = $i === sizeof($sortedByDateObjArr) - 2;
 
         switch ($state) {

@@ -18,8 +18,8 @@ const { postMetadata, index } = Astro.props as Props;
 ---
 
 <div class=`d-flex flex-column-reverse ${index % 2 == 0 ? 'flex-md-row-reverse' : 'flex-md-row'} mb-5`>
-    <div class="col-12 col-md-6 overflow-hidden d-flex justify-content-center px-2">
-        <img class="object-fit-contain" src={postMetadata.image.src} alt={postMetadata.image.alt} style={{ maxWidth: "100%" }} />
+    <div class="col-12 col-md-6 overflow-hidden d-flex justify-content-center align-items-center px-2">
+        <img class="object-fit-contain image-highlight" src={postMetadata.image.src} alt={postMetadata.image.alt} />
     </div>
     <div class="col-12 col-md-6 px-2">
         <div class="w-100 d-flex justify-content-center">
@@ -53,5 +53,13 @@ const { postMetadata, index } = Astro.props as Props;
   
   .taglist li {
     display: inline;
+  }
+
+  .image-highlight {
+    max-width: 100%;
+    height: fit-content;
+    border: 3px solid #c8c8c8;
+    border-radius: 8px;
+    overflow: hidden;
   }
 </style>

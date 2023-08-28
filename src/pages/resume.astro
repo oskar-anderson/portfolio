@@ -53,10 +53,6 @@ let model: Props = {
                 List: ["PostgreSQL", "MySQL", "SQLite"]
             },
             {
-                CategoryName: "Software",
-                List: ["JetBrains IDEs", "Git", "Postman"]
-            },
-            {
                 CategoryName: "Other",
                 List: ["Native Estonian", "Proficent English", "Driving: B, C"]
             }
@@ -72,9 +68,9 @@ let model: Props = {
                 Title: "Software developer intern",
                 Company: "TalTech",
                 Period: "June 2023 – Aug 2023",
-                Text: "Worked on a programming assignment management Moodle plugin as a full stack developer in an agile team. Vue, PHP, Laravel, REST, MariaDB",
+                Text: "Improved functionality of Moodle plugin named Charon for managing programming assignments as a full stack developer in an agile team. Vue, PHP, Laravel, REST, MariaDB",
                 Link: {
-                    Src: "/posts/Charon",
+                    Src: "/posts/charon",
                     Text: "[link]"
                 }
             },
@@ -84,7 +80,7 @@ let model: Props = {
                 Period: "Mar 2021 – June 2021",
                 Text: "Developed a full stack warehouse temperature and humidity monitoring system. Created a Bootstrap frontend and a backend with both SOAP and REST APIs. Implemented binning and clustering algorithms for data visualization and alert observation. PHP, REST, SOAP, JS, Bootstrap, Google Charts, MySQL",
                 Link: {
-                    Src: "/posts/Tempsens",
+                    Src: "/posts/tempsens",
                     Text: "[link]"
                 }
             }
@@ -99,14 +95,14 @@ let model: Props = {
             {
                 Text: "Database visualization tool with scripting support written in TypeScript and React",
                 Link: {
-                    Src: "https://oskar-anderson.com/posts/Tempsens",
+                    Src: "https://oskar-anderson.com/posts/tempsens",
                     Text: "[link]"  
                 }
             },
             {
                 Text: "Maanteeamet driving exam automation using Python and Selenium",
                 Link: {
-                    Src: "https://oskar-anderson.com/posts/MaanteeametTimescanner",
+                    Src: "https://oskar-anderson.com/posts/maanteeamet-timescanner",
                     Text: "[link]"  
                 }
             },
@@ -240,7 +236,6 @@ export interface Props {
                                     fontSize: "32px",
                                     marginTop: "0px",
                                     marginBottom: "0px",
-                                    fontFamily: "Arial",
                                     fontWeight: 700
                                 }}
                             >
@@ -336,7 +331,7 @@ export interface Props {
                             {
                                 model.WorkSection.Content.map(x => {
                                     return (
-                                        <div style={{ position: "relative" }}>
+                                        <div style={{ position: "relative", marginBottom: "10px" }}>
                                             <div
                                                 class="o-std-margin-bottom"
                                                 style={{ display: "flex", justifyContent: "space-between" }}
@@ -441,6 +436,12 @@ export interface Props {
 }
 * {
     margin: 0;
+    font-family: inherit;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+    font-family: "Arial";
+    color: #4b4b4b;
 }
 
 a {
@@ -463,7 +464,7 @@ body {
 
 .section-heading {
     text-transform: uppercase;
-    font-family: 'Ubuntu';
+    font-family: 'Arial';
     font-size: 20px;
 }
 

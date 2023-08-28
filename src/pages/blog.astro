@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+let allPosts = await Astro.glob("../posts/blog/*.md")
+---
+
+<Layout>
+    <div class="content-container">
+        <div class="d-flex justify-content-center">
+            <h2>All articles</h2>
+        </div>
+        <div>
+            { allPosts.map(post => (
+                <div>
+                    <a class="m-2 row hover-border-highlight" href={"/" + post.frontmatter.slugDirectory + post.frontmatter.slug} style="color: initial; text-decoration: none">
+                        <div class="d-flex justify-content-center align-items-center col-0 col-sm-2">
+                            <img src={post.frontmatter.thumbnail} alt="No image">
+                        </div>
+                        <div class="d-flex justify-content-center flex-column p-2 col-8 col-sm-7">
+                            <h4 class="m-0">{post.frontmatter.title}</h4>  
+                            <p class="m-0 pt-1">
+                                {post.frontmatter.intro}
+                            </p>
+                        </div>
+                        <div class="d-flex col-4 col-sm-3 flex-column justify-content-center text-end">
+                            <p class="mb-0">
+                                {post.frontmatter.publishedDate}
+                            </p>
+                            <p class="mb-0">
+                                {post.frontmatter.minToRead} min read
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+</Layout>

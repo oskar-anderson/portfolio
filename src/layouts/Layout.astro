@@ -3,12 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-
-export interface Props {
-  title?: string;
-}
-
-const { title = 'Astro Crash Course' } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -25,7 +19,7 @@ const { title = 'Astro Crash Course' } = Astro.props as Props;
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" /> 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <title>{title}</title>
+    <title>Karl Oskar Anderson Portfolio</title>
   </head>
   <body class="d-flex flex-column vh-100">
     <Header />

@@ -4,17 +4,13 @@ slug: "maanteeamet-timescanner"
 description: "Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times."
 techStack: ["Python", "Selenium" ]
 image: 
-    src: "/static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png"
+    src: "/static/img/posts/maanteeamet-timescanner/available-MTA-driving-exam-time-found.png"
     alt: "Maanteeamet Timescanner"
 slugDirectory: "/posts/"
 ---
 Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times.
 The program is written in Python with Selenium browser API and using Gmail SMTP. Source code can be found [here](https://github.com/oskar-anderson/maanteeamet-timescanner)
 
-<figure>
-    <img src="/static/img/posts/maanteeamet-timescanner/maanteeamet_timescanner_used_tech.png" alt="Technologies used." />
-    <figcaption>Technologies used.</figcaption>
-</figure>
 
 ### About
 
