@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro"
+import Breadcrumbs from "../../components/Breadcrumbs.astro"
 
 export async function getStaticPaths() {
     const posts = await Astro.glob('../../posts/blog/*.md');
@@ -20,7 +20,7 @@ const { Content, frontmatter } = Astro.props.post;
 
 <Layout>
     <div class="content-container px-4 mb-5">
-        <Breadcrumb items={[
+        <Breadcrumbs items={[
             { href: "/", text: "Home"},
             { href: "/blog", text: "Blog"},
             { href: "/" + frontmatter.slugDirectory + frontmatter.slug, text: frontmatter.title},
