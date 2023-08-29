@@ -1,9 +1,9 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import GoBack from "../../../components/GoBack.astro"
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro"
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob('../../../posts/blog/*.md');
+    const posts = await Astro.glob('../../posts/blog/*.md');
 
     return posts.map(post => ({
         params: {
@@ -19,8 +19,12 @@ const { Content, frontmatter } = Astro.props.post;
 ---
 
 <Layout>
-    <GoBack href="/blog/" />
     <div class="content-container px-4 mb-5">
+        <Breadcrumb items={[
+            { href: "/", text: "Home"},
+            { href: "/blog", text: "Blog"},
+            { href: "/" + frontmatter.slugDirectory + frontmatter.slug, text: frontmatter.title},
+        ]} />
         <div class="mt-5 mb-3">
             <h2>{frontmatter.title}</h2>
             <span style="color: #666; font-style: italic">By {frontmatter.authorName} on {frontmatter.publishedDate}</span>

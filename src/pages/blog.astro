@@ -1,7 +1,17 @@
 ---
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import advancedFormat  from 'dayjs/plugin/advancedFormat'
+
+dayjs.extend(customParseFormat)
+dayjs.extend(advancedFormat)
 import Layout from "../layouts/Layout.astro";
 
-let allPosts = await Astro.glob("../posts/blog/*.md")
+let allPosts = (await Astro.glob("../posts/blog/*.md")).sort((a, b) => {
+    let aDate = dayjs(a.frontmatter.publishedDate, "DD.MM.YYYY");
+    let bDate = dayjs(b.frontmatter.publishedDate, "DD.MM.YYYY");
+    return bDate.valueOf() - aDate.valueOf();
+})
 ---
 
 <Layout>
@@ -14,20 +24,17 @@ let allPosts = await Astro.glob("../posts/blog/*.md")
                 <div>
                     <a class="m-2 row hover-border-highlight" href={"/" + post.frontmatter.slugDirectory + post.frontmatter.slug} style="color: initial; text-decoration: none">
                         <div class="d-flex justify-content-center align-items-center col-0 col-sm-2">
-                            <img src={post.frontmatter.thumbnail} alt="No image">
+                            <img style="width: 120px;" src={post.frontmatter.thumbnail} alt="No image">
                         </div>
-                        <div class="d-flex justify-content-center flex-column p-2 col-8 col-sm-7">
+                        <div class="d-flex justify-content-center flex-column p-2 col-12 col-sm-10">
                             <h4 class="m-0">{post.frontmatter.title}</h4>  
+                            <div style="color: #aaa; font-size: 0.8em" class="d-flex flex-column justify-content-center col-0 col-sm-auto">
+                                <p class="mb-0">
+                                    {dayjs(post.frontmatter.publishedDate, "DD.MM.YYYY").format("MMM Do YYYY")} • {post.frontmatter.minToRead} min read
+                                </p>
+                            </div>
                             <p class="m-0 pt-1">
                                 {post.frontmatter.intro}
-                            </p>
-                        </div>
-                        <div class="d-flex col-4 col-sm-3 flex-column justify-content-center text-end">
-                            <p class="mb-0">
-                                {post.frontmatter.publishedDate}
-                            </p>
-                            <p class="mb-0">
-                                {post.frontmatter.minToRead} min read
                             </p>
                         </div>
                     </a>

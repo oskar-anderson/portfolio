@@ -213,11 +213,11 @@ export interface ICommand<T extends IHydratable<T>> {
     context: Draw;
     args: T;
     redo(): void; 
-    undo(): void
+    undo(): void;
 }
 
 export interface IHydratable<T> {
-    hydrate(): T
+    hydrate(): T;
 }
 ```
 Here we are saying that all commands must have 2 instance properties `context` and `args` that will be instantiated on new command creation.
@@ -274,13 +274,9 @@ export class History {
     private getInstance(command: CommandPattern, context: Draw): ICommand<any> {
         let args = (<any> command.args).hydrate();
         switch (command.commandName) {
-            case CommandMoveTableRelative.name:
-                return new CommandMoveTableRelative(context, args);
-            case CommandModifyTable.name:
-                return new CommandModifyTable(context, args);
+            case CommandCreateTable.name:
+                return new CommandCreateTable (context, args);
             // ... list of all registered commands
-            default:
-                throw Error(`Unregistered ${command.commandName} command given!`);
         }
     }
 

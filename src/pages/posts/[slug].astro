@@ -1,5 +1,5 @@
 ---
-import GoBack from "../../components/GoBack.astro"
+import Breadcrumb from "../../components/Breadcrumb.astro"
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -19,8 +19,11 @@ const { Content, frontmatter } = Astro.props.post;
 ---
 
 <Layout>
-    <GoBack href="/" />
     <div class="content-container px-4 mb-5">
+        <Breadcrumb items={[
+            { href: "/", text: "Home"},
+            { href: "/" + frontmatter.slugDirectory + frontmatter.slug, text: frontmatter.title},
+        ]} />
         <div class="mt-5 mb-3">
             <h2>{frontmatter.title}</h2>
         </div>

@@ -1,0 +1,28 @@
+---
+export interface Props {
+    items: {
+        href: string,
+        text: string
+    }[];
+}
+
+let model = Astro.props as Props;
+---
+{ 
+model.items.length ? 
+    <div style="padding: 1em; box-shadow: 0 0 2px rgba(0,0,0,0.2); margin: 1em 0;">
+        {
+            model.items
+                .flatMap((item, i) => {
+                    return [
+                        <a class="text-decoration-none" href={item.href}>{item.text}</a>, 
+                        i !== model.items.length - 1 ? 
+                            <span> / </span> : 
+                            null
+                    ]
+                })
+                
+        } 
+    </div>
+    : null
+}
