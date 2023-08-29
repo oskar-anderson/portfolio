@@ -4,7 +4,7 @@ slug: "charon"
 description: "Charon is a Moodle plugin for programming assigments used by 1000 students every semester. It allows teachers to track student coding submissions, manage grading and provide feedback. I worked in an agile team at TalTech to improve plugin functionality."
 techStack: ["Laravel", "PHP", "Vue", "JS", "MariaDB", "REST", "Moodle API"]
 image:
-  src: "/static/img/posts/charon/charon-task-description-headless.png"
+  src: "/static/img/posts/charon/charon-task-description-headless-thumbnail.png"
   alt: "Charon popup"
 slugDirectory: "/posts/"
 ---
