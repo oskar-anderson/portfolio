@@ -20,7 +20,7 @@ Since I found existing solutions problematic, I decided to write my own.
 </figure>
 
 Links to the project: 
-* [Live](https://oskar-anderson.github.io/HedgehogDBD)
+* [Live](https://hedgehog-dbd.vercel.app/)
 * [Source code](https://github.com/oskar-anderson/HedgehogDBD)
 * [Thesis](https://digikogu.taltech.ee/et/Item/a99fe3f6-43d7-4902-98b0-6a5f6b4c377e)
 
