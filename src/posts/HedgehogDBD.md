@@ -1,17 +1,16 @@
 ---
-title: "Raster Modeler"
-slug: "raster-modeler"
+title: "HedgehogDBD"
+slug: "HedgehogDBD"
 description: "Developed a open source web app for visualizing databases as ERD schemas to help fellow students in Database Basics (ICA0005) course."
 techStack: ["React", "TypeScript"]
 image:
-    src: "/static/img/posts/raster-modeler/main-view-horse.png"
+    src: "/static/img/posts/HedgehogDBD/main-view.png"
     alt: "Main view"
 slugDirectory: "/posts/"
 ---
-This post is about the old version of the app. The new app replaces html canvas based rendering with React Flow based rendering. Read more about it [here](./HedgehogDBD).
 
 Developed an open source web app to help visualize database ERD schemas. 
-Creating ERD schemas was a main part of Database Basics (ICA0005) course. 
+Creating database diagrams was a main part of Database Basics (ICA0005) course. 
 Unfortunately, the program (QSEE SuperLite) used for teaching the course was difficult to use and its workflow was slow. 
 Since I found existing solutions problematic, I decided to write my own.
 
@@ -21,8 +20,8 @@ Since I found existing solutions problematic, I decided to write my own.
 </figure>
 
 Links to the project: 
-* [Live](https://oskar-anderson.github.io/RasterModeler)
-* [Source code](https://github.com/oskar-anderson/RasterModeler)
+* [Live](https://oskar-anderson.github.io/HedgehogDBD)
+* [Source code](https://github.com/oskar-anderson/HedgehogDBD)
 * [Thesis](https://digikogu.taltech.ee/et/Item/a99fe3f6-43d7-4902-98b0-6a5f6b4c377e)
 
 
@@ -143,17 +142,11 @@ Cannot add class="table" to this ASCII table so unfortunately must write in html
 None of the tested solutions met the criteria so I created my own application.
 
 ### Tech stack analysis
-The biggest problem to overcome is drawing the schema.
-There are 2 things to keep in mind:
-* Performance is a big consideration point since schema entities need to be draggable.
-* Schemas need to be exportable to PNG. This means that a HTML canvas element must be used.
-
-Since HTML canvas is difficult to work with natively a game engine library was used.
-The most performant library is **PixiJS** according to a [benchmark done by slay_lines](https://benchmarks.slaylines.io/).
-Being popular (37400 stars on Github) and well documented made on top of great performance made it a clear winner.
-
+Web apps are developed in either JavaScript or TypeScript. 
 **TypeScript** was chosen to reduce time spent debugging type errors and improve developer experience.
-**React** was chosen to handle UI state of the application as it is the industry standard.
+
+The biggest requirements specific problem to overcome is drawing the diagram.
+Initially a generic canvas element handled by PixiJS was used, but it was soon replaced by a special node/edge based diagramming library called **React Flow** for better UX. **React** was chosen to handle UI state of the application as React Flow library demands it.
 
 One of the core ideas was that export functionality should not be built in, but developed separately according to user needs.
 To achieve this the user is allowed to write their own export function.
@@ -178,21 +171,21 @@ Since a navigation minimap element looked too cluttered as a floating element on
 Here is what the solution ended up looking:
 
 <figure>
-    <img src="/static/img/posts/raster-modeler/main-view-horse.png" alt="Main drawing view." />
+    <img src="/static/img/posts/HedgehogDBD/main-view.png" alt="Main drawing view." />
     <figcaption>Main drawing view.</figcaption>
 </figure>
 
-Table editing view is designed to provide a compact and quick way to edit schema tables.
-This allows all schema table fields to be edited from a single place.
+Table editing view is designed to provide a compact and quick way to edit diagram tables.
+This allows all diagram table fields to be edited from a single place.
 <figure>
-    <img src="/static/img/posts/raster-modeler/table-edit-view.png" alt="Table edit view." />
+    <img src="/static/img/posts/HedgehogDBD/table-edit-view.png" alt="Table edit view." />
     <figcaption>Table edit view.</figcaption>
 </figure>
 
-Users are allowed to create their own JavaScript scripts against their schemas in the scripting view using Monaco Editor.
+Users are allowed to create their own JavaScript scripts against their diagrams in the scripting view using Monaco Editor.
 
 <figure>
-    <img src="/static/img/posts/raster-modeler/scripting-view.png" alt="Scripting view." />
+    <img src="/static/img/posts/HedgehogDBD/scripting-view.png" alt="Scripting view." />
     <figcaption>Scripting view.</figcaption>
 </figure>
 This view has commenting functionality to allow sharing of user created content. Commenting is achieved through Github discussions.
@@ -200,7 +193,7 @@ This view has commenting functionality to allow sharing of user created content.
 #### Interesting code
 
 While most of the application development process felt natural and perhaps too mundane to discuss further.
-The application does use two interesting programming aspects worth diving into.
+The application does use some interesting programming aspect worth diving into.
 
 ##### Command pattern
 Most applications have a functionality to undo user actions. 
@@ -226,7 +219,7 @@ Commands have all the data to execute any time, but in practice they are only cr
 `context` is the data the command will modify and `args` is the hydratable payload.
 Hydratable means that the data should be serializable into JSON and the same data type can later be deserialized into a class instance. 
 This is just needed to emulate `JsonSerializer.Deserialize<T>(args);` from a strongly typed language.
-Next there is 2 parameterless methods that modify the context state by executing or unexecuting commands.
+Next there are 2 parameterless methods that modify the context state by executing or unexecuting commands.
 
 Here is what a concrete command implementation looks like:
 ```ts
@@ -240,24 +233,19 @@ export class CommandCreateTable implements ICommand<CommandCreateTableArgs> {
     }
 
     redo() {
-        let newTable = this.args.table.mapToTable();
-        this.context.schemaPushAndUpdate(newTable);
+        let newTable = this.args.table.mapToVm();
+        this.context.schemaTables.push(newTable);
+        this.context.areTablesDirty = true;
     }
 
     undo() {
-        this.context.schemaPopAndUpdate();
+        this.context.schemaTables = this.context.schemaTables
+            .filter(x => x.id !== this.args.table.id);
+        this.context.areTablesDirty = true;
     }
 }
 ```
-The command itself does not do anything other then turn the JSON serializable DTO data type into PixiJS application data type and call a  `context.schemaPushAndUpdate` method that uses a callback function that will call React `setState` internally:
-```ts
-schemaPushAndUpdate(table: Table) {
-    this.schema.tables.push(table);
-    this.onTablesChangeCallback(Schema.mapTablesToDtoTables(this.schema.tables));
-    this.schema.getTables().forEach(x => x.updateRelations(this.schema.getTables()));
-}
-```
-JSON serialization is needed to store the commands so they could be reverted back. For that a global `History` class is used. All commands should be executed through the history `execute` method:
+A `History` class is used for storing the commands as JSON so that they could be reverted back later. All commands should be executed through the history `execute` method:
 ```ts
 export class History {
     undoHistory: string[] = [];
@@ -273,12 +261,14 @@ export class History {
     }
 
     private getInstance(command: CommandPattern, context: Draw): ICommand<any> {
-        let args = (<any> command.args).hydrate();
-        switch (command.commandName) {
-            case CommandCreateTable.name:
-                return new CommandCreateTable (context, args);
-            // ... list of all registered commands
+        if (command.commandName === CommandMoveTableRelative.name) {
+            let unhydratedArgs = command.args as CommandMoveTableRelativeArgs;
+            let hydratedArgs = new CommandMoveTableRelativeArgs(unhydratedArgs.id, unhydratedArgs.x, unhydratedArgs.y).hydrate();
+            return new CommandMoveTableRelative(context, hydratedArgs);    
         }
+        if (command.commandName === CommandModifyTable.name) {}
+        // ... list of all registered commands
+        
     }
 
     redo(context: Draw) {
@@ -304,9 +294,7 @@ interface CommandPattern {
 This solution allow all registered commands to be rollbacked.
 
 ##### A-star algorithm
-
-For better readability of the schema the table relation lines avoid going over tables and try to reasonably avoid passing other relation lines.
-I had first hoped to find a pathfinding library that would achieve this fairly generic problem, but was quickly disappointed as the existing libraries lacked a cost-based grid system to control the grid movement.
+I had first hoped to find a canvas based library for either arrow drawing or pathfinding that would allow visualization of table relationship lines. I could not find any arrow drawing libraries and was quickly disappointed in pathfinding libraries as they lacked a cost-based grid system to control the grid movement.
 I ended up creating my own A* star algorithm: 
 ```ts
 findPath(start: { x: number, y: number }, heuristicTarget: { x: number, y: number }, ends: { x: number, y: number }[], grid: WorldGrid) {
@@ -362,13 +350,13 @@ getNeighborCost(orig: { x: number, y: number}, neighbor: { x: number, y: number}
     return cost + nudge;
 }
 ```
-This solution seems to work rather well, but a less computationally expensive solution might need to be added in the future.
+This solution seems to work rather well, but a it was later made redundant with the use of React Flow edge based system.
 
 ### Results
 All the set requirements were fulfilled by the final product.
-The workflow of this solution outperforms QSEE SuperLite by approximately 40% due to supporting multi-row editing and using automatic relationship lines.
+The workflow of this solution outperforms QSEE SuperLite by approximately 50% due to supporting multi-row editing and using automatic relationship lines.
 
 Links to the project: 
-* [Live](https://oskar-anderson.github.io/RasterModeler)
-* [Source code](https://github.com/oskar-anderson/RasterModeler)
+* [Live](https://oskar-anderson.github.io/HedgehogDBD)
+* [Source code](https://github.com/oskar-anderson/HedgehogDBD)
 * [Thesis](https://digikogu.taltech.ee/et/Item/a99fe3f6-43d7-4902-98b0-6a5f6b4c377e)
