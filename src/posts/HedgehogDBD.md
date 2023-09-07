@@ -159,8 +159,6 @@ The three main options are:
 In terms of user needs **Monaco Editor** was chosen as it is web version of the popular Visual Studio Code text editor that most developers should be used to.
 The chosen scripting language is JavaScript, as it enjoys widespread usage among developers and offers built-in scripting support through the `Function()` constructor.
 
-Deployment is setup using **Github Pages** using **Github Actions** CI/CD script.
-
 ### Execution
 Now that the requirement scope and tech stack has been determined the development can begin.
 
@@ -357,6 +355,6 @@ All the set requirements were fulfilled by the final product.
 The workflow of this solution outperforms QSEE SuperLite by approximately 50% due to supporting multi-row editing and using automatic relationship lines.
 
 Links to the project: 
-* [Live](https://oskar-anderson.github.io/HedgehogDBD)
+* [Live](https://hedgehog-dbd.vercel.app/)
 * [Source code](https://github.com/oskar-anderson/HedgehogDBD)
 * [Thesis](https://digikogu.taltech.ee/et/Item/a99fe3f6-43d7-4902-98b0-6a5f6b4c377e)
