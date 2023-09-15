@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { Content, frontmatter } = Astro.props.post;
 ---
 
-<Layout>
+<Layout includeMarkdownCss={true}>
     <div class="content-container px-4 mb-5">
         <Breadcrumbs items={[
             { href: "/", text: "Home"},

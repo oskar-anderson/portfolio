@@ -1,6 +1,8 @@
 ---
 import "paper-css/paper.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Header from "../components/Header.astro";
+
 
 let model: Props = {
     Name: "Karl Oskar Anderson",
@@ -95,7 +97,7 @@ let model: Props = {
             {
                 Text: "Database visualization tool with scripting support written in TypeScript and React",
                 Link: {
-                    Src: "https://oskar-anderson.com/posts/raster-modeler",
+                    Src: "https://oskar-anderson.com/posts/HedgehogDBD",
                     Text: "[link]"  
                 }
             },
@@ -218,8 +220,11 @@ export interface Props {
         <title>Karl Oskar Anderson Resume</title>
     </head>
 
-<body style={{ lineHeight: "normal" }} class="A4">
-    <div class="resume" style={{ display: 'grid' }} id="root">
+<body class="A4">
+    <div class="hidden-print">
+        <Header></Header>
+    </div>
+    <div class="resume" style={{ display: 'grid', lineHeight: "normal" }} }} id="root">
         <section class="sheet" style={{ display: "flex" }}>
             <div style={{ overflow: "hidden" }}>
                 <div style={{ display: "flex", margin: "10mm 10mm 1.2em 10mm" }}>
@@ -434,9 +439,11 @@ export interface Props {
 :root {
     --primary-hl-color: rgb(255, 161, 54); 
 }
-* {
-    margin: 0;
-    font-family: inherit;
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
@@ -449,7 +456,7 @@ a {
     text-decoration: none;
 }
 
-body {
+.resume {
     font-size: 11pt;
     font-family: Roboto, Verdana, Tahoma, sans-serif;
 }
@@ -481,5 +488,18 @@ body {
     border-radius: 6px;
     padding: 4px 14px;
     overflow: clip;
+}
+
+/*
+Fix Bootstrap
+*/
+h2, .h2 {
+    line-height: normal;
+    font-weight: 700;
+}
+
+ul {
+    margin-bottom: 0;
+    padding-left: 40px;
 }
 </style>

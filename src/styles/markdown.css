@@ -1,0 +1,61 @@
+h1, .h1 {
+  font-weight: 900;
+  font-size: 3.2em;
+}
+  
+h2, .h2 {
+  font-weight: 900;
+  font-size: 2.375em;
+}
+
+h3, .h3 {
+  font-weight: 900;
+  font-size: 1.777rem;
+}
+
+h4, .h4 {
+  font-weight: 400;
+  font-size: 1.333rem;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+  font-family: "Arial";
+  margin-top: 2em;
+  margin-bottom: 16px;
+}
+
+li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+pre {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1em 1.5em;
+  margin: 2em 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+figure {
+  display: grid;
+  place-items: center;
+  max-width: 100%;
+  padding: 0.75em 0
+}
+
+
+figcaption {
+  text-align: center;
+  font-size: 0.875em;
+  color: var(--bs-secondary-color);
+}
+
+img:not(figcaption > img) {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 1.6em;
+  margin-bottom: 0.8em;
+}
