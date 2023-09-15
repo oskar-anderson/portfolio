@@ -95,10 +95,19 @@ let model: Props = {
         },
         Content: [
             {
-                Text: "Database visualization tool with scripting support written in TypeScript and React",
+                Text: "Developed an open source database modeling ERD tool. Adopted in Priit Raspel's TalTech ICA0005 course as replacement to QSEE as it improves diagram creation workflow speed by 45%. Added functionality for creation and execution of user generated scripts. TypeScript, React",
                 Link: {
                     Src: "https://oskar-anderson.com/posts/HedgehogDBD",
                     Text: "[link]"  
+                },
+                Type: {
+                    name: "titled",
+                    titledPayload: {
+                        projectName: "HedgehogDBD",
+                        title: "Frontend developer",
+                        period: "Sept 2022 - present",
+                    },
+                    plainPayload: {}
                 }
             },
             {
@@ -106,27 +115,11 @@ let model: Props = {
                 Link: {
                     Src: "https://oskar-anderson.com/posts/maanteeamet-timescanner",
                     Text: "[link]"  
-                }
-            },
-            {
-                Text: "Full stack app for a customized meal ordering system written in .NET and Aurelia",
-                Link: {
-                    Src: "https://github.com/oskar-anderson/PitsaRiina",
-                    Text: "[link]"  
-                }
-            },
-            {
-                Text: "Algorithm for finding Minimum Spanning Tree written in Java",
-                Link: {
-                    Src: "https://github.com/oskar-anderson/MinimumSpanningTree",
-                    Text: "[Link]"
-                }
-            },
-            {
-                Text: "CSS font animations playground",
-                Link: {
-                    Src: "https://github.com/oskar-anderson/Kapsas",
-                    Text: "[Link]"
+                },
+                Type: {
+                    name: "plain",
+                    titledPayload: {},
+                    plainPayload: {}
                 }
             }
         ],
@@ -197,6 +190,16 @@ export interface Props {
             Link: {
                 Src: string,
                 Text: string
+            },
+            Type: {
+                name: 'plain' | 'titled',
+                titledPayload: 
+                {
+                    projectName: string,
+                    title: string,
+                    period: string
+                } | any,
+                plainPayload: {} | any
             }
         }[];
     };
@@ -224,8 +227,8 @@ export interface Props {
     <div class="hidden-print">
         <Header></Header>
     </div>
-    <div class="resume" style={{ display: 'grid', lineHeight: "normal" }} }} id="root">
-        <section class="sheet" style={{ display: "flex" }}>
+    <div class="resume" style={{ display: 'grid', lineHeight: "normal" }} id="root">
+        <section class="sheet" style={{ display: "flex", background: "white" }}> <!-- sheet style is not applied to printed page so background: white is set manual -->
             <div style={{ overflow: "hidden" }}>
                 <div style={{ display: "flex", margin: "10mm 10mm 1.2em 10mm" }}>
                     <img
@@ -374,20 +377,39 @@ export interface Props {
                                 {model.PersonalProjectsSection.Heading.Title}
                             </span>
                         </h2>
-                        <div>
-                            <ul>
-                                {model.PersonalProjectsSection.Content.map(x => {
+                        <div style={{ marginLeft: "20px" }}>
+                            {model.PersonalProjectsSection.Content.map(x => {
+                                if (x.Type.name === "plain") {
                                     return (
-                                        <li class="o-list-item-std-vertical-margin">
-                                            <div class="mb-0">
-                                                {x.Text}
-                                                {x.Link ? <a href={x.Link.Src}>{x.Link.Text}</a> : null} 
-                                                
-                                            </div>
-                                        </li>
+                                        <div class="mb-0 o-list-item-std-vertical-margin">
+                                            {x.Text}
+                                            {x.Link ? <a href={x.Link.Src}>{x.Link.Text}</a> : null} 
+                                        </div>
                                     );
-                                })}
-                            </ul>
+                                }
+                                if (x.Type.name === "titled") {
+                                    return (
+                                        <div style={{ position: "relative", marginBottom: "10px" }}>
+                                            <div
+                                                class="o-std-margin-bottom"
+                                                style={{ display: "flex", justifyContent: "space-between" }}
+                                            >
+                                                <div style={{ fontWeight: "bold" }}>
+                                                    {x.Type.titledPayload.projectName} – {x.Type.titledPayload.title}
+                                                </div>
+                                                <div style={{ alignItems: "center", display: "flex" }}>
+                                                    {x.Type.titledPayload.period}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                {x.Text}
+                                                <a href={x.Link.Src}>{x.Link.Text}</a>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                return null;
+                            })}
                         </div>
                     </div>
                     <div
