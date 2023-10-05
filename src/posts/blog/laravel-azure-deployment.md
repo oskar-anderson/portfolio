@@ -52,7 +52,7 @@ This step should only be tried if the error occurred as sometimes WSL works with
 
 ### PHPStorm IDE
 
-PHPStorm can be installation can be found [here](https://www.jetbrains.com/phpstorm/).
+PHPStorm installation can be found [here](https://www.jetbrains.com/phpstorm/).
 
 Once installed open the Laravel app. PHPStorm might not support displaying for the WSL distro, so open the directory manually.
 `File -> Open -> \\wsl$\Ubuntu\home\your_username\dev\PROJECT_NAME\backend`.
