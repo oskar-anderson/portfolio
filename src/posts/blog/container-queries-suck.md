@@ -9,16 +9,28 @@ minToRead: 4
 publishedDate: "03.03.2024"
 authorName: "Karl Oskar Anderson"
 ---
-I was working on an application that needed to responsively fit into an unknown viewport on external site. This seemed like a ideal problem to solve using container queries. Unfortunately, container queries did not solve this issue without side effects. Let's look at the issues container queries cause.
+I was working on an application that needed to responsively fit into an unknown viewport on external site. This seemed like a ideal problem to solve using container queries. Unfortunately, container queries did not solve this issue without side effects. Let's look deeper into the problem and find a fitting solution. 
+
+These issues can be seen in the attached Codepen example.
+
+<p class="codepen" data-height="500" data-default-tab="result" data-slug-hash="abxoVNV" data-editable="true" data-user="Karl-Oskar-Anderson" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/Karl-Oskar-Anderson/pen/abxoVNV">
+  Container query</a> by Karl Oskar Anderson (<a href="https://codepen.io/Karl-Oskar-Anderson">@Karl-Oskar-Anderson</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 ### Introduction
 Traditionally, CSS media queries would be used to make responsive components that look good on both desktop and mobile. Media queries work based on the dimensions of the site viewport. This works alright, but placing components inside a container smaller than the viewport like a sidebar can cause problems especially with `flex-direction` and `grid-column` rules.
 
-Chrome 106 released in September 2022 offered a solution to this problem - container queries. Container query allows styling components based on the size of the element's container. Container queries work by defining a containment context that works as a viewport for all of its children's elements. This is done by giving the parent element `container-type: inline-size;` CSS rule. At this point it might seem like container queries are the new media queries, however they have drawbacks.
+Chrome 106 released in September 2022 offered a solution to this problem - container queries. Container query allows styling components based on the parent element size. Container queries work by defining a containment context that works as a viewport for all of its children's elements. This is done by giving the parent element `container-type: inline-size;` CSS rule. At this point it might seem like container queries are the new media queries, however they have drawbacks.
 
 ### Problems with modals
 
-The first problem is that fixed/absolute elements inside the container cannot expand past the container. This makes it impossible to have dropdown inputs open as full screen modals on smaller screen sizes.
+The first problem is that fixed/absolute elements inside the container cannot expand past the container. The container creates a containing block that behaves as a relative element. This makes it impossible to have dropdown inputs open as full screen modals on smaller screen sizes. 
+<!--
+The problem is reported on StackOverflow with no solution [here](https://stackoverflow.com/questions/76005559/how-to-position-an-absolute-fixed-element-relative-to-the-viewport-instead-of-pa) and [here](https://stackoverflow.com/questions/74601420/css-container-inline-size-and-fixed-child)
+-->
 
 This problem can be remedied by disabling the container query when a full screen modal is supposed to be visible. However, this solution is not ideal as it is impossible to animate the transition to the full screen modal view. 
 
@@ -31,14 +43,7 @@ This problem can be remedied by disabling the container query when a full screen
 }
 ```
 
-There is also a second problem caused by the modal view not having a scrollbar. This causes the container to recalculate its size indefinably as the scrollbar will appear and disappear.
-```css
-body:has([data-modal-open="true"]) {
-    overflow: hidden;
-}
-```
-
-This problem is reported on StackOverflow with no solution [here](https://stackoverflow.com/questions/76005559/how-to-position-an-absolute-fixed-element-relative-to-the-viewport-instead-of-pa) and [here](()[https://stackoverflow.com/questions/74601420/css-container-inline-size-and-fixed-child])
+There is also a second problem caused by hiding the window scrollbar when the modal is open. This causes the container to recalculate its size indefinably as the scrollbar will appear and disappear.
 
 
 ### Stacking context issue
@@ -51,14 +56,15 @@ Another problem is that container queries mess with element stacking order causi
     z-index: 1;
 }
 ```
-
-This issue is also reported on Stackoverflow [here](https://stackoverflow.com/questions/76607899/why-does-container-type-inline-size-seem-to-mess-with-stacking-overflow-rules).
+<!--
+This issue is also reported on StackOverflow [here](https://stackoverflow.com/questions/76607899/why-does-container-type-inline-size-seem-to-mess-with-stacking-overflow-rules).
+-->
 
 ### Problem overview
-Container elements act as being positioned relatively and having a z-index of 0. This traps the children's elements from escaping out of the container query. Components like modal based inputs and dropdowns will not work inside a container query. As container queries are not a suitable solution, let's see how these components could be used by using JavaScript instead.  
+Container rule along with rules such as `filter`, `transform` and `backdrop-filter` create a containing block that acts as being positioned relatively and having a z-index of 0. This results in components like modal based inputs and dropdowns not to work inside a container query. The containing block traps the children's elements from escaping out of the container query. Let's see how container size based responsiveness could be achieved by using JavaScript instead of container queries.  
 
 ### Solution
-Instead of using classes directly, lets write the responsive style rules inside HTML `data-resize-responsive` attributes. The format for this would be `{ target: string, breakpoints: { [id: number]: string }}`. This allows the specifing the target container whose dimensions will determine the correct breakpoint rule to be used.
+Instead of using classes directly, lets write the responsive style rules inside HTML `data-resize-responsive` attributes. The format for this would be JSON that can be converted to type `{ target: string, breakpoints: { [id: number]: string }}`. This format allows specifing the target container whose dimensions will determine the correct breakpoint rule to be used.
 
 Next a window resize event handler needs to be added to detect changes to the window size that will in turn cause changes to every other element. When a resize event fires all elements with a `data-resize-responsive` attribute will be selected, parsed and applied like this:
 
@@ -96,12 +102,4 @@ This solution manages to achieve the same desired responsive design without bump
 
 
 ### Wrap up
-I was looking forward to expanding my design skill repertoire with container queries, but unfortunately found them problematic. This article demonstrated problems that arise with container queries and offered an alternative solution to solving them. All of the problem and the proposed alternative solution are available for demonstration on [Codepen](https://codepen.io/Karl-Oskar-Anderson/pen/abxoVNV).
-
-
-<p class="codepen" data-height="500" data-default-tab="result" data-slug-hash="abxoVNV" data-editable="true" data-user="Karl-Oskar-Anderson" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/Karl-Oskar-Anderson/pen/abxoVNV">
-  Container query</a> by Karl Oskar Anderson (<a href="https://codepen.io/Karl-Oskar-Anderson">@Karl-Oskar-Anderson</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+I was looking forward to expanding my design skill repertoire with container queries, but unfortunately found them problematic. This article demonstrated problems that arise with container queries and offered an alternative solution to solving them.

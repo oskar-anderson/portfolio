@@ -89,3 +89,9 @@
 .hover-border-highlight:hover {
   border-color: rgb(var(--bs-link-color-rgb));
 }
+
+/* Make codepen embeds resizable */
+.cp_embed_wrapper {
+  resize: both;
+  overflow: auto;
+}
