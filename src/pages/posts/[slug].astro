@@ -3,7 +3,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro"
 import LayoutWithMarkdown from "../../layouts/LayoutWithMarkdown.astro";
 
 export async function getStaticPaths() {
-    const posts = await Astro.glob('../../posts/*.md');
+    const posts = Object.values(import.meta.glob<Record<string, any>>("../../posts/*.md", { eager: true }));
 
     return posts.map(post => ({
         params: {

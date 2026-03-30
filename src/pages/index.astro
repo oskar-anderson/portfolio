@@ -1,23 +1,18 @@
 ---
 import PostPreview from '../components/PostPreview.astro';
-import Testimonial from '../components/Testimonial.js';
+import Testimonial from '../components/Testimonial';
 import SkillCard from '../components/SkillCard';
 import Layout from '../layouts/Layout.astro';
-
-
-let allPosts = await Astro.glob("../posts/*.md")
-let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
-	return allPosts.filter(x => x.frontmatter.slug === postToShow)[0]
-});
-let allExperiencePosts = await Astro.glob("../posts/experience/*.md")
-let experiencePosts = ["experience/estravel"].map(postToShow => {
-	return allExperiencePosts.filter(x => x.frontmatter.slug === postToShow)[0]
-});
 
 import HelloIcon from "/public/static/img/hello.svg";
 import MailIcon from "/public/static/svg/envelope-simple.svg";
 import GithubLogo from "/public/static/svg/github-logo.svg";
 import LinkedinIcon from "/public/static/svg/linkedin-logo.svg";
+
+let allPosts = Object.values(import.meta.glob<Record<string, any>>("../posts/*.md", { eager: true }))
+let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
+	return allPosts.filter(x => x.frontmatter.slug === postToShow)[0]
+});
 
 ---
 
@@ -138,7 +133,7 @@ import LinkedinIcon from "/public/static/svg/linkedin-logo.svg";
 		<section class="section">
 
 			<div class="container">
-				<h2 class="h2 text-center mb-16">Skills</h1>
+				<h2 class="h2 text-center mb-16">Skills</h2>
 				<div class="container grid gap-6 md:grid-cols-3">
 					<SkillCard title='Frontend' type='frontend' items={["React", "Vue", "JavaScript/TypeScript", "Tailwind", "HTML/CSS"]}></SkillCard>
 					<SkillCard title='Backend' type='backend' items={["PHP (Laravel, Slim)", "Python (FastAPI)", "SQL (MySQL/MariaDB, PostgreSQL)", "REST API", "WordPress", "SSO"]}></SkillCard>
@@ -151,7 +146,7 @@ import LinkedinIcon from "/public/static/svg/linkedin-logo.svg";
 
 		<section class="section">
 			<div>
-				<h2 class="h2 text-center mb-16">Projects</h1>
+				<h2 class="h2 text-center mb-16">Projects</h2>
 				{postsToShow.map((project, i) =>
 					<PostPreview index={i} postMetadata={project.frontmatter as any} />
 				)}

@@ -7,7 +7,7 @@ dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)
 import Layout from "../layouts/Layout.astro";
 
-let allPosts = (await Astro.glob("../posts/blog/*.md")).sort((a, b) => {
+let allPosts = Object.values(import.meta.glob<Record<string, any>>('../posts/blog/*.md', { eager: true })).sort((a, b) => {
     let aDate = dayjs(a.frontmatter.publishedDate, "DD.MM.YYYY");
     let bDate = dayjs(b.frontmatter.publishedDate, "DD.MM.YYYY");
     return bDate.valueOf() - aDate.valueOf();
