@@ -1,10 +1,13 @@
 ---
+import { marked } from 'marked';
+
 export interface Props {
     postMetadata: {
         title: string,
+        subTitle?: string,
         description: string,
         techStack: string[],
-        image: {
+        media: {
             src: string,
             alt: string
         },
@@ -17,28 +20,45 @@ export interface Props {
 const { postMetadata, index } = Astro.props as Props;
 ---
 
-<div class=`d-flex flex-column-reverse ${index % 2 == 0 ? 'flex-md-row-reverse' : 'flex-md-row'} mb-5`>
-    <div class="col-12 col-md-6 overflow-hidden d-flex justify-content-center align-items-center px-2">
-        <img class="object-fit-contain image-highlight" src={postMetadata.image.src} alt={postMetadata.image.alt} />
+<div class=`content-container ${index % 2 == 1 ? 'feature-grid--reverse' : ''} mb-24 no-underline text-current`>
+    <div class="feature-image">
+        {
+            postMetadata.media.src.endsWith(".mp4") ?
+            <video class="object-contain image-highlight" src={postMetadata.media.src} width="640" height="360" autoplay muted loop>
+                Your browser does not support the video tag.
+            </video>
+            : 
+            <img class="object-contain image-highlight bg-neutral-400" src={postMetadata.media.src} alt={postMetadata.media.alt} />
+        }
     </div>
-    <div class="col-12 col-md-6 px-2">
-        <div class="w-100 d-flex justify-content-center">
-            <h2 class="h2 mb-5 mt-4 text-center">{postMetadata.title}</h2>
+    <div class="feature-text">
+        <div class="mb-8">
+            <h4 class="text-gray-400 uppercase">{postMetadata.subTitle}</h2>
+            <h2 class="h2">{postMetadata.title}</h2>
         </div>
-        <p>
-            {postMetadata.description}
-        </p>
-        <div class="my-3">
-            <span class="fw-semibold">Tech stack:</span>
-            <ul class="taglist">
+        
+        <div class="prose" set:html={marked.parse(postMetadata.description, {breaks: true, gfm: true})}></div>
+        <div class="my-6">
+            <ul class="list-none flex flex-wrap horizontal-list">
+                <!--
+                <li class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                        <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z"></path>
+                    </svg>
+                </li>
+                 -->
                 {postMetadata.techStack.map(tech => (
-                    <li>
-                        <span class="badge rounded-pill text-bg-light">{tech}</span>
-                    </li>
+                    <li class="font-semibold">{tech}</li>
                 ))}
             </ul>
         </div>
-        <a class="btn btn-primary" href={postMetadata.slugDirectory + postMetadata.slug}>Read More</a>
+        <div class="grid grid-cols-2 gap-4">
+            <a class="btn-bevel btn-bevel-primary p-2 w-full" href={postMetadata.slugDirectory + postMetadata.slug}>
+                Read more
+            </a>
+        </div>
+        
     </div>
 </div>
 
@@ -58,8 +78,10 @@ const { postMetadata, index } = Astro.props as Props;
   .image-highlight {
     max-width: 100%;
     height: fit-content;
-    border: 3px solid #c8c8c8;
-    border-radius: 8px;
     overflow: hidden;
+  }
+
+  .content-container:hover .project-read-more  {
+    rotate: -45deg;
   }
 </style>

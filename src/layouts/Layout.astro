@@ -1,6 +1,6 @@
 ---
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../components/Header.astro';
+/* import 'bootstrap/dist/css/bootstrap.min.css'; */
+import HeaderV2 from '../components/Header-v2.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 ---
@@ -18,11 +18,18 @@ import '../styles/global.css';
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" /> 
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="dist/hamburgers.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="module" src="/src/scripts/pixel-canvas.js"></script>
     <title>Karl Oskar Anderson Portfolio</title>
   </head>
-  <body class="d-flex flex-column vh-100">
-    <Header />
-    <slot/>
-    <Footer />
+  <body class="flex flex-col h-[100vh]">
+    <!-- <div class="v2-background-image-primary"></div> -->
+    <div style={{ zIndex: 1 }}>
+      <!-- <HeaderV2 /> -->
+      <slot/>
+      <Footer />
+    </div>
   </body>
 </html>

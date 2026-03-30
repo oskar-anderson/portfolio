@@ -1,17 +1,15 @@
+// @ts-check
 import { defineConfig } from 'astro/config';
-import rehypePrettyCode from "rehype-pretty-code";
+import tailwindcss from "@tailwindcss/vite";
+import svgr from "vite-plugin-svgr";
 
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  markdown: {
-    // Applied to .md and .mdx files
-    syntaxHighlight: false,
-    // Disable syntax built-in syntax hightlighting from astro
-    rehypePlugins: [[rehypePrettyCode, {
-      theme: "dracula"
-    }]]
+  vite: { 
+      plugins: [tailwindcss(), svgr()],
   },
-  integrations: [react()]
+
+  integrations: [react()],
 });

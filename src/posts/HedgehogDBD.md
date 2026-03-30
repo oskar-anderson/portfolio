@@ -1,10 +1,11 @@
 ---
 title: "HedgehogDBD"
+subTitle: "Bachelor's degree thesis 2023"
 slug: "HedgehogDBD"
 description: "Developed a open source web app for visualizing databases as ERD schemas to help fellow students in Database Basics (ICA0005) course."
 techStack: ["React", "TypeScript"]
-image:
-    src: "/static/img/posts/HedgehogDBD/main-view.png"
+media:
+    src: "/static/img/posts/HedgehogDBD/main-view-cropped.png"
     alt: "Main view"
 slugDirectory: "/posts/"
 ---
@@ -186,6 +187,7 @@ Users are allowed to create their own JavaScript scripts against their diagrams 
     <img src="/static/img/posts/HedgehogDBD/scripting-view.png" alt="Scripting view." />
     <figcaption>Scripting view.</figcaption>
 </figure>
+
 This view has commenting functionality to allow sharing of user created content. Commenting is achieved through Github discussions.
 
 #### Interesting code

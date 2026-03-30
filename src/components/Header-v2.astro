@@ -1,0 +1,57 @@
+---
+import '/src/styles/hamburgers.css';
+---
+
+<header class="py-3 relative body bg-[#43524d] text-white border-b border-[#8cb4e942] z-1" style={{ fontSize: "16px" }}>
+    <div class="header-container flex-lg-col-6 mx-4">
+        <h1 class="text-center" style={{ fontSize: "1.125rem", fontWeight: 600 }}>
+            <a class="no-underline" href="/">Karl Oskar Anderson</a>
+        </h1>
+        <nav class="flex items-center">
+            <ul class="max-md:hidden list-none flex flex-row mr-auto">
+                <li class="mx-3 flex-row">
+                    <a class="v2-nav-link no-underline py-2 block" href="/blog">Blog</a>
+                </li>
+                <li class="mx-3 flex-row">
+                    <a class="v2-nav-link no-underline py-2 block" href="/resume">Resume</a>
+                </li>
+                <li class="mx-3 flex-row">
+                    <a class="v2-nav-link no-underline py-2 block" href="/contact">Contact</a>
+                </li>
+            </ul>
+
+            <details class="md:hidden">
+                <summary class="mx-3 list-none">
+                    <div class="hamburger hamburger--squeeze">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>  
+                    </div>
+                </summary>
+                <ul class="fixed w-full flex flex-col z-9000 top-[72px] h-[100vh] left-0 bg-white list-none pl-0">
+                    <li class="border-b-1 border-gray-200 p-4">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="border-b-1 border-gray-200 p-4">
+                        <a class="nav-link" href="/blog">Resume</a>
+                    </li>
+                    <li class="border-b-1 border-gray-200 p-4">
+                        <a class="nav-link" href="/blog">Contact</a>
+                    </li>
+                </ul>
+            </details>
+        </nav>
+        <div>
+            Theme picker here
+        </div>
+    </div>
+</header>
+
+<script>
+    document.querySelectorAll('.hamburger').forEach(ham => 
+        ham.addEventListener('click', (e) => {
+            e.currentTarget.classList.toggle('is-active');
+            document.body.classList.toggle('dialog-open');
+        })
+    )
+</script>

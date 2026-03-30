@@ -1,46 +1,163 @@
 ---
 import PostPreview from '../components/PostPreview.astro';
+import Testimonial from '../components/Testimonial.js';
+import SkillCard from '../components/SkillCard';
 import Layout from '../layouts/Layout.astro';
 
+
 let allPosts = await Astro.glob("../posts/*.md")
-let postsToShow = ["charon", "HedgehogDBD", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
+let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
 	return allPosts.filter(x => x.frontmatter.slug === postToShow)[0]
 });
+let allExperiencePosts = await Astro.glob("../posts/experience/*.md")
+let experiencePosts = ["experience/estravel"].map(postToShow => {
+	return allExperiencePosts.filter(x => x.frontmatter.slug === postToShow)[0]
+});
+
+import HelloIcon from "/public/static/img/hello.svg";
+import MailIcon from "/public/static/svg/envelope-simple.svg";
+import GithubLogo from "/public/static/svg/github-logo.svg";
+import LinkedinIcon from "/public/static/svg/linkedin-logo.svg";
+
 ---
 
 <Layout>
     <div>
-		<section class="banner" style={{
-		  backgroundImage: "url('static/img/banner.jpg')",
-		  backgroundPosition: "0 20%",
-		  backgroundRepeat: "no-repeat",
-		  backgroundSize: "cover",
-		  height: "66vw",
-		  maxHeight: "500px"
-		}}>
-		  <div style={{
-			width: "100%",
-			height: "100%",
-			display: "flex",
-			justifyContent: "center",
-			alignItems: "center"
-		  }}>
-			<h2 class="h2" style={{ color: "#fff" }}>
-			  Portfolio
-			</h2>
-		  </div>
+		<section class="section-lg">
+			<div class="px-5">
+				<HelloIcon style={{
+					color: "var(--hello-logo-text)",
+					display: "block",
+					marginInline: "auto",
+					maxWidth: "100%",
+					height: "auto",
+					width: "auto"
+				}}></HelloIcon>
+			</div>
+			<!--
+			<img src="https://cdn.sanity.io/images/9jk2zfji/production/0ac14a6e05a9791c8e3149043c38839e4cdda788-1330x390.svg" alt="" loading="eager"
+				style={{
+					display: "block",
+					marginInline: "auto",
+					maxWidth: "100%",
+					height: "auto",
+					paddingRight: "20px",
+					paddingLeft: "20px"
+				}}
+			>
+			-->
+		</section>
+
+
+		<section class="section">
+			<div class="container flex-col max-md:items-center md:flex-row flex gap-12">
+				<img class="max-w-auto w-[auto] max-md:w-full h-[auto] md:h-[28.5rem] rounded-md shadow-inner object-cover" 
+					src="static/img/aasta-tegu-2024-cropped.jpg" alt="Photo of me"
+				>
+
+				<div class="flex flex-col text-center md:text-left">
+
+					<div class="text-[42px] leading-tight font-extrabold uppercase">
+						<span class="text-[var(--hello-logo-background)]">I'm Karl Oskar Anderson</span>
+						<br>
+						A Web Developer
+						<br>
+						based in Tallinn,
+						<br>
+						working at
+						<a class="a" href="https://www.estravel.ee" target="_blank">Estravel</a>
+
+						<br>
+
+						<div class="flex text-base gap-4 mt-4">
+							<a class="btn-bevel btn-bevel-primary">
+								Download resume
+							</a>
+							<a class="btn-bevel btn-bevel-secondary">
+								Contact me
+							</a>
+						</div>
+						
+
+						<div class="mt-6 flex gap-2">
+							<a href="https://github.com/oskar-anderson/" class="btn-bevel-secondary btn-bevel-icon text-white">
+								<GithubLogo></GithubLogo>
+							</a>
+							<a href="https://www.linkedin.com/in/karl-oskar-anderson" class="btn-bevel-secondary btn-bevel-icon text-white">
+								<LinkedinIcon></LinkedinIcon>
+							</a>
+							<a href="mailto:andersonkarloskar@gmail.com" class="btn-bevel-secondary btn-bevel-icon text-white">
+								<MailIcon></MailIcon>
+							</a>
+						</div>
+					</div>
+
+					<!-- 
+
+					<span class="text-lg font-semibold">I'm Karl Oskar Anderson and I develop web applications</span><br>
+		
+					<h1 class="text-[4rem] font-bold">
+						with modern <span class="vue-to-react-highlight-gradient">SPA frameworks</span>
+						and <span class="mysql-highlight-gradient">relational databases</span>
+					</h1>
+
+					<h2 class="text-[1.5rem] mt-10 font-semibold">
+						Full Stack Developer
+					</h2>
+
+
+
+					with <span class="laravel-highlight-gradient whitespace-nowrap">PHP/Laravel</span> and modern JavaScript frameworks 
+					(<span class="vue-highlight-gradient">Vue</span>,
+					<span class="react-highlight-gradient">React</span>)
+
+
+					<h1 class="text-[3.75rem] font-bold">
+						web applications with
+						<span class="vue-highlight-gradient">Vue</span>,
+						<span class="react-highlight-gradient">React</span> and
+						<span class="laravel-highlight-gradient">PHP</span>
+					</h1>
+
+					<h2 class="text-[1.5rem] mt-10 font-semibold">
+						Frontend Developer
+					</h2>
+
+
+					everything with a frontend from browser extensions, 
+
+					I create web applications, browser extensions, and API integrations. Currently building web at Estravel.
+					I build web at Estravel
+		
+					I'm a web developer living in Tallinn
+					-->
+				</div>
+			</div>
 		</section>
   
-  
-		<div class="content-container-lg">
-		  <div class="py-5">
-			<div>
-			  {postsToShow.map((project, i) =>
-				<PostPreview index={i} postMetadata={project.frontmatter as any} />
-			  )}
+		<section class="section">
+
+			<div class="container">
+				<h2 class="h2 text-center mb-16">Skills</h1>
+				<div class="container grid gap-6 md:grid-cols-3">
+					<SkillCard title='Frontend' type='frontend' items={["React", "Vue", "JavaScript/TypeScript", "Tailwind", "HTML/CSS"]}></SkillCard>
+					<SkillCard title='Backend' type='backend' items={["PHP (Laravel, Slim)", "Python (FastAPI)", "SQL (MySQL/MariaDB, PostgreSQL)", "REST API", "WordPress", "SSO"]}></SkillCard>
+					<SkillCard title='Tools' type="tools" items={["Git (GitHub, GitLab)", "Docker", "Postman", "Swagger", "Azure", "Figma", "AI"]}></SkillCard>
+					
+				</div>
 			</div>
-		  </div>
   
-		</div>
-	  </div>
+		</section>
+
+		<section class="section">
+			<div>
+				<h2 class="h2 text-center mb-16">Projects</h1>
+				{postsToShow.map((project, i) =>
+					<PostPreview index={i} postMetadata={project.frontmatter as any} />
+				)}
+			</div>
+		</section>
+
+		<Testimonial client:load></Testimonial>
+	</div>
 </Layout>

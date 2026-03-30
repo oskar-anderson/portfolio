@@ -1,27 +1,32 @@
 {
-  "name": "@example/basics",
+  "name": "astro-tailwind-watch",
+  "type": "module",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
-  "devDependencies": {
-    "@astrojs/react": "^1.2.2",
-    "astro": "^1.9.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "dependencies": {
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "bootstrap": "^5.3.1",
-    "bootstrap-icons": "^1.10.5",
-    "dayjs": "^1.8.16",
+    "@astrojs/react": "^5.0.1",
+    "@floating-ui/dom": "^1.7.4",
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.14.5",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "dayjs": "^1.11.18",
+    "marked": "^17.0.3",
     "paper-css": "^0.4.1",
-    "rehype-pretty-code": "^0.10.0"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rehype-pretty-code": "^0.14.1",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite-plugin-svgr": "^4.5.0"
   }
 }

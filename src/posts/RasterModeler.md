@@ -3,7 +3,7 @@ title: "Raster Modeler"
 slug: "raster-modeler"
 description: "Developed a open source web app for visualizing databases as ERD schemas to help fellow students in Database Basics (ICA0005) course."
 techStack: ["React", "TypeScript"]
-image:
+media:
     src: "/static/img/posts/raster-modeler/main-view-horse.png"
     alt: "Main view"
 slugDirectory: "/posts/"
@@ -195,6 +195,7 @@ Users are allowed to create their own JavaScript scripts against their schemas i
     <img src="/static/img/posts/raster-modeler/scripting-view.png" alt="Scripting view." />
     <figcaption>Scripting view.</figcaption>
 </figure>
+
 This view has commenting functionality to allow sharing of user created content. Commenting is achieved through Github discussions.
 
 #### Interesting code

@@ -1,5 +1,9 @@
 ---
 import { CSSProperties } from "react";
+import MailIcon from "/public/static/svg/envelope-simple.svg";
+import GithubLogo from "/public/static/svg/github-logo.svg";
+import LinkedinIcon from "/public/static/svg/linkedin-logo.svg";
+
 
 interface FooterProps {
     style: CSSProperties;
@@ -8,20 +12,22 @@ interface FooterProps {
 const { style } = Astro.props as FooterProps;
 ---
 
-<footer class="page-footer-section secondary background-image-secondary" style={{ marginTop: "auto", borderTop: "#ddd solid 2px", ... style }}>
-    <div class="mx-4">
-        <div class="py-2 d-flex justify-content-between align-items-center">
-            <div class="m-1">© {new Date().getFullYear()} by Karl Oskar Anderson, Powered by Astro</div>
+<footer class="page-footer-section secondary" style={{ marginTop: "auto", borderTop: "#ddd solid 2px", ... style }}>
+    <div class="mx-6">
+        <div class="py-2 flex justify-between items-center">
+            <div class="m-1">© {new Date().getFullYear()} Karl Oskar Anderson</div>
             <div>
-                <a href="https://github.com/oskar-anderson/" class="btn" style={{ borderRadius: "50%", backgroundColor: "#266DD3", color: "white" }}>
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/karl-oskar-anderson" class="btn" style={{ borderRadius: "50%", backgroundColor: "#266DD3", color: "white" }}>
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="mailto:andersonkarloskar@gmail.com" class="btn btn-fab btn-primary fg-white" style={{ borderRadius: "50%", backgroundColor: "#266DD3", color: "white" }}>
-                    <i class="fa-regular fa-envelope"></i>
-                </a>
+                <div class="flex gap-2">
+                    <a href="https://github.com/oskar-anderson/" class="p-2 rounded-full text-black inline-flex">
+                        <GithubLogo></GithubLogo>
+                    </a>
+                    <a href="https://www.linkedin.com/in/karl-oskar-anderson" class="p-2 rounded-full text-black inline-flex">
+                        <LinkedinIcon></LinkedinIcon>
+                    </a>
+                    <a href="mailto:andersonkarloskar@gmail.com" class="p-2 rounded-full text-black inline-flex">
+                        <MailIcon></MailIcon>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
