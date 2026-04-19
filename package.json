@@ -18,6 +18,7 @@
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
     "dayjs": "^1.11.18",
+    "gsap": "^3.15.0",
     "marked": "^17.0.3",
     "paper-css": "^0.4.1",
     "react": "^19.2.4",

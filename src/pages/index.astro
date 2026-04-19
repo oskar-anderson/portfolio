@@ -45,7 +45,7 @@ let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet
 
 
 		<section class="section">
-			<div class="container flex-col max-md:items-center md:flex-row flex gap-12">
+			<div class="container flex-col max-md:items-center md:flex-row flex gap-12 justify-center">
 				<img class="max-w-auto w-[auto] max-md:w-full h-[auto] md:h-[28.5rem] rounded-md shadow-inner object-cover" 
 					src="static/img/aasta-tegu-2024-cropped.jpg" alt="Photo of me"
 				>
@@ -130,14 +130,20 @@ let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet
 			</div>
 		</section>
   
-		<section class="section">
+		<section class="section pb-0">
 
 			<div class="container">
-				<h2 class="h2 text-center mb-16">Skills</h2>
-				<div class="container grid gap-6 md:grid-cols-3">
-					<SkillCard title='Frontend' type='frontend' items={["React", "Vue", "JavaScript/TypeScript", "Tailwind", "HTML/CSS"]}></SkillCard>
-					<SkillCard title='Backend' type='backend' items={["PHP (Laravel, Slim)", "Python (FastAPI)", "SQL (MySQL/MariaDB, PostgreSQL)", "REST API", "WordPress", "SSO"]}></SkillCard>
-					<SkillCard title='Tools' type="tools" items={["Git (GitHub, GitLab)", "Docker", "Postman", "Swagger", "Azure", "Figma", "AI"]}></SkillCard>
+				<h2 class="display-md text-center mb-16">Skills</h2>
+				<div class="container flex flex-col md:flex-row flex-wrap max-md:items-center md:justify-center gap-x-4 gap-y-8">
+					<div class="js-gsap-card max-w-[360px]">
+						<SkillCard title='Frontend' type='frontend' text='Creating fast, responsive interfaces with reusable components and modern CSS workflows.'></SkillCard>
+					</div>
+					<div class="js-gsap-card max-w-[360px]">
+						<SkillCard title='Backend' type='backend' text='Adapting backend solutions to the problem - using WordPress for CMS, Laravel for applications, Python for data-driven tasks and .NET for business logic.'></SkillCard>
+					</div>
+					<div class="js-gsap-card max-w-[360px]">
+						<SkillCard title='Tools' type="tools" text='Turning "it works on my machine" into "it works everywhere".'></SkillCard>
+					</div>
 					
 				</div>
 			</div>
@@ -146,7 +152,7 @@ let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet
 
 		<section class="section">
 			<div>
-				<h2 class="h2 text-center mb-16">Projects</h2>
+				<h2 class="display-md text-center mb-16">Projects</h2>
 				{postsToShow.map((project, i) =>
 					<PostPreview index={i} postMetadata={project.frontmatter as any} />
 				)}
@@ -156,3 +162,32 @@ let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet
 		<Testimonial client:load></Testimonial>
 	</div>
 </Layout>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+
+	if (window.innerWidth > 1224) {
+		const cards = gsap.utils.toArray(".js-gsap-card");
+		cards.forEach((card, i) => {
+			gsap.fromTo(
+				card,
+				{
+					x: (2 - i - 1) * 320,
+				},
+				{
+					x: 0,
+					ease: "back.out",
+					scrollTrigger: {
+						trigger: card,
+						start: "top 80%",
+						end: "top 80%",
+					}
+				}
+			);
+		});
+	}
+</script>

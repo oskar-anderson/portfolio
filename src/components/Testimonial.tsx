@@ -98,7 +98,7 @@ export default function Testimonials({
   return (
     <section className="testimonials" aria-labelledby="testimonials-title">
       <div className="testimonials__inner">
-        <h2 id="testimonials-title" className="testimonials__title h2">
+        <h2 className="testimonials__title display-md">
           {title}
         </h2>
 

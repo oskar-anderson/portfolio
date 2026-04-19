@@ -39,7 +39,7 @@
 .quote-card {
     position: absolute;
     inset: 0;
-    border-radius: 22px;
+    border-radius: 4px;
     padding: 18px;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 22px;
+    border-radius: inherit;
     background: var(--clr-pastel-green);
     z-index: 1;
 }
