@@ -1,5 +1,6 @@
 /* @import "tailwindcss"; Use custome preflight */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss/theme.css";
 @import "tailwindcss/utilities.css";
 @import "./typography.css";
@@ -66,6 +67,18 @@ body {
 @theme {
   --color-primary: #f9844a;
   --color-primary-light: #FDE0CB;
+  --color-dark: #3c5564;
+
+  
+  --color-pastel-orange: hsl(22, 98%, 77%);
+  --color-pastel-light-orange: hsl(from var(--color-pastel-orange) h s calc(0.5 * l + 50));
+  --color-pastel-yellow: hsl(44, 86%, 86%);
+  --color-pastel-light-yellow: hsl(from var(--color-pastel-yellow) h s calc(0.5 * l + 50));
+  --color-pastel-blue: hsl(215, 96%, 90%);
+  --color-pastel-light-blue: hsl(from var(--color-pastel-blue) h s calc(0.5 * l + 50));
+  --color-pastel-green: hsl(112, 60%, 90%);
+  --color-pastel-light-green: hsl(from var(--color-pastel-green) h s calc(0.5 * l + 50));
+
   --hello-logo-background: #f9844a;
   --hello-logo-text: #43524d;
   --color-highlight: rgb(10 88 202);
@@ -433,6 +446,3 @@ header {
 
 
 
-.skill-list-item-border:not(:first-of-type) {
-  border-top: 1px dashed #e5e7eb;
-}

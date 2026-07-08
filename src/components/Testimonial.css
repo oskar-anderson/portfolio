@@ -1,11 +1,5 @@
 .testimonials {
     --color-heading: #fff;
-
-    --clr-pastel-orange: hsl(22, 98%, 77%);
-    --clr-pastel-yellow: hsl(44, 86%, 86%);
-    --clr-pastel-blue: hsl(215, 96%, 90%);
-    --clr-pastel-green: hsl(112, 60%, 90%);
-
     background: #43524d;
     color: #fff;
     padding: clamp(4rem, 7vw, 7rem) 1.5rem;
@@ -49,15 +43,15 @@
 }
 
 .quote-card:nth-of-type(3n) {
-    background: var(--clr-pastel-orange);
+    background: var(--color-pastel-orange);
 }
 
 .quote-card:nth-of-type(3n + 1) {
-    background: var(--clr-pastel-yellow);
+    background: var(--color-pastel-yellow);
 }
 
 .quote-card:nth-of-type(3n + 2) {
-    background: var(--clr-pastel-blue);
+    background: var(--color-pastel-blue);
 }
 
 .quote-card.is-viewed::before {
@@ -65,7 +59,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: var(--clr-pastel-green);
+    background: var(--color-pastel-green);
     z-index: 1;
 }
 
@@ -124,6 +118,8 @@
 
 .testimonials__quote {
     white-space: pre-line;
+    line-height: 1.6;
+    color: rgb(200, 205, 216);
 }
 
 .testimonials__nav {

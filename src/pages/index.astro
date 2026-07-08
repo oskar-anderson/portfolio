@@ -1,7 +1,7 @@
 ---
 import PostPreview from '../components/PostPreview.astro';
 import Testimonial from '../components/Testimonial';
-import SkillCard from '../components/SkillCard';
+import { SkillCardFrontend, SkillCardBackend, SkillCardTools } from '../components/SkillCard';
 import Layout from '../layouts/Layout.astro';
 
 import HelloIcon from "/public/static/img/hello.svg";
@@ -134,15 +134,15 @@ let postsToShow = ["estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet
 
 			<div class="container">
 				<h2 class="display-md text-center mb-16">Skills</h2>
-				<div class="container flex flex-col md:flex-row flex-wrap max-md:items-center md:justify-center gap-x-4 gap-y-8">
+				<div class="container flex flex-col md:flex-row flex-wrap max-md:items-center md:justify-center gap-x-8 gap-y-8">
 					<div class="js-gsap-card max-w-[360px]">
-						<SkillCard title='Frontend' type='frontend' text='Creating fast, responsive interfaces with reusable components and modern CSS workflows.'></SkillCard>
+						<SkillCardFrontend className='rotate-[-0.8deg] hover:rotate-0' title='Frontend' text='Creating fast, responsive interfaces with reusable components and modern CSS workflows.'></SkillCardFrontend>
 					</div>
 					<div class="js-gsap-card max-w-[360px]">
-						<SkillCard title='Backend' type='backend' text='Adapting backend solutions to the problem - using WordPress for CMS, Laravel for applications, Python for data-driven tasks and .NET for business logic.'></SkillCard>
+						<SkillCardBackend className='rotate-[1deg] hover:rotate-0' title='Backend' text='Adapting backend solutions to the problem - using WordPress for CMS, Laravel for applications, Python for data-driven tasks and .NET for business logic.'></SkillCardBackend>
 					</div>
 					<div class="js-gsap-card max-w-[360px]">
-						<SkillCard title='Tools' type="tools" text='Turning "it works on my machine" into "it works everywhere".'></SkillCard>
+						<SkillCardTools className='rotate-[-1.2deg] hover:rotate-0' title='Tools' text='Turning "it works on my machine" into "it works everywhere".'></SkillCardTools>
 					</div>
 					
 				</div>
