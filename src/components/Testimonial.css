@@ -1,9 +1,7 @@
 .testimonials {
     --color-heading: #fff;
-    background: #43524d;
     color: #fff;
     padding: clamp(4rem, 7vw, 7rem) 1.5rem;
-    background: #1e212c;
 }
 
 .testimonials__inner {

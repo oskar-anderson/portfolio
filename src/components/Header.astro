@@ -1,27 +1,32 @@
 ---
 import '/src/styles/global.css'
+
+const { isHome = false } = Astro.props;
 ---
 
-<div class="py-3 background-image-primary position-relative body" style={{ zIndex: 1, fontSize: "16px" }}>
-    <div class="header-container flex-lg-col-6">
-        <h1 class="h1 mx-4 my-0" style={{ marginBottom: 0, textAlign: "center", fontSize: "1.5em" }}>
-            <a style={{ textDecoration: "none" }} href="/">Karl Oskar Anderson</a>
+<header
+    class:list={[
+        'bg-secondary',
+        { 'absolute z-20 right-0 left-0 backdrop-filter-[10px]': isHome },
+    ]}
+>
+    <div class="container py-5 flex items-center justify-between">
+        <h1 class="h1" style={{ marginBottom: 0, textAlign: "center", fontSize: "1.5em" }}>
+            <a style={{ textDecoration: "none" }} href="/">Karl Oskar</a>
         </h1>
-        <nav class="flex justify-content-center">
-            <ul class="navbar-nav flex-row mr-auto">
-                <li class="nav-item active mx-3 flex-row">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item mx-3 flex-row">
-                    <a class="nav-link" href="/blog">Blog</a>
-                </li>
-                <li class="nav-item mx-3 flex-row">
-                    <a class="nav-link" href="/resume">Resume</a>
-                </li>
-                <li class="nav-item mx-3 flex-row">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-            </ul>
-        </nav>
+        <ul class="flex flex-row list-none">
+            <li class="mx-4">
+                <a href="/">Home</a>
+            </li>
+            <li class="mx-4">
+                <a href="/blog">Blog</a>
+            </li>
+            <li class="mx-4">
+                <a href="/work">Work</a>
+            </li>
+            <li class="mx-4">
+                <a href="/contact">Contact</a>
+            </li>
+        </ul>
     </div>
-</div>
+</header>

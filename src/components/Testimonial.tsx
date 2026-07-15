@@ -96,7 +96,7 @@ export default function Testimonials({
   }
 
   return (
-    <section className="testimonials" aria-labelledby="testimonials-title">
+    <section className="testimonials section bg-dark is-dark" aria-labelledby="testimonials-title">
       <div className="testimonials__inner">
         <h2 className="testimonials__title display-md">
           {title}

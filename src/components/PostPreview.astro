@@ -21,7 +21,7 @@ const { postMetadata, index } = Astro.props as Props;
 ---
 
 <div class=`content-container ${index % 2 == 1 ? 'feature-grid--reverse' : ''} mb-24 no-underline text-current`>
-    <div class="feature-image">
+    <div class="feature-image max-md:hidden">
         {
             postMetadata.media.src.endsWith(".mp4") || postMetadata.media.src.endsWith(".webm") ?
             <video class="object-contain image-highlight" src={postMetadata.media.src} width="640" height="360" autoplay muted loop>
@@ -32,13 +32,24 @@ const { postMetadata, index } = Astro.props as Props;
         }
     </div>
     <div class="feature-text">
-        <div class="mb-8">
+        <div class="mb-4">
             <p class="label-md text-gray-400 uppercase">{postMetadata.subTitle}</p>
             <h3 class="h3">{postMetadata.title}</h2>
         </div>
         
+        <div class="feature-image md:hidden mb-4">
+            {
+                postMetadata.media.src.endsWith(".mp4") || postMetadata.media.src.endsWith(".webm") ?
+                <video class="object-contain image-highlight" src={postMetadata.media.src} width="640" height="360" autoplay muted loop>
+                    Your browser does not support the video tag.
+                </video>
+                : 
+                <img class="object-contain image-highlight bg-neutral-400" src={postMetadata.media.src} alt={postMetadata.media.alt} />
+            }
+        </div>
+
         <div class="prose" set:html={marked.parse(postMetadata.description, {breaks: true, gfm: true})}></div>
-        <div class="my-6">
+        <div class="mt-4 mb-6">
             <ul class="list-none flex flex-wrap horizontal-list">
                 <!--
                 <li class="flex items-center">

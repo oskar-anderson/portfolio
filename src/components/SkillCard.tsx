@@ -125,7 +125,7 @@ function ToolsMotif() {
 
 function SkillCard({ title, icon, text, children, className = "" }: { title: string, icon: ReactNode, text: string, children: ReactNode, className?: string }) {
   return (
-    <article className={`relative h-full bg-pastel-light-yellow overflow-clip transition-transform duration-300 rounded-[7px] shadow flex flex-col hover:translate-y-[-5px] py-5 px-6 border-3 border-dark ${className}`}>
+    <article className={`relative h-full bg-pastel-light-yellow overflow-clip transition-transform duration-300 rounded-[7px] shadow flex flex-col hover:translate-y-[-5px] py-5 px-6 border-3 border-secondary ${className}`}>
       <div className="text-primary/24 pointer-events-none" aria-hidden="true">
         <div className="absolute -top-[22px] -right-[6px] rotate-[8deg] z-[-1] [&>svg]:h-[124px] [&>svg]:w-[124px]">
           {icon}
