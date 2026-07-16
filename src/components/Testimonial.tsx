@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import "./Testimonial.css";
 import ArrowLeft from "/public/static/svg/arrow-left.svg?react";
 import ArrowRight from "/public/static/svg/arrow-right.svg?react";
@@ -95,6 +95,51 @@ export default function Testimonials({
     setCurrentIndex((prev) => (prev + 1) % total);
   }
 
+  // --- Drag-to-swipe on the card stack ---
+  const draggingRef = useRef(false);
+  const startX = useRef(0);
+  const startY = useRef(0);
+  const axis = useRef<null | "h" | "v">(null);
+  const dxRef = useRef(0);
+  const [dragX, setDragX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const SWIPE_THRESHOLD = 60;
+
+  function onPointerDown(e: React.PointerEvent) {
+    draggingRef.current = true;
+    startX.current = e.clientX;
+    startY.current = e.clientY;
+    axis.current = null;
+    dxRef.current = 0;
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  }
+
+  function onPointerMove(e: React.PointerEvent) {
+    if (!draggingRef.current) return;
+    const dx = e.clientX - startX.current;
+    const dy = e.clientY - startY.current;
+    // Lock direction on first meaningful move so vertical scrolling still works.
+    if (axis.current === null) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      axis.current = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
+    }
+    if (axis.current === "v") return;
+    dxRef.current = dx;
+    setDragX(dx);
+  }
+
+  function endDrag() {
+    if (!draggingRef.current) return;
+    draggingRef.current = false;
+    setDragging(false);
+    const dx = dxRef.current;
+    dxRef.current = 0;
+    setDragX(0);
+    if (dx <= -SWIPE_THRESHOLD) goNext();
+    else if (dx >= SWIPE_THRESHOLD) goPrev();
+  }
+
   return (
     <section className="testimonials section bg-dark is-dark" aria-labelledby="testimonials-title">
       <div className="testimonials__inner">
@@ -114,21 +159,39 @@ export default function Testimonials({
               </button>
             </div>
 
-            <div className="testimonials__visual" aria-hidden="true">
-              {cards.map((card) => (
-                <div key={`${card.index}`} className={`quote-card ${card.isCurrent ? "is-current" : ""} ${card.isViewed ? "is-viewed" : ""}`} style={card.style}>
-                  <div className="quote-card__frame">
-                    {
-                    card.item.image
-                      ? <img className="w-full h-full rounded-[inherit]" src={card.item.image}></img>
-                      : <div className="quote-card__icon">“</div> 
-                    }
+            <div
+              className="testimonials__visual"
+              aria-hidden="true"
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={endDrag}
+              onPointerCancel={endDrag}
+              style={{ cursor: dragging ? "grabbing" : "grab" }}
+            >
+              {cards.map((card) => {
+                const style: React.CSSProperties =
+                  card.isCurrent && (dragging || dragX !== 0)
+                    ? {
+                        ...card.style,
+                        transform: `translate(${dragX}px, 0) rotate(${dragX * 0.03}deg)`,
+                        transition: dragging ? "none" : undefined,
+                      }
+                    : card.style;
+                return (
+                  <div key={`${card.index}`} className={`quote-card ${card.isCurrent ? "is-current" : ""} ${card.isViewed ? "is-viewed" : ""}`} style={style}>
+                    <div className="quote-card__frame">
+                      {
+                      card.item.image
+                        ? <img className="w-full h-full rounded-[inherit] pointer-events-none select-none" src={card.item.image} draggable={false}></img>
+                        : <div className="quote-card__icon">“</div>
+                      }
+                    </div>
+                    <div className="quote-card__person">{card.item.person}</div>
+                    <div className="quote-card__role">{card.item.role}</div>
                   </div>
-                  <div className="quote-card__person">{card.item.person}</div>
-                  <div className="quote-card__role">{card.item.role}</div>
-                </div>
-              ))}
-              
+                );
+              })}
+
             </div>
           </div>
 

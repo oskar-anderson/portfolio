@@ -26,6 +26,8 @@
     width: 240px;
     aspect-ratio: 0.78;
     margin-inline: auto;
+    touch-action: pan-y; /* let vertical scroll pass through; we own horizontal */
+    user-select: none;
 }
 
 .quote-card {

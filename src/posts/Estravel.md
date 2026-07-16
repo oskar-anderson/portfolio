@@ -1,15 +1,13 @@
 ---
 title: "Estravel booking platforms"
-subTitle: "Estravel Fullstack developer (NOV 2023 - present)"
+subTitle: "Estravel web developer (NOV 2023 - JUNE 2026)"
 slug: "estravel"
 description: |
-    * Built internal E2E offer composition workspace for consultants integrating Gmail, supplier APIs and AI agents
     * Took ownership of online B2C booking platforms, overseeing functionality and design for ~€300k in monthly sales
-    * Decoupled five legacy web applications into self-contained, themable plugins with dedicated admin interfaces
-    * Built product (Dreamlake, G Adventures) resale flows and internal AI tooling integrations
+    * Decoupled five legacy web applications into self-contained, themeable plugins with dedicated admin interfaces
     * Led company-wide migration from Thunderbird to Gmail, developed custom Chrome email manager client
 
-techStack: ["PHP", "Laravel", "Vue", "React", "FastAPI", "WordPress", "MySQL"]
+techStack: ["PHP", "Vue", "React", "WordPress", "MySQL"]
 media:
   src: "/static/estravel-portfolio-animation.webm"
   alt: "Estravel web"
