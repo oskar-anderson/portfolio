@@ -5,7 +5,7 @@ slug: "tempsens"
 description: "Developed a full stack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for backend and chart visualization for frontend. Implemented binning and clustering algorithms for data visualization and alert observation."
 techStack: ["PHP", "SlimPHP", "JS", "Bootstrap", "MySQL"]
 media:
-    src: "/static/img/posts/tempsens/tempsens_version_1.1.2_thumbnail-3.png"
+    src: "/static/img/posts/tempsens/tempsens-story-16x9.png"
     alt: "tempsens"
 slugDirectory: "/posts/"
 ---

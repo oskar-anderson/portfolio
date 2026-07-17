@@ -2,8 +2,8 @@
 slug: "advanced-query-params"
 title: "Advanced query params"
 slugDirectory: "blog/"
-thumbnail: ""
-intro: ""
+thumbnail: "/static/img/blog/advanced-query-params/thumbnail.png"
+intro: "How PHP, .NET, Spring, Laravel and Django each handle arrays and objects in URL query strings"
 tags: ["PHP", "JS", "Java", "Python"]
 minToRead: 6
 publishedDate: "25.05.2024"

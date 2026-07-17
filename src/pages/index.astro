@@ -5,7 +5,7 @@ import { SkillCardFrontend, SkillCardBackend, SkillCardTools } from '../componen
 import Layout from '../layouts/Layout.astro';
 
 let allPosts = Object.values(import.meta.glob<Record<string, any>>("../posts/*.md", { eager: true }))
-let postsToShow = ["estravel-fullstack", "estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
+let postsToShow = ["estravel-metasearch", "estravel", "charon", "HedgehogDBD", "tempsens", "maanteeamet-timescanner"].map(postToShow => {
 	return allPosts.filter(x => x.frontmatter.slug === postToShow)[0]
 });
 

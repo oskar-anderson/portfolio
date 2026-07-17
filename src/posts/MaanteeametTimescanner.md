@@ -4,7 +4,7 @@ slug: "maanteeamet-timescanner"
 description: "Developed a web scraper for getting info from Maanteeamet e-service about available driving exam times."
 techStack: ["Python", "Selenium" ]
 media: 
-    src: "/static/img/posts/maanteeamet-timescanner/available-MTA-driving-exam-time-found.png"
+    src: "/static/img/posts/maanteeamet-timescanner/timescanner-story-16x9.png"
     alt: "Maanteeamet Timescanner"
 slugDirectory: "/posts/"
 ---
