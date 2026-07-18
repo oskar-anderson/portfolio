@@ -8,7 +8,7 @@ const isHome = Astro.url.pathname === '/';
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,18 +20,14 @@ const isHome = Astro.url.pathname === '/';
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" /> 
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="dist/hamburgers.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script type="module" src="/src/scripts/pixel-canvas.js"></script>
     <title>Karl Oskar Anderson Portfolio</title>
   </head>
   <body class="flex flex-col h-[100vh]">
-    <!-- <div class="v2-background-image-primary"></div> -->
-    <div style={{ zIndex: 1 }}>
       <Header isHome={isHome} />
       <slot/>
       <Footer />
-    </div>
   </body>
 </html>

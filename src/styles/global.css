@@ -111,6 +111,10 @@ footer a:not([class]), footer .a {
   text-decoration: none;
 }
 
+header h1, header h2, header h3, header h4, header h5  {
+  color: inherit;
+}
+
 .badge {
   padding-block: 0.25rem;
   padding-inline: 0.5rem;
@@ -138,30 +142,6 @@ footer a:not([class]), footer .a {
   background-color: var(--bs-secondary-bg);
   color: rgb(173, 181, 189);
 }
-
-.background-image-primary {
-  background: transparent url('/static/img/bg-line-tan.png') repeat center top;
-}
-.background-image-secondary {
-  background: transparent url('/static/img/bg-line-darkbrown.png') repeat center top;
-}
-.v2-background-image-primary {
-  --color-highlight: #8cb4e9;
-  background: radial-gradient(circle,color-mix(in srgb,var(--color-highlight) 32%,transparent) 70%,var(--color-highlight) 100%);
-  background-position-y: -200px;
-  background-size: 100% 100%;
-  height: 100%;
-  left: 0;
-  mask-image: linear-gradient(90deg,#fff 1px,transparent 0),linear-gradient(180deg,#fff 1px,transparent 0);
-  mask-position: calc(mod(100vw,3rem)/2) 0;
-  mask-repeat: repeat;
-  mask-size: 3rem 3rem;
-  opacity: .59;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
 a {
   text-decoration: none;
 }
@@ -402,13 +382,6 @@ a:not([class]) {
 .notice-stamp-available-for-work {
   background: rgb(51 201 133 / 80%);
   color: #fff;
-}
-
-.header-container {
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  display: flex;
 }
 
 /*

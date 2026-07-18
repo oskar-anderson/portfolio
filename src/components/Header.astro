@@ -2,31 +2,150 @@
 import '/src/styles/global.css'
 
 const { isHome = false } = Astro.props;
+
+const navItems = [
+    { href: "/", text: "Home" },
+    { href: "/blog", text: "Blog" },
+    { href: "/work", text: "Work" },
+    { href: "/contact", text: "Contact" },
+];
 ---
 
 <header
     class:list={[
         'bg-secondary',
-        { 'absolute z-20 right-0 left-0 backdrop-filter-[10px]': isHome },
+        isHome ? 'absolute z-20 right-0 left-0 backdrop-filter-[10px]' : 'relative',
     ]}
 >
     <div class="container py-5 flex items-center justify-between">
-        <h1 class="h1" style={{ marginBottom: 0, textAlign: "center", fontSize: "1.5em" }}>
+        <div class="h1" style={{ marginBottom: 0, textAlign: "center", fontSize: "1.5em" }}>
             <a style={{ textDecoration: "none" }} href="/">Karl Oskar</a>
-        </h1>
-        <ul class="flex flex-row list-none">
-            <li class="mx-4">
-                <a href="/">Home</a>
-            </li>
-            <li class="mx-4">
-                <a href="/blog">Blog</a>
-            </li>
-            <li class="mx-4">
-                <a href="/work">Work</a>
-            </li>
-            <li class="mx-4">
-                <a href="/contact">Contact</a>
-            </li>
+        </div>
+
+        <!-- Desktop nav -->
+        <ul class="max-md:hidden flex flex-row list-none">
+            {navItems.map(item => (
+                <li class="mx-4">
+                    <a href={item.href}>{item.text}</a>
+                </li>
+            ))}
         </ul>
+
+        <!-- Mobile nav -->
+        <details class="site-menu md:hidden">
+            <summary aria-label="Toggle navigation menu">
+                <span class="hamburger" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </span>
+            </summary>
+            <ul class="site-menu__panel bg-secondary list-none">
+                {navItems.map(item => (
+                    <li>
+                        <a href={item.href}>{item.text}</a>
+                    </li>
+                ))}
+            </ul>
+        </details>
     </div>
 </header>
+
+<style>
+    .site-menu {
+        position: static;
+    }
+    .site-menu > summary {
+        list-style: none;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        padding: 0.25rem;
+    }
+    .site-menu > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        position: relative;
+        width: 26px;
+        height: 18px;
+    }
+    .hamburger > span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2.5px;
+        border-radius: 2px;
+        background: #fff;
+        transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+    }
+    .hamburger > span:nth-child(1) { top: 0; }
+    .hamburger > span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    .hamburger > span:nth-child(3) { top: 100%; transform: translateY(-100%); }
+
+    .site-menu[open] .hamburger > span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    .site-menu[open] .hamburger > span:nth-child(2) {
+        opacity: 0;
+    }
+    .site-menu[open] .hamburger > span:nth-child(3) {
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .site-menu__panel {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 16px 24px -12px rgba(0, 0, 0, 0.45);
+        z-index: 30;
+    }
+    .site-menu__panel > li {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .site-menu__panel > li:first-child {
+        border-top: 0;
+    }
+    .site-menu__panel a {
+        display: block;
+        padding: 1rem 1.5rem;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .site-menu__panel a:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hamburger > span { transition: none; }
+    }
+</style>
+
+<script>
+    // Lock body scroll while the mobile menu is open; close it on nav, outside click, Escape, or resize to desktop.
+    document.querySelectorAll<HTMLDetailsElement>('.site-menu').forEach((details) => {
+        details.addEventListener('toggle', () => {
+            document.body.classList.toggle('dialog-open', details.open);
+        });
+        details.querySelectorAll('a').forEach((a) =>
+            a.addEventListener('click', () => { details.open = false; })
+        );
+        document.addEventListener('click', (e) => {
+            if (details.open && !details.contains(e.target as Node)) details.open = false;
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') details.open = false;
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) details.open = false;
+        });
+    });
+</script>
