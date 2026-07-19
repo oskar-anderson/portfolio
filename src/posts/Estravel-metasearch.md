@@ -13,3 +13,5 @@ media:
   alt: "Estravel Metasearch"
 slugDirectory: "/posts/"
 ---
+
+Nothing here yet!

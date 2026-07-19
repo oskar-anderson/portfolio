@@ -18,7 +18,7 @@ let isAvailableForWork = false;
 			<canvas id="hero-canvas" class="absolute inset-0 min-w-full min-h-full w-auto h-auto max-w-none aspect-video z-[-1] bg-[#58cce4] pointer-events-none" aria-hidden="true"></canvas>
 			<div class="absolute inset-0 z-[-1] pointer-events-none" style="background: radial-gradient(115% 115% at 88% 8%, transparent 38%, rgba(6, 24, 30, 0.65) 100%);" aria-hidden="true"></div>
 
-			<a class="hidden absolute bottom-6 left-1/2 -translate-x-1/2 md:flex flex-col items-center gap-2" href="#skills" aria-label="Scroll to about">
+			<a class="hidden absolute bottom-6 left-1/2 -translate-x-1/2 lg:flex flex-col items-center gap-2" href="#skills" aria-label="Scroll to about">
 				<span class="font-mono text-white tracking-[2.5px] text-xs uppercase">scroll</span>
 				<svg class="w-4 h-4 animate-bounce text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 					<path d="M12 5v14"></path>
@@ -26,33 +26,33 @@ let isAvailableForWork = false;
 				</svg>
 			</a>
 			
-			<div class="container flex gap-12 pt-16 pb-24">
+			<div class="content-container pt-16 pb-24">
 
-				<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-10 w-full text-center md:text-left">
+				<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 w-full text-center lg:text-left">
 
-					<div class="shrink-0 md:hidden">
-						<img class="w-72 md:w-96 mx-auto rotate-3 rounded-md border-4 border-white bg-white shadow-xl" src="/static/img/Estravel_29_01_2026_HD-143_portrait.jpg" draggable="false">
+					<div class="shrink-0 lg:hidden">
+						<img class="w-72 lg:w-96 mx-auto rotate-3 rounded-md border-4 border-white bg-white shadow-xl" src="/static/img/Estravel_29_01_2026_HD-143_portrait_edited.jpg" draggable="false">
 					</div>
 
-					<div class="flex flex-col gap-5 items-center md:items-start">
+					<div class="flex flex-col gap-5 items-center lg:items-start">
 
 						{ isAvailableForWork && <span class="notice-stamp notice-stamp-available-for-work">
 							Available for work
 						</span>}
 
-						<span class="text-primary text-[42px] leading-tight font-extrabold max-w-[10ch]" style="font-size: clamp(2.6rem, 8vw, 5.2rem); line-height: 0.98;">
+						<h1 class="text-primary text-[42px] leading-tight font-extrabold max-w-[10ch]" style="font-size: clamp(2.6rem, 8vw, 5.2rem); line-height: 0.98;">
 							Karl Oskar Anderson
-						</span>
+						</h1>
 						
-						<div class="font-medium max-md" style="font-size: clamp(1.3rem, 3.2vw, 2rem); max-width: 22ch;">
+						<div class="font-medium" style="font-size: clamp(1.3rem, 3.2vw, 2rem); max-width: 22ch;">
 							I build the web at <strong>Estravel</strong>;
 							from client-facing services to 
 							internal offer creation engines
 						</div>
 
 						<div class="flex flex-col w-64 text-base gap-4 mt-6">
-							<a class="btn-bevel btn-bevel-primary" href="#">
-								Resume TODO LINK
+							<a class="btn-bevel btn-bevel-primary" href="/resume">
+								Resume
 							</a>
 							<!--
 							<a class="btn-bevel btn-bevel-secondary" href="#">
@@ -90,8 +90,8 @@ let isAvailableForWork = false;
 
 					</div>
 
-					<div class="shrink-0 hidden md:block">
-						<img class="w-72 md:w-96 mx-auto rotate-3 rounded-md border-4 border-white bg-white shadow-xl" src="/static/img/Estravel_29_01_2026_HD-143_portrait.jpg" draggable="false">
+					<div class="shrink-0 hidden lg:block">
+						<img class="w-72 lg:w-96 mx-auto rotate-3 rounded-md border-4 border-white bg-white shadow-xl" src="/static/img/Estravel_29_01_2026_HD-143_portrait_edited.jpg" draggable="false">
 					</div>
 
 					<!-- 
@@ -139,9 +139,9 @@ let isAvailableForWork = false;
   
 		<section class="section pb-0 is-light">
 
-			<div class="container">
+			<div class="content-container">
 				<h2 class="display-md text-center mb-16" id="skills">Skills</h2>
-				<div class="container flex flex-col md:flex-row flex-wrap max-md:items-center md:justify-center gap-x-8 gap-y-8">
+				<div class="flex flex-col md:flex-row flex-wrap max-md:items-center md:justify-center gap-x-8 gap-y-8">
 					<div class="js-gsap-card max-w-[360px]">
 						<SkillCardFrontend className='rotate-[-0.8deg] hover:rotate-0' title='Frontend' text='Creating fast, responsive interfaces with reusable components and modern CSS workflows.'></SkillCardFrontend>
 					</div>
@@ -157,7 +157,7 @@ let isAvailableForWork = false;
   
 		</section>
 
-		<section class="section is-light">
+		<section class="section content-container is-light">
 			<div>
 				<h2 class="display-md text-center mb-16">Projects</h2>
 				{postsToShow.map((project, i) =>

@@ -4,11 +4,6 @@
     padding: clamp(4rem, 7vw, 7rem) 1.5rem;
 }
 
-.testimonials__inner {
-    max-width: 1280px;
-    margin: 0 auto;
-}
-
 .testimonials__title {
     margin: 0 0 clamp(2rem, 5vw, 4rem);
     text-align: center;
@@ -140,7 +135,7 @@
     translate: 0 -50%;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
     .testimonials__grid {
         grid-template-columns: minmax(280px, 400px) 1fr;
     }

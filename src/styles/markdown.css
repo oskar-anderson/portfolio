@@ -1,41 +1,92 @@
-h1, h2, h3, h4, h5 {
-  font-family: "Arial";
-  margin-top: 2em;
-  margin-bottom: 16px;
-}
+.markdown {
+  h1, h2, h3, h4, h5 {
+    font-family: "Inter", Arial, sans-serif;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+  
+  h2 { font-size: 1.5rem; }   /* top-level section */
+  h3 { font-size: 1.25rem; }  /* subsection */
+  h4 { font-size: 1.0625rem; }/* deepest heading used */
 
-li:not(:last-child) {
-  margin-bottom: 16px;
-}
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
 
-pre {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1em 1.5em;
-  margin: 2em 0;
-}
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li::marker {
+    color: var(--color-primary);
+  }
+  li:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
 
-img {
-  max-width: 100%;
-}
+  pre {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1em 1.5em;
+    margin: 2em 0;
+    overflow-x: auto;
+  }
+  pre code {
+    font-size: 0.9em;
+  }
+  /* Inline code (not inside a <pre> block) */
+  :not(pre) > code {
+    background: #f3f0eb;
+    border: 1px solid #e0dcd3;
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+    font-family: Consolas, "Courier New", monospace;
+  }
 
-figure {
-  display: grid;
-  place-items: center;
-  max-width: 100%;
-  padding: 0.75em 0
-}
+  hr {
+    border: 0;
+    border-top: 1px solid #e0dcd3;
+    margin: 2.5em 0;
+  }
 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+  }
+  th, td {
+    border: 1px solid #e0dcd3;
+    padding: 0.5em 0.75em;
+    text-align: left;
+    overflow-wrap: break-word;
+  }
+  th {
+    background: #f3f0eb;
+  }
 
-figcaption {
-  text-align: center;
-  font-size: 0.875em;
-  color: var(--bs-secondary-color);
-}
+  img {
+    max-width: 100%;
+  }
 
-img:not(figcaption > img) {
-  display: flex;
-  margin: 0 auto;
-  margin-top: 1.6em;
-  margin-bottom: 0.8em;
+  figure {
+    display: grid;
+    place-items: center;
+    max-width: 100%;
+    padding: 0.75em 0
+  }
+
+  figcaption {
+    text-align: center;
+    font-size: 0.875em;
+    color: #6c757d;
+  }
+
+  img:not(figcaption > img) {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 1.6em;
+    margin-bottom: 0.8em;
+  }
 }

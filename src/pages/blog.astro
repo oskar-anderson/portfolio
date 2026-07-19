@@ -15,9 +15,9 @@ let allPosts = Object.values(import.meta.glob<Record<string, any>>('../posts/blo
 ---
 
 <Layout>
-    <div class="content-container">
+    <div class="content-container section">
         <div class="flex justify-center">
-            <h2 class="h2">All articles</h2>
+            <h1 class="display-md mb-6">All articles</h1>
         </div>
         <div>
             { allPosts.map(post => (

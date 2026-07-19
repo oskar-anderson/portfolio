@@ -2,7 +2,7 @@
 title: "HedgehogDBD"
 subTitle: "Bachelor's degree thesis 2023"
 slug: "HedgehogDBD"
-description: "Developed a open source web app for visualizing databases as ERD schemas to help fellow students in Database Basics (ICA0005) course."
+description: "Developed an open source web app for visualizing databases as ERD schemas to help fellow students in the Database Basics (ICA0005) course."
 techStack: ["React", "TypeScript"]
 media:
     src: "/static/img/posts/HedgehogDBD/main-view-cropped.png"
@@ -26,7 +26,7 @@ Links to the project:
 * [Thesis](https://digikogu.taltech.ee/et/Item/a99fe3f6-43d7-4902-98b0-6a5f6b4c377e)
 
 
-### Requirements analysis
+## Requirements analysis
 
 The acceptance criteria were to find a solution that:
 * Works locally (offline or open-source)
@@ -142,11 +142,11 @@ Cannot add class="table" to this ASCII table so unfortunately must write in html
 
 None of the tested solutions met the criteria so I created my own application.
 
-### Tech stack analysis
+## Tech stack analysis
 Web apps are developed in either JavaScript or TypeScript. 
 **TypeScript** was chosen to reduce time spent debugging type errors and improve developer experience.
 
-The biggest requirements specific problem to overcome is drawing the diagram.
+The biggest requirement-specific problem to overcome is drawing the diagram.
 Initially a generic canvas element handled by PixiJS was used, but it was soon replaced by a special node/edge based diagramming library called **React Flow** for better UX. **React** was chosen to handle UI state of the application as React Flow library demands it.
 
 One of the core ideas was that export functionality should not be built in, but developed separately according to user needs.
@@ -157,17 +157,17 @@ The three main options are:
 * Ace - UI looks a little outdated, but overall, a solid choice.
 * Monaco Editor - Very impressive, but lacks documentation and setup can be difficult.
 
-In terms of user needs **Monaco Editor** was chosen as it is web version of the popular Visual Studio Code text editor that most developers should be used to.
+In terms of user needs **Monaco Editor** was chosen as it is a web version of the popular Visual Studio Code text editor that most developers should be used to.
 The chosen scripting language is JavaScript, as it enjoys widespread usage among developers and offers built-in scripting support through the `Function()` constructor.
 
-### Execution
+## Execution
 Now that the requirement scope and tech stack has been determined the development can begin.
 
-#### UI
+### UI
 
 In terms of UI different approaches were considered.
-Since a navigation minimap element looked too cluttered as a floating element on top of the canvas a separate sidebar aproache was taken.
-Here is what the solution ended up looking:
+Since a navigation minimap element looked too cluttered as a floating element on top of the canvas, a separate sidebar approach was taken.
+Here is what the solution ended up looking like:
 
 <figure>
     <img src="/static/img/posts/HedgehogDBD/main-view.png" alt="Main drawing view." />
@@ -188,20 +188,19 @@ Users are allowed to create their own JavaScript scripts against their diagrams 
     <figcaption>Scripting view.</figcaption>
 </figure>
 
-This view has commenting functionality to allow sharing of user created content. Commenting is achieved through Github discussions.
+This view has commenting functionality to allow sharing of user created content. Commenting is achieved through GitHub discussions.
 
-#### Interesting code
+### Interesting code
 
-While most of the application development process felt natural and perhaps too mundane to discuss further.
-The application does use some interesting programming aspect worth diving into.
+While most of the application development process felt natural and perhaps too mundane to discuss further, the application does use some interesting programming aspects worth diving into.
 
-##### Command pattern
+#### Command pattern
 Most applications have a functionality to undo user actions. 
 This functionality is usually implemented through a programming design pattern called command pattern. 
 I tried to find answers in the classical Gang of Four design patterns book, but found it unhelpful.
 Here is the solution I ended up using.
 
-First we need a interface that all commands must implement:
+First we need an interface that all commands must implement:
 ```ts
 export interface ICommand<T extends IHydratable<T>> {
     context: Draw;
@@ -291,11 +290,11 @@ interface CommandPattern {
     args: any
 }
 ```
-This solution allow all registered commands to be rollbacked.
+This solution allows all registered commands to be rolled back.
 
-##### A-star algorithm
+#### A-star algorithm
 I had first hoped to find a canvas based library for either arrow drawing or pathfinding that would allow visualization of table relationship lines. I could not find any arrow drawing libraries and was quickly disappointed in pathfinding libraries as they lacked a cost-based grid system to control the grid movement.
-I ended up creating my own A* star algorithm: 
+I ended up creating my own A* algorithm: 
 ```ts
 findPath(start: { x: number, y: number }, heuristicTarget: { x: number, y: number }, ends: { x: number, y: number }[], grid: WorldGrid) {
     if (ends.length === 0) return [];
@@ -350,9 +349,9 @@ getNeighborCost(orig: { x: number, y: number}, neighbor: { x: number, y: number}
     return cost + nudge;
 }
 ```
-This solution seems to work rather well, but a it was later made redundant with the use of React Flow edge based system.
+This solution seems to work rather well, but it was later made redundant with the use of React Flow edge based system.
 
-### Results
+## Results
 All the set requirements were fulfilled by the final product.
 The workflow of this solution outperforms QSEE SuperLite by approximately 50% due to supporting multi-row editing and using automatic relationship lines.
 

@@ -22,7 +22,6 @@ body {
     font-weight: var(--font-weight-heading);
 }
 
-h2,
 .h2 {
     color: var(--color-heading);
     font-family: Inter;
@@ -31,7 +30,6 @@ h2,
     font-weight: var(--font-weight-heading);
 }
 
-h3,
 .h3 {
     color: var(--color-heading);
     font-family: Inter;
@@ -40,7 +38,6 @@ h3,
     font-weight: var(--font-weight-heading);
 }
 
-h4,
 .h4 {
     color: var(--color-heading);
     font-family: Montserrat;

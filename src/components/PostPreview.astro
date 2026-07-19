@@ -18,62 +18,96 @@ export interface Props {
 }
 
 const { postMetadata, index } = Astro.props as Props;
+const isVideo = postMetadata.media.src.endsWith(".mp4") || postMetadata.media.src.endsWith(".webm");
 ---
 
-<div class=`content-container ${index % 2 == 1 ? 'feature-grid--reverse' : ''} mb-24 no-underline text-current`>
-    <div class="feature-image max-md:hidden">
-        {
-            postMetadata.media.src.endsWith(".mp4") || postMetadata.media.src.endsWith(".webm") ?
-            <video class="object-contain image-highlight" src={postMetadata.media.src} width="640" height="360" autoplay muted loop>
-                Your browser does not support the video tag.
-            </video>
-            : 
-            <img class="object-contain image-highlight bg-neutral-400" src={postMetadata.media.src} alt={postMetadata.media.alt} />
-        }
-    </div>
-    <div class="feature-text">
-        <div class="mb-4">
-            <p class="label-md text-gray-400 uppercase">{postMetadata.subTitle}</p>
-            <h3 class="h3">{postMetadata.title}</h2>
-        </div>
-        
-        <div class="feature-image md:hidden mb-4">
+<article class:list={["mb-10 md:mb-14 no-underline text-current"]}>
+    <div class:list={["project-card", { "project-card--reverse": index % 2 === 1 }]}>
+        <div class="project-card__media">
             {
-                postMetadata.media.src.endsWith(".mp4") || postMetadata.media.src.endsWith(".webm") ?
-                <video class="object-contain image-highlight" src={postMetadata.media.src} width="640" height="360" autoplay muted loop>
+                isVideo ?
+                <video class="project-card__asset" src={postMetadata.media.src} width="640" height="360" autoplay muted loop playsinline>
                     Your browser does not support the video tag.
                 </video>
-                : 
-                <img class="object-contain image-highlight bg-neutral-400" src={postMetadata.media.src} alt={postMetadata.media.alt} />
+                :
+                <img class="project-card__asset" src={postMetadata.media.src} alt={postMetadata.media.alt} loading="lazy" />
             }
         </div>
 
-        <div class="prose" set:html={marked.parse(postMetadata.description, {breaks: true, gfm: true})}></div>
-        <div class="mt-4 mb-6">
-            <ul class="list-none flex flex-wrap horizontal-list">
-                <!--
-                <li class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                        <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z"></path>
-                    </svg>
-                </li>
-                 -->
-                {postMetadata.techStack.map(tech => (
-                    <li class="label-md">{tech}</li>
-                ))}
-            </ul>
-        </div>
-        <div class="flex max-md:justify-center">
-            <a class="btn-bevel btn-bevel-primary" href={postMetadata.slugDirectory + postMetadata.slug}>
-                Read more
-            </a>
+        <div class="pt-1 px-2 pb-2 md:px-3 md:py-2">
+            <div class="mb-4">
+                <p class="label-md text-gray-400 uppercase">{postMetadata.subTitle}</p>
+                <h3 class="h3">{postMetadata.title}</h3>
+            </div>
+
+            <div class="prose" set:html={marked.parse(postMetadata.description, {breaks: true, gfm: true})}></div>
+
+            <div class="mt-4 mb-6">
+                <ul class="list-none flex flex-wrap horizontal-list">
+                    {postMetadata.techStack.map(tech => (
+                        <li class="label-md">{tech}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div class="flex max-md:justify-center">
+                <a class="btn-bevel btn-bevel-primary" href={postMetadata.slugDirectory + postMetadata.slug}>
+                    Read more
+                </a>
+            </div>
         </div>
     </div>
-</div>
+</article>
 
 <style>
-      
+
+  /* Project feature cards (alternating side, no bleed) */
+  .project-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.1rem;
+    background: var(--color-pastel-light-yellow);
+    border: 3px solid var(--color-secondary);
+    border-radius: 7px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 46px -14px rgba(74, 48, 24, 0.34), 0 2px 0 0 rgba(0, 0, 0, 0.02);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-card { transition: none; }
+    .project-card:hover { transform: none; }
+  }
+
+  .project-card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #ece9e4;
+    border-radius: 4px;
+    align-self: center;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  }
+  .project-card__asset {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (min-width: 1024px) {
+    .project-card {
+      grid-template-columns: 1.08fr 1fr;
+      gap: 2.5rem;
+      padding: 1.4rem;
+    }
+    .project-card--reverse .project-card__media { order: 2; }
+  }
+
+
   .taglist {
     display: inline;
     list-style: none;
@@ -83,15 +117,5 @@ const { postMetadata, index } = Astro.props as Props;
   
   .taglist li {
     display: inline;
-  }
-
-  .image-highlight {
-    max-width: 100%;
-    height: fit-content;
-    overflow: hidden;
-  }
-
-  .content-container:hover .project-read-more  {
-    rotate: -45deg;
   }
 </style>

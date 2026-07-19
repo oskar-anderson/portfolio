@@ -2,14 +2,14 @@
 title: "Tempsens"
 subTitle: "Sirowa Fullstack developer intern 2021"
 slug: "tempsens"
-description: "Developed a full stack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for backend and chart visualization for frontend. Implemented binning and clustering algorithms for data visualization and alert observation."
+description: "Developed a fullstack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for the backend and chart visualization for the frontend. Implemented binning and clustering algorithms for data visualization and alert observation."
 techStack: ["PHP", "SlimPHP", "JS", "Bootstrap", "MySQL"]
 media:
     src: "/static/img/posts/tempsens/tempsens-story-16x9.png"
     alt: "tempsens"
 slugDirectory: "/posts/"
 ---
-Developed entire full stack Sirowa warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
+Developed the entire fullstack Sirowa warehouse temperature monitoring web application named Tempsens to monitor product storage compliance with temperature requirements.
 Monitoring is required by Ravimiamet for storage of medicinal goods.
 
 
@@ -20,41 +20,41 @@ Monitoring is required by Ravimiamet for storage of medicinal goods.
 
 Two types of Comet sensors are used: stationary and portable.
 Stationary sensors connect to Tempsens SOAP API.
-Portable sensors can be connected to user machine by mini-USB.
-Sensor data can then be downloaded as a CSV file though Comet Vision application.
-The CSV can subsequently be uploaded in Tempsens front-end application that uses REST API internally for saving the parsed data.
+Portable sensors can be connected to a user's machine via mini-USB.
+Sensor data can then be downloaded as a CSV file through the Comet Vision application.
+The CSV can subsequently be uploaded in the Tempsens front-end application, which uses a REST API internally for saving the parsed data.
 
-### Data flow diagram
+## Data flow diagram
 
 
 <figure>
-    <img src="/static/img/posts/tempsens/tempsens-logic-diagram-4.png" alt="Tempsens application flow diagram." />
+    <img src="/static/img/posts/tempsens/tempsens-logic-diagram-5.png" alt="Tempsens application flow diagram." />
     <figcaption>Tempsens application flow diagram.</figcaption>
 </figure>
 
-Flow of the application for stationary sensors consists of data being sent to Tempsens application through SOAP API and the application in turn saving it a MySQL/MariaDB database.
+Flow of the application for stationary sensors consists of data being sent to the Tempsens application through the SOAP API and the application in turn saving it to a MySQL database.
 Mobile sensors do not have a SOAP interface and require users to upload CSV files through the Tempsens application.
-In order to download the CSV file from a portable sensor a mini-USB and computer with Comet Vision application installed is required. 
+A mini-USB and Comet Vision application are required to download the CSV file from a portable sensor. 
 
-The application flow for the user is based on initial server-side rendering and subsequent JavaScript based interactivity. 
+The application flow for the user is based on initial server-side rendering and subsequent JavaScript-based interactivity. 
 For the user this means that when loading the selected period of data, the entire page will be refreshed. 
 Site interactivity logic allows:
 
-* Uploading CSV data and saving it into database though the backend via REST API standard.
+* Uploading CSV data and saving it into a database through the backend via the REST API standard.
 * Defining visualization settings and behavior for chart drawing.
 * Visualizing a line chart according to user settings.
 * Downloading chart image PNG and sensor data CSV.
 
-Internally sensor create, update and delete operations and uploading parsed CSV data is implemented using REST API standard.
-The application routing is implemented with Slim library and charting is done with Google Charts.
+Internally, sensor create, update and delete operations and uploading parsed CSV data are implemented using the REST API standard.
+The application routing is implemented with the Slim library and charting is done with Google Charts.
 Bootstrap is used for interactivity like modals and collapsible elements. 
 
-### Algorithms
+## Algorithms
 
 Application uses binning and clustering algorithms to help visualize data. 
 
-Binning serves both technical and user specific needs.
-Binning algorithm creates uniformed period buckets that contain multiple sensor readings.
+Binning serves both technical and user-specific needs.
+The binning algorithm creates uniform period buckets that contain multiple sensor readings.
 This speeds up chart drawing time for large periods and also increases resulting chart readability.
 The buckets also allow different visualization behavior like average value, most extreme value and show alert (value 0) on missing value.
 
@@ -85,7 +85,7 @@ for (let sensor of sensors) {
     for (let { row, startDate, endDate } of buckets) {
         let rowValues = filterArrBetween(sensor.readings, startDate, endDate, lowRef);
 
-        // ... ommitted derive one value from rowValues and add to row
+        // ... omitted derive one value from rowValues and add to row
     }
 }
 function filterArrBetween(sortedByDateObjArr, before, after, lowRef) {
@@ -101,13 +101,13 @@ function filterArrBetween(sortedByDateObjArr, before, after, lowRef) {
 }
 ```
 
-Clustering allows chaining multiple readings for more accurate way to show sensor alerts for both 'value out of bounds' errors and 'missing value' errors. 
+Clustering allows chaining multiple readings for a more accurate way to show sensor alerts for both 'value out of bounds' errors and 'missing value' errors. 
 
 ```php
 function createChain(array $sortedByDateObjArr, callable $isPartOfSameChainFn): array {
     $result = [];
     $chain = [];
-    // ... ommitted special cases for size 1 and 0
+    // ... omitted special cases for size 1 and 0
     for ($i = 0; $i < sizeof($sortedByDateObjArr) - 1; $i++) {
         $current = $sortedByDateObjArr[$i];
         $next = $sortedByDateObjArr[$i + 1];
@@ -150,10 +150,10 @@ This is what the final result looks like in the UI.
     <figcaption>List of sensor alerts.</figcaption>
 </figure>
 
-### Last words
+## Last words
 
 The finished application solved all business requirements needed to overview warehouse temperature.
 
 Although it looked like a relatively simple application at first, the amount of code needed to display a chart proved shocking.
-The algorithms needed to solve user needs certainly proved to be a interesting and rewarding challenge to solve.
+The algorithms needed to solve user needs certainly proved to be an interesting and rewarding challenge to solve.
 

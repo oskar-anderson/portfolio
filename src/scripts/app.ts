@@ -15,7 +15,7 @@ function addTooltipPositioning() {
             let tooltipContent = targetElement.dataset.tooltipContent;
             if (tooltipContent) {
                 if (tooltipContent.endsWith('.png') || tooltipContent.endsWith('.jpg')) {
-                    tooltipEl.innerHTML = `<img src="${tooltipContent}">`;
+                    tooltipEl.innerHTML = `<img class="w-full" src="${tooltipContent}">`;
                     break;
                 }
                 tooltipEl.innerHTML = targetElement.dataset.tooltipContent;

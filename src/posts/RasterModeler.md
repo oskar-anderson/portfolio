@@ -1,7 +1,7 @@
 ---
 title: "Raster Modeler"
 slug: "raster-modeler"
-description: "Developed a open source web app for visualizing databases as ERD schemas to help fellow students in Database Basics (ICA0005) course."
+description: "Developed an open source web app for visualizing databases as ERD schemas to help fellow students in the Database Basics (ICA0005) course."
 techStack: ["React", "TypeScript"]
 media:
     src: "/static/img/posts/raster-modeler/main-view-horse.png"
@@ -26,7 +26,7 @@ Links to the project:
 * [Thesis](https://digikogu.taltech.ee/et/Item/a99fe3f6-43d7-4902-98b0-6a5f6b4c377e)
 
 
-### Requirements analysis
+## Requirements analysis
 
 The acceptance criteria were to find a solution that:
 * Works locally (offline or open-source)
@@ -142,15 +142,15 @@ Cannot add class="table" to this ASCII table so unfortunately must write in html
 
 None of the tested solutions met the criteria so I created my own application.
 
-### Tech stack analysis
+## Tech stack analysis
 The biggest problem to overcome is drawing the schema.
 There are 2 things to keep in mind:
 * Performance is a big consideration point since schema entities need to be draggable.
-* Schemas need to be exportable to PNG. This means that a HTML canvas element must be used.
+* Schemas need to be exportable to PNG. This means that an HTML canvas element must be used.
 
-Since HTML canvas is difficult to work with natively a game engine library was used.
+Since HTML canvas is difficult to work with natively, a game engine library was used.
 The most performant library is **PixiJS** according to a [benchmark done by slay_lines](https://benchmarks.slaylines.io/).
-Being popular (37400 stars on Github) and well documented made on top of great performance made it a clear winner.
+Being popular (37,400 stars on GitHub) and well documented, on top of great performance, made it a clear winner.
 
 **TypeScript** was chosen to reduce time spent debugging type errors and improve developer experience.
 **React** was chosen to handle UI state of the application as it is the industry standard.
@@ -163,19 +163,19 @@ The three main options are:
 * Ace - UI looks a little outdated, but overall, a solid choice.
 * Monaco Editor - Very impressive, but lacks documentation and setup can be difficult.
 
-In terms of user needs **Monaco Editor** was chosen as it is web version of the popular Visual Studio Code text editor that most developers should be used to.
+In terms of user needs **Monaco Editor** was chosen as it is a web version of the popular Visual Studio Code text editor that most developers should be used to.
 The chosen scripting language is JavaScript, as it enjoys widespread usage among developers and offers built-in scripting support through the `Function()` constructor.
 
-Deployment is setup using **Github Pages** using **Github Actions** CI/CD script.
+Deployment is set up using **GitHub Pages** with a **GitHub Actions** CI/CD script.
 
-### Execution
-Now that the requirement scope and tech stack has been determined the development can begin.
+## Execution
+Now that the requirement scope and tech stack have been determined, development can begin.
 
-#### UI
+### UI
 
 In terms of UI different approaches were considered.
-Since a navigation minimap element looked too cluttered as a floating element on top of the canvas a separate sidebar aproache was taken.
-Here is what the solution ended up looking:
+Since a navigation minimap element looked too cluttered as a floating element on top of the canvas, a separate sidebar approach was taken.
+Here is what the solution ended up looking like:
 
 <figure>
     <img src="/static/img/posts/raster-modeler/main-view-horse.png" alt="Main drawing view." />
@@ -196,20 +196,19 @@ Users are allowed to create their own JavaScript scripts against their schemas i
     <figcaption>Scripting view.</figcaption>
 </figure>
 
-This view has commenting functionality to allow sharing of user created content. Commenting is achieved through Github discussions.
+This view has commenting functionality to allow sharing of user created content. Commenting is achieved through GitHub discussions.
 
-#### Interesting code
+### Interesting code
 
-While most of the application development process felt natural and perhaps too mundane to discuss further.
-The application does use two interesting programming aspects worth diving into.
+While most of the application development process felt natural and perhaps too mundane to discuss further, the application does use two interesting programming aspects worth diving into.
 
-##### Command pattern
+#### Command pattern
 Most applications have a functionality to undo user actions. 
 This functionality is usually implemented through a programming design pattern called command pattern. 
 I tried to find answers in the classical Gang of Four design patterns book, but found it unhelpful.
 Here is the solution I ended up using.
 
-First we need a interface that all commands must implement:
+First we need an interface that all commands must implement:
 ```ts
 export interface ICommand<T extends IHydratable<T>> {
     context: Draw;
@@ -227,7 +226,7 @@ Commands have all the data to execute any time, but in practice they are only cr
 `context` is the data the command will modify and `args` is the hydratable payload.
 Hydratable means that the data should be serializable into JSON and the same data type can later be deserialized into a class instance. 
 This is just needed to emulate `JsonSerializer.Deserialize<T>(args);` from a strongly typed language.
-Next there is 2 parameterless methods that modify the context state by executing or unexecuting commands.
+Next there are 2 parameterless methods that modify the context state by executing or unexecuting commands.
 
 Here is what a concrete command implementation looks like:
 ```ts
@@ -250,7 +249,7 @@ export class CommandCreateTable implements ICommand<CommandCreateTableArgs> {
     }
 }
 ```
-The command itself does not do anything other then turn the JSON serializable DTO data type into PixiJS application data type and call a  `context.schemaPushAndUpdate` method that uses a callback function that will call React `setState` internally:
+The command itself does not do anything other than turn the JSON serializable DTO data type into a PixiJS application data type and call a `context.schemaPushAndUpdate` method that uses a callback function that will call React `setState` internally:
 ```ts
 schemaPushAndUpdate(table: Table) {
     this.schema.tables.push(table);
@@ -302,13 +301,13 @@ interface CommandPattern {
     args: any
 }
 ```
-This solution allow all registered commands to be rollbacked.
+This solution allows all registered commands to be rolled back.
 
-##### A-star algorithm
+#### A-star algorithm
 
 For better readability of the schema the table relation lines avoid going over tables and try to reasonably avoid passing other relation lines.
-I had first hoped to find a pathfinding library that would achieve this fairly generic problem, but was quickly disappointed as the existing libraries lacked a cost-based grid system to control the grid movement.
-I ended up creating my own A* star algorithm: 
+I had first hoped to find a pathfinding library that would solve this fairly generic problem, but was quickly disappointed as the existing libraries lacked a cost-based grid system to control the grid movement.
+I ended up creating my own A* algorithm: 
 ```ts
 findPath(start: { x: number, y: number }, heuristicTarget: { x: number, y: number }, ends: { x: number, y: number }[], grid: WorldGrid) {
     if (ends.length === 0) return [];
@@ -365,7 +364,7 @@ getNeighborCost(orig: { x: number, y: number}, neighbor: { x: number, y: number}
 ```
 This solution seems to work rather well, but a less computationally expensive solution might need to be added in the future.
 
-### Results
+## Results
 All the set requirements were fulfilled by the final product.
 The workflow of this solution outperforms QSEE SuperLite by approximately 40% due to supporting multi-row editing and using automatic relationship lines.
 

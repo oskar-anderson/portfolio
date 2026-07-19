@@ -19,16 +19,18 @@ const { Content, frontmatter } = Astro.props.post;
 ---
 
 <LayoutWithMarkdown>
-    <div class="content-container mb-5">
+    <div class="content-container mb-12">
         <Breadcrumbs items={[
             { href: "/", text: "Home"},
             { href: "/blog", text: "Blog"},
             { href: "/" + frontmatter.slugDirectory + frontmatter.slug, text: frontmatter.title},
         ]} />
         <div class="mt-5 mb-3">
-            <h2>{frontmatter.title}</h2>
+            <h1 class="h2">{frontmatter.title}</h1>
             <span style="color: #666; font-style: italic">By {frontmatter.authorName} on {frontmatter.publishedDate}</span>
         </div>
-        <Content />
+        <div class="markdown">
+            <Content />
+        </div>
     </div>
 </LayoutWithMarkdown>

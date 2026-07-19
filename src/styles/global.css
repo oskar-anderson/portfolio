@@ -30,17 +30,6 @@ img, video {
 button, input, optgroup, select, textarea {
   font-family: inherit;
 }
-body {
-  line-height: 1.5;
-}
-html {
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
 
 :root {
   --bs-border-radius: 0.125em;
@@ -92,10 +81,25 @@ html {
   --color-highlight: rgb(10 88 202);
 }
 
-header h1, header h2, header h3, header h4, header h5  {
-  color: inherit;
+body {
+  line-height: 1.5;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+a:not([class]) {
+  text-decoration: underline;
+}
 
 a:not([class]), .a {
   color: var(--color-primary);
@@ -136,18 +140,29 @@ header h1, header h2, header h3, header h4, header h5  {
   rotate: 45deg;
 }
 
-
-.secondary {
-  --bs-secondary-bg: rgb(248, 249, 250);
-  background-color: var(--bs-secondary-bg);
-  color: rgb(173, 181, 189);
+.breadcrumbs {
+  margin: 1.25rem 0;
+  font-size: 0.9375rem;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
 }
-a {
+.breadcrumbs a {
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
   text-decoration: none;
 }
-a:not([class]) {
+.breadcrumbs a:hover {
+  color: var(--color-primary);
   text-decoration: underline;
+  text-decoration-thickness: 0.0625em;
 }
+.breadcrumbs .breadcrumbs__sep {
+  margin: 0 0.5rem;
+  color: color-mix(in srgb, var(--color-text) 40%, transparent);
+}
+.breadcrumbs [aria-current="page"] {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
 
 .is-dark {
   --is-dark: 1;
@@ -399,11 +414,9 @@ a:not([class]) {
 */
 
 .content-container { --content: 100%; }
-@media (min-width: 576px)  { .content-container { --content: 540px; } }
 @media (min-width: 768px)  { .content-container { --content: 768px; } }
 @media (min-width: 1024px)  { .content-container { --content: 960px; } }
-@media (min-width: 1280px)  { .content-container { --content: 1200px; } }
-@media (min-width: 1536px)  { .content-container { --content: 1450px; } }
+@media (min-width: 1536px)  { .content-container { --content: 1182px; } }
 .content-container {
   --col: calc((var(--content) - 2rem) / 24);
   display: grid;
@@ -447,27 +460,6 @@ a:not([class]) {
 @media (max-width: 768px) { 
   .content-container {
     row-gap: 1rem;
-  }
-}
-.feature-image {
-  grid-column: bleed;
-}
-.feature-text {
-  grid-column: content;
-}
-@media (min-width: 768px) {
-  .feature-image {
-    grid-column: content-11-end / bleed-end;
-    justify-self: end;
-  }
-  .feature-text {
-    grid-column: content-start / content-9-end;
-  }
-  .feature-grid--reverse .feature-image {
-    grid-column: bleed-start / content-13-end;
-  }
-  .feature-grid--reverse .feature-text {
-    grid-column: content-15-end / content-end;
   }
 }
 
@@ -558,17 +550,6 @@ body.dialog-open {
 }
 
 
-@media (min-width: 1440px) {
-  .gutter {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-.gutter {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
 .section-lg { padding-block: 5rem; }
 @media (min-width: 1024px) { .section-lg { padding-block: 7.75rem; } }
 
@@ -576,18 +557,18 @@ body.dialog-open {
 @media (min-width: 1024px) { .section { padding-block: 5rem; } }
 
 
-.container {
+.layout-container {
   width: 100%;
   max-width: 100%;
   padding-inline: 1.25rem;
   margin-inline: auto;
 }
 
-@media (min-width: 640px)  { .container { max-width: 40rem; } }
-@media (min-width: 768px)  { .container { max-width: 48rem; } }
-@media (min-width: 1024px) { .container { max-width: 64rem; } }
-@media (min-width: 1280px) { .container { max-width: 80rem; } }
-@media (min-width: 1536px) { .container { max-width: 96rem; } }
+@media (min-width: 640px)  { .layout-container { max-width: 40rem; } }
+@media (min-width: 768px)  { .layout-container { max-width: 48rem; } }
+@media (min-width: 1024px) { .layout-container { max-width: 64rem; } }
+@media (min-width: 1280px) { .layout-container { max-width: 80rem; } }
+@media (min-width: 1536px) { .layout-container { max-width: 96rem; } }
 
 
 
