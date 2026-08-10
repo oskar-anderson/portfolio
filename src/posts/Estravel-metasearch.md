@@ -14,4 +14,4 @@ media:
 slugDirectory: "/posts/"
 ---
 
-Nothing here yet!
+Work in progress...

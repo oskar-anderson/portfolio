@@ -90,3 +90,32 @@
     margin-bottom: 0.8em;
   }
 }
+
+.markdown .table-scroll {
+  overflow-x: auto;
+}
+@media (max-width: 768px) {
+  .markdown .table-scroll table {
+    min-width: 40rem;
+    table-layout: fixed;
+  }
+}
+
+/* Responsive image grid: multiple columns on desktop, single column on mobile
+   so each screenshot stays full-width and legible instead of shrinking. */
+.markdown .img-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin: 1.5em 0;
+}
+.markdown .img-grid img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #e2e6e9;
+}
+@media (max-width: 768px) {
+  .markdown .img-grid { grid-template-columns: 1fr; }
+}
