@@ -2,7 +2,7 @@
 title: "Charon"
 subTitle: "TalTech Fullstack developer intern 2023"
 slug: "charon"
-description: "Charon is a Moodle plugin for programming assignments used by 1000 students every semester. It allows teachers to set deadlines, track coding submissions, manage grading and provide feedback. I worked in an agile team at TalTech to improve plugin functionality."
+description: "Charon is a Moodle plugin for programming assignments submissions. I was part of an agile team that improved plugin functionality."
 techStack: ["Laravel", "PHP", "Vue", "MariaDB"]
 media:
   src: "/static/img/posts/charon/charon-task-description-edited-16x9-thumbnail.png"

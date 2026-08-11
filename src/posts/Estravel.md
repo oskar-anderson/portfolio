@@ -2,11 +2,7 @@
 title: "Estravel booking platforms"
 subTitle: "Estravel web developer (NOV 2023 - JUNE 2026)"
 slug: "estravel"
-description: |
-  * Took ownership of online B2C booking platforms, overseeing functionality and design for ~€300k in monthly sales
-  * Decoupled five legacy web applications into self-contained, themeable plugins with dedicated admin interfaces for the 2024 web rebrand launch.
-  * Led a company-wide migration from Thunderbird to Gmail, developed a custom Chrome email manager client
-
+description: "Rebuilt and expanded online B2C booking and inquiry platforms behind the Baltics' biggest travel agency."
 techStack: ["PHP", "Vue", "React", "WordPress", "MySQL"]
 media:
   src: "/static/estravel-portfolio-animation.webm"
@@ -14,7 +10,7 @@ media:
 slugDirectory: "/posts/"
 ---
 
-Estravel Group is the biggest travel agency in the Baltics with ~120 employees. [Estravel web](https://estravel.ee) is a central digital platform for all travel services. It allows making online bookings for flight tickets, accommodation and tour packages, as well as sending inquiries to travel agents.
+Estravel Group is the biggest travel agency in the Baltics with ~120 employees. [Estravel web](https://estravel.ee) is a collection of digital booking platforms for all travel services. It allows making online bookings for flight tickets, accommodation and tour packages, as well as sending inquiries to travel agents.
 
 I joined Estravel in 2023 as a web developer to update custom WordPress plugins, create new plugins, fix bugs and implement new features.
 
@@ -32,7 +28,6 @@ After COVID, Estravel got back on its feet and started working through a backlog
         <tr>
             <td class="px-3 py-4">PROJECT</td>
             <td class="px-3 py-4">FRONTEND</td>
-            <td class="px-3 py-4">BACKEND</td>
             <td class="px-3 py-4">API</td>
         </tr>
     </thead>
@@ -40,55 +35,46 @@ After COVID, Estravel got back on its feet and started working through a backlog
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/flights-en-home-mobile.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">FLIGHTS</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">VUE</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">SYMFONY</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">AMADEUS QC</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/hotels-en-home-mobile.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">HOTELS</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">VUE</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">SYMFONY</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">RESFINITY, EXPEDIA</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/tours-en-home-mobile-edited.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">TOURS</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">REACT</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">SYMFONY</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">CORAL, NOVA, TEZ</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/tours-lmt-en-home-mobile-fullname.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">TOURS LMO</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">REACT</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">SYMFONY</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">TOURS CACHE</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/hotellinfo.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">HOTEL INFO</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">PHP</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">FASTAPI</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">TOUR & HOTEL DISTRIBUTORS</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/consultant.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">CONSULTANTS</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">VUE</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">JAVA</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">INTRA</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/gadventures-en-offer-mobile.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">🌱 G&nbsp;ADVENTURES</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">VUE</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">FASTAPI</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">G&nbsp;ADVENTURES</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/reisikaubad-payment.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">🌱 REISIKAUBAD.EE GIFTCARDS</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">WP</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">JAVA</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">INTRA</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/mail-en.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">🌱 MAIL</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">VUE</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">JAVA</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">INTRA, GOOGLE</td>
         </tr>
     </tbody>

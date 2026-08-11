@@ -2,7 +2,7 @@
 title: "Tempsens"
 subTitle: "Sirowa Fullstack developer intern 2021"
 slug: "tempsens"
-description: "Developed a fullstack warehouse temperature and humidity monitoring system. Implemented SOAP and REST APIs for the backend and chart visualization for the frontend. Implemented binning and clustering algorithms for data visualization and alert observation."
+description: "Developed a fullstack warehouse climate monitoring system with chart visualization."
 techStack: ["PHP", "SlimPHP", "JS", "Bootstrap", "MySQL"]
 media:
     src: "/static/img/posts/tempsens/tempsens-story-16x9.png"
