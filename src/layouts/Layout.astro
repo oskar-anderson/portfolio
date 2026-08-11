@@ -26,7 +26,6 @@ const isHome = Astro.url.pathname === '/';
     <title>Karl Oskar Anderson Portfolio</title>
   </head>
   <body class="flex flex-col h-[100vh]">
-      <Header isHome={isHome} />
       <slot/>
       <Footer />
   </body>

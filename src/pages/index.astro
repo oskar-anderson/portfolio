@@ -14,12 +14,12 @@ let isAvailableForWork = false;
 
 <Layout>
     <div>
-		<section class="relative overflow-hidden mt-[76px] min-h-[calc(100vh-76px)] flex flex-col justify-center text-white is-dark">
+		<section class="relative overflow-hidden min-h-[100vh] flex flex-col justify-center text-white is-dark">
 			<canvas id="hero-canvas" class="max-md:hidden absolute inset-0 min-w-full min-h-full w-auto h-auto max-w-none aspect-video z-[-1] bg-[#58cce4] pointer-events-none" aria-hidden="true"></canvas>
 			<div class="absolute inset-0 z-[-1] pointer-events-none" style="background: radial-gradient(115% 115% at 88% 8%, transparent 38%, rgba(6, 24, 30, 0.65) 100%);" aria-hidden="true"></div>
 			<div class="absolute inset-0 z-[-1] pointer-events-none min-md:hidden" style="background: radial-gradient(115% 115% at 88% 8%, transparent 38%, rgba(6, 24, 30, 0.65) 100%); background-color: #58cce4;" aria-hidden="true"></div>
 
-			<a class="hidden absolute bottom-6 left-1/2 -translate-x-1/2 lg:flex flex-col items-center gap-2" href="#skills" aria-label="Scroll to about">
+			<a class="hidden absolute bottom-6 left-1/2 -translate-x-1/2 lg:flex flex-col items-center gap-2" href="#projects" aria-label="Scroll to about">
 				<span class="font-mono text-white tracking-[2.5px] text-xs uppercase">scroll</span>
 				<svg class="w-4 h-4 animate-bounce text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 					<path d="M12 5v14"></path>
@@ -94,52 +94,20 @@ let isAvailableForWork = false;
 					<div class="shrink-0 hidden lg:block">
 						<img class="w-72 lg:w-96 mx-auto rotate-3 rounded-md border-4 border-white bg-white shadow-xl" src="/static/img/Estravel_29_01_2026_HD-143_portrait_edited.jpg" draggable="false">
 					</div>
-
-					<!-- 
-
-					<span class="text-lg font-semibold">I'm Karl Oskar Anderson and I develop web applications</span><br>
-		
-					<h1 class="text-[4rem] font-bold">
-						with modern <span class="vue-to-react-highlight-gradient">SPA frameworks</span>
-						and <span class="mysql-highlight-gradient">relational databases</span>
-					</h1>
-
-					<h2 class="text-[1.5rem] mt-10 font-semibold">
-						Full Stack Developer
-					</h2>
-
-
-
-					with <span class="laravel-highlight-gradient whitespace-nowrap">PHP/Laravel</span> and modern JavaScript frameworks 
-					(<span class="vue-highlight-gradient">Vue</span>,
-					<span class="react-highlight-gradient">React</span>)
-
-
-					<h1 class="text-[3.75rem] font-bold">
-						web applications with
-						<span class="vue-highlight-gradient">Vue</span>,
-						<span class="react-highlight-gradient">React</span> and
-						<span class="laravel-highlight-gradient">PHP</span>
-					</h1>
-
-					<h2 class="text-[1.5rem] mt-10 font-semibold">
-						Frontend Developer
-					</h2>
-
-
-					everything with a frontend from browser extensions, 
-
-					I create web applications, browser extensions, and API integrations. Currently building web at Estravel.
-					I build web at Estravel
-		
-					I'm a web developer living in Tallinn
-					-->
 				</div>
 			</div>
 		</section>
   
-		<section class="section pb-0 is-light">
+		<section class="section content-container is-light">
+			<div>
+				<h2 class="display-md text-center mb-16" id="projects">Projects</h2>
+				{postsToShow.map((project, i) =>
+					<PostPreview index={i} postMetadata={project.frontmatter as any} />
+				)}
+			</div>
+		</section>
 
+		<section class="section pb-0 is-light">
 			<div class="content-container">
 				<h2 class="display-md text-center mb-16" id="skills">Skills</h2>
 				<div class="flex flex-col md:flex-row flex-wrap max-md:items-center md:justify-center gap-x-8 gap-y-8">
@@ -156,15 +124,6 @@ let isAvailableForWork = false;
 				</div>
 			</div>
   
-		</section>
-
-		<section class="section content-container is-light">
-			<div>
-				<h2 class="display-md text-center mb-16">Projects</h2>
-				{postsToShow.map((project, i) =>
-					<PostPreview index={i} postMetadata={project.frontmatter as any} />
-				)}
-			</div>
 		</section>
 
 		<Testimonial client:load></Testimonial>

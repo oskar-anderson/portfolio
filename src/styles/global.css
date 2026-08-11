@@ -521,35 +521,6 @@ body.dialog-open {
 }
 
 
-.vue-to-react-highlight-gradient {
-  color: transparent;
-  background: linear-gradient(120deg,#3fb27f  35%, #61dbfb);
-  background-clip: text;
-}
-.mysql-highlight-gradient {
-  color: transparent;
-  background: linear-gradient(120deg,
-  #2c658c 0 40%,
-  #dd8a00 50% 100%);
-  background-clip: text;
-}
-.vue-highlight-gradient {
-    color: transparent;
-    background: linear-gradient(30deg,#3fb27f 35%, #9fe2c4);
-    background-clip: text;
-}
-.laravel-highlight-gradient {
-    color: transparent;
-    background: linear-gradient(30deg,#ed2e03 35%, #ff8f7a);
-    background-clip: text;
-}
-.react-highlight-gradient {
-    color: transparent;
-    background: linear-gradient(30deg,#25d2f5 35%, #9eeefe);
-    background-clip: text;
-}
-
-
 .section-lg { padding-block: 5rem; }
 @media (min-width: 1024px) { .section-lg { padding-block: 7.75rem; } }
 
