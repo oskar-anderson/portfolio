@@ -9,7 +9,7 @@ description: |
     
 techStack: ["Python", "FastAPI", "RabbitMQ/Celery", "React", "PHP", "MySQL"]
 media:
-  src: "/static/img/posts/estravel-fullstack/meta.webm"
+  src: "/static/img/placeholder-16x9.png"
   alt: "Estravel Metasearch"
 slugDirectory: "/posts/"
 ---

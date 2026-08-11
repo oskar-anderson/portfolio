@@ -9,7 +9,7 @@ description: |
 
 techStack: ["PHP", "Vue", "React", "WordPress", "MySQL"]
 media:
-  src: "/static/estravel-portfolio-animation.webm"
+  src: "/static/img/placeholder-16x9.png"
   alt: "Estravel web"
 slugDirectory: "/posts/"
 ---
