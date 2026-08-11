@@ -1,6 +1,5 @@
 .testimonials {
-    --color-heading: #fff;
-    color: #fff;
+    color: var(--bs-body-color);
     padding: clamp(4rem, 7vw, 7rem) 1.5rem;
 }
 
@@ -33,7 +32,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
     transition: transform 420ms ease;
 }
 
@@ -89,7 +87,9 @@
 }
 
 .quote-card.is-current {
-    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+    border: 3px solid var(--color-secondary);
+    border-radius: 7px;
 }
 
 .testimonials__content {
@@ -108,13 +108,11 @@
 
 .testimonials__headline {
     margin-bottom: 1rem;
-    text-transform: uppercase;
 }
 
 .testimonials__quote {
     white-space: pre-line;
     line-height: 1.6;
-    color: rgb(200, 205, 216);
 }
 
 .testimonials__nav {
