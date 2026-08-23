@@ -55,7 +55,7 @@ After COVID, Estravel got back on its feet and started working through a backlog
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/hotellinfo.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">HOTEL INFO</td>
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">PHP</td>
-            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">TOUR & HOTEL DISTRIBUTORS</td>
+            <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">RESFINITY, EXPEDIA, CORAL, NOVA, TEZ</td>
         </tr>
         <tr class="hover:bg-neutral-100 border-t border-neutral-300" data-tooltip-content="/static/img/posts/estravel/consultant.png">
             <td class="px-3! py-4! font-bold text-lg md:text-[2rem]">CONSULTANTS</td>
@@ -94,7 +94,7 @@ Tailwind was chosen to style the new plugins for a few reasons: it keeps plugin 
 
 Configuration was moved inside the plugin code and exposed to site admins as a WordPress settings page. The settings page is generated via Carbon Fields PHP library which allows easily declaring setting values and handles field registration, validation and save callbacks automatically. Carbon Fields also provides advanced setting options like tab layout and repeater fields.
 
-Each plugin now ships its own translations as `.pot`/`.po`/`.mo` files. This allows handing translation files to [estravel.lv](https://celojumi.estravel.lv/lv/) and estravel.lt sister companies for them to create their own native translations and start using the booking platforms.
+Each plugin now ships its own translations as `.pot`/`.po`/`.mo` files. This allows handing translation files to [estravel.lv](https://celojumi.estravel.lv/lv/) and [estravel.lt](https://estravel.lt/skrydziu-bilietai-internetu/) sister companies for them to create their own native translations and start using the booking platforms.
 
 The plugin TypeScript was also modernized to lean on newer web platform features. The payment-option accordion, previously animated with jQuery, now uses native `<details>` and `<summary>` elements. Modals moved to the native `<dialog>` element, whose `top-layer` rendering removes the old `z-index` workarounds. Search requests now use `AbortController` to cancel an in-flight request when the user starts a new search, eliminating a race condition.
 
@@ -113,7 +113,16 @@ Velvet later won [bronze Golden Egg 2025 award](https://kuldmuna.ee/arhiiv/index
 
 ## Post launch web improvements
 
-After launch I solved previously backlogged bugs like faulty space encoding in URLs, faulty autocomplete input, date shifting due to automatic timezone conversions, race conditions and inaccurate result filtering. I implemented new plugin features like streamlining the booking process, adding streamed partial result loading, client card validation, bonus-point-based payment and a map view for hotel selection. On the theme side I ended up managing the new theme and even ported it over to the [estravelgroup.com](https://estravelgroup.com) site in a simplified form.
+After launch I solved previously backlogged bugs like faulty space encoding in URLs, faulty autocomplete input, date shifting due to automatic timezone conversions, race conditions and inaccurate result filtering. I added new plugin features like:
+* Flights - DRCT format support
+* Hotels - hotel page URL sharing and hotels result map view
+* Tours - streamed result loading and streamlined booking process 
+* Tours LMO - flight departure info and reworked inquiry modal as iframe for reCAPTCHA support
+* Hotel info - DeepL translation, LMO offer section, image HEAD request existence and size filter
+* Consultants - consultant details page with description, recognition, feedback and blog post sections
+* Flights, hotels and tours - added client card validation (Luhn algorithm), gift card and bonus point based payment
+
+On the theme side I ended up managing the new theme and even ported it over to the [estravelgroup.com](https://estravelgroup.com) site in a simplified form.
 
 I added a gift card payment option to the [reisikaubad.ee](https://reisikaubad.ee) e-commerce store. The store already sold Estravel gift cards, but the cards could not be redeemed for store purchases. While WooCommerce has concepts for coupons and cart fees, there is no native solution for a gift card, as gift card redemption has special requirements:
 

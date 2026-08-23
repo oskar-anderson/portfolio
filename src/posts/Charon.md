@@ -11,7 +11,7 @@ slugDirectory: "/posts/"
 ---
 
 Charon is a plugin for integrating the Moodle learning management system with an automated tester for managing student programming assignment submissions, feedback, defense registrations and grading.
-This plugin is used actively by TalTech programming teachers, teacher assistants and students.
+This plugin is used actively by TalTech programming teachers, teacher assistants and roughly 1000 students each semester.
 <figure>
     <img src="/static/img/posts/charon/charon-task-description-headless.png" alt="Assignment view" />
     <figcaption>Assignment view.</figcaption>

@@ -86,7 +86,6 @@
   img:not(figcaption > img) {
     display: flex;
     margin: 0 auto;
-    margin-top: 1.6em;
     margin-bottom: 0.8em;
   }
 }

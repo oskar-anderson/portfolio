@@ -1,17 +1,16 @@
 ---
-import Header from "../components/Header.astro";
+import '/src/styles/global.css'
 import "paper-css/paper.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 let model: Props = {
     Name: "Karl Oskar Anderson",
-    Title: "IT Systems Developer",
+    Title: "Fullstack developer",
     IntroText: `
-        Determined and persistent person that strives for accuracy.
-        Looking to apply skills learned during bachelor's studies in real world projects.
+        Fullstack developer with over 3 years of experience building mainly React and Vue frontends backed by PHP and Python.
+        At Estravel that means integrating provider APIs into customer booking platforms and building internal offer composition tooling.
     `,
-    ProfilePictureSrc: "/static/img/profile-25-01-2023_cropped-300-300.png",
     SideInfo: [
         {
             Svg: "bi bi-geo-alt-fill",
@@ -20,7 +19,7 @@ let model: Props = {
         },
         {
             Svg: "bi bi-telephone-fill",
-            Text: "5141103",
+            Text: "+372 5141103",
             Link: null
         },
         {
@@ -30,7 +29,7 @@ let model: Props = {
         },
         {
             Svg: "bi bi-house-door-fill",
-            Text: "https://oskar-anderson.com/",
+            Text: "https://oskar-anderson.com",
             Link: "https://oskar-anderson.com/"
         }
     
@@ -38,109 +37,112 @@ let model: Props = {
     ],
     CategorizedListSections: {
         Heading: {
-            Svg: "bi bi-gem",
             Title: "Skills"
         },
         Content: [
             {
-                CategoryName: "Languages",
-                List: [".NET/C#", "PHP", "JavaScript", "TypeScript", "Python", "Java", "SQL", "HTML/CSS"],
+                CategoryName: "Frontend",
+                List: ["React", "Vue", "JavaScript", "TypeScript", "Tailwind", "HTML/CSS"],
             },
             {
-                CategoryName: "Frameworks",
-                List: ["ASP.NET Core", "Slim Framework", "Laravel", "Vue", "React", "Spring Boot"]
+                CategoryName: "Backend",
+                List: ["PHP", "Python", "FastAPI", "Laravel", "WordPress", "RabbitMQ", "REST", "SQL (MySQL/MariaDB)"]
             },
             {
-                CategoryName: "Databases",
-                List: ["PostgreSQL", "MySQL", "SQLite"]
+                CategoryName: "Tools",
+                List: ["Git (GitHub, GitLab)", "Docker", "WSL", "Postman", "Swagger"]
             },
             {
                 CategoryName: "Other",
-                List: ["Native Estonian", "Proficent English", "Driving: B, C"]
+                List: ["Native Estonian", "Proficient English", "B and C level driving"]
             }
         ],
     },
     WorkSection: {
         Heading: {
-            Svg: "bi bi-bookmark-star-fill",
             Title: "Work"
         },
         Content: [
             {
-                Title: "Software developer intern",
-                Company: "TalTech",
-                Period: "June 2023 – Aug 2023",
-                Text: "Improved functionality of Moodle plugin named Charon for managing programming assignments as a fullstack developer in an agile team. Vue, PHP, Laravel, REST, MariaDB",
+                Title: "Fullstack developer",
+                Company: "Estravel",
+                Period: "June 2026 - present",
+                Bullets: [
+                    "Developing a fullstack offer composition workspace that transforms partner portal data into client-ready Estravel-branded offer/confirmation email copy via AI",
+                ],
+                Technologies: "Python, FastAPI, RabbitMQ/Celery, React, PHP, MySQL",
                 Link: {
-                    Src: "https://oskar-anderson.com/posts/charon",
-                    Text: "[link]"
+                    Src: "https://oskar-anderson.com/posts/estravel-metasearch",
+                    Text: "[read more]"
                 }
             },
             {
-                Title: "Software developer intern",
-                Company: "Sirowa Tallinn AS",
-                Period: "Mar 2021 – June 2021",
-                Text: "Developed a fullstack warehouse temperature and humidity monitoring system. Created a Bootstrap frontend and a backend with both SOAP and REST APIs. Implemented binning and clustering algorithms for data visualization and alert observation. PHP, REST, SOAP, JS, Bootstrap, Google Charts, MySQL",
+                Title: "Web developer",
+                Company: "Estravel",
+                Period: "Nov 2023 - June 2026",
+                Bullets: [
+                    "Decoupled legacy B2C booking platforms into self-contained, themeable, configurable WordPress plugins for the 2024 web rebrand launch",
+                    "Owned post-launch development of platforms driving €300k monthly estravel.ee online-only sales",
+                    "Led a company-wide (EE, LV, LT) Thunderbird to Gmail migration by developing a Gmail extension",
+                    "Built Dubai evacuation registration for the Foreign Ministry in half a day, evacuating 435 in 72 hours",
+                ],
+                Technologies: "React, Vue, WordPress, PHP, MySQL, Python, Tailwind",
                 Link: {
-                    Src: "https://oskar-anderson.com/posts/tempsens",
-                    Text: "[link]"
+                    Src: "https://oskar-anderson.com/posts/estravel",
+                    Text: "[read more]"
+                }
+            },
+            {
+                Title: "Fullstack developer intern",
+                Company: "TalTech",
+                Period: "June 2023 - Aug 2023",
+                Bullets: [
+                    "Improved a programming assignment Moodle plugin used by 1000 students each semester",
+                    "Worked in a 5-developer agile scrum team with sprints, retros and merge reviews",
+                ],
+                Technologies: "Vue, PHP, Laravel, REST, MariaDB",
+                Link: {
+                    Src: "https://oskar-anderson.com/posts/charon",
+                    Text: "[read more]"
                 }
             }
         ],
     },
     PersonalProjectsSection: {
         Heading: {
-            Svg: "bi bi-briefcase-fill",
             Title: "Personal Projects"
         },
         Content: [
             {
-                Text: "Developed an open source database modeling ERD tool. Adopted in Priit Raspel's TalTech ICA0005 course as replacement to QSEE as it improves diagram creation workflow speed by 45%. Added functionality for creation and execution of user generated scripts. TypeScript, React",
+                ProjectName: "HedgehogDBD",
+                Title: "Bachelor thesis",
+                Period: "2023",
+                Text: "Developed an open source database modeling ERD tool using TypeScript and React. Adopted in Priit Raspel's TalTech ICA0005 course as replacement to QSEE as it improves diagram creation workflow speed by 45%. Added functionality for creation and execution of user generated scripts.",
                 Link: {
                     Src: "https://oskar-anderson.com/posts/HedgehogDBD",
-                    Text: "[link]"  
-                },
-                Type: {
-                    name: "titled",
-                    titledPayload: {
-                        projectName: "HedgehogDBD",
-                        title: "Frontend developer",
-                        period: "Sept 2022 - present",
-                    },
-                    plainPayload: {}
+                    Text: "[read more]"
                 }
             },
             {
-                Text: "Maanteeamet driving exam automation using Python and Selenium",
+                ProjectName: "Maanteeamet Timescanner",
+                Title: "",
+                Period: "2019",
+                Text: "Automated Maanteeamet driving exam registration with Python and Selenium",
                 Link: {
                     Src: "https://oskar-anderson.com/posts/maanteeamet-timescanner",
-                    Text: "[link]"  
-                },
-                Type: {
-                    name: "plain",
-                    titledPayload: {},
-                    plainPayload: {}
+                    Text: "[read more]"
                 }
             }
         ],
     },
     EducationSection: {
         Heading: {
-            Svg: "bi bi-mortarboard-fill",
             Title: "Education"
         },
         Content: [
             {
                 DateFinished: "Jan 2023",
-                Text: "IT Systems Development Bachelor's degree - TalTech",
-            },
-            {
-                DateFinished: "June 2022",
-                Text: "Estonian Cyber Command conscript - Ämari Air Base",
-            },
-            {
-                DateFinished: "June 2018",
-                Text: "High School - Tallinn Lilleküla Gymnasium",
+                Text: "Bachelor of IT Systems Development - TalTech",
             }
         ],
     },
@@ -148,7 +150,6 @@ let model: Props = {
 
 
 interface SectionHeading {
-    Svg: string;
     Title: string;
 }
 
@@ -156,7 +157,6 @@ export interface Props {
     Name: string;
     Title: string;
     IntroText: string;
-    ProfilePictureSrc: string;
     SideInfo: {
         Svg: string;
         Text: string;
@@ -175,7 +175,8 @@ export interface Props {
             Title: string;
             Company: string;
             Period: string;
-            Text: string;
+            Bullets: string[];
+            Technologies: string;
             Link: {
                 Src: string,
                 Text: string
@@ -186,20 +187,13 @@ export interface Props {
         Heading: SectionHeading;
         Content:
         {
+            ProjectName: string,
+            Title: string,
+            Period: string,
             Text: string,
             Link: {
                 Src: string,
                 Text: string
-            },
-            Type: {
-                name: 'plain' | 'titled',
-                titledPayload: 
-                {
-                    projectName: string,
-                    title: string,
-                    period: string
-                } | any,
-                plainPayload: {} | any
             }
         }[];
     };
@@ -226,19 +220,22 @@ export interface Props {
 
 <body class="A4" style="background: #e0e0e0;">
     <div class="hidden-print">
-        <Header></Header>
+        <header class="bg-secondary">
+            <div class="layout-container py-5 flex items-center justify-between">
+                <div class="h1" style={{ marginBottom: 0, textAlign: "center", fontSize: "1.5em" }}>
+                    <a style={{ textDecoration: "none" }} href="/">Karl Oskar</a>
+                </div>
+                <div class="text-white">
+                    Press "Ctrl + P" and select "Save as PDF" to download
+                </div>
+            </div>
+        </header>
     </div>
     <div class="resume" style={{ display: 'grid', lineHeight: "normal" }} id="root">
         <section class="sheet" style={{ display: "flex", background: "white" }}> <!-- sheet style is not applied to printed page so background: white is set manual -->
             <div style={{ overflow: "hidden" }}>
                 <div style={{ display: "flex", margin: "10mm 10mm 1.2em 10mm" }}>
-                    <img
-                        src={model.ProfilePictureSrc}
-                        alt="profile-pic"
-                        width="120px"
-                        height="120px"
-                    />
-                    <div style={{ marginLeft: "34px" }}>
+                    <div>
                         <header style={{ marginBottom: "20px" }}>
                             <h1
                                 style={{
@@ -252,7 +249,7 @@ export interface Props {
                             </h1>
                             <div style={{ fontSize: "13pt" }}>{model.Title}</div>
                         </header>
-                        <div style={{ textAlign: "justify" }}>{model.IntroText}</div>
+                        <div>{model.IntroText}</div>
                     </div>
                 </div>
                 <div
@@ -261,7 +258,7 @@ export interface Props {
                         justifyContent: "center",
                         padding: "0.8em 10mm",
                         lineHeight: "1.8em",
-                        fontSize: "12px",
+                        fontSize: "9pt",
                     }}
                     class="flex-gap"
                 >
@@ -276,7 +273,7 @@ export interface Props {
                                         marginRight: "0.8em",
                                     }}
                                 >
-                                    <i style={{ fontSize: 16 }} class={x.Svg}></i>
+                                    <i class={x.Svg}></i>
                                 </div>
                                 <div style={{ color: "#000"}}>
                                     {x.Link ? 
@@ -290,53 +287,13 @@ export interface Props {
                         );
                     })}
                 </div>
-                <div style={{ margin: "8px 10mm 10mm 10mm" }}>
-                    <div>
-                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ fontSize: 16 }} class={model.CategorizedListSections.Heading.Svg}></i>
-                            </div>
-                            <span style={{ marginLeft: "4px" }} class="section-heading">
-                                {model.CategorizedListSections.Heading.Title}
-                            </span>
+                <div style={{ margin: "1.6em 10mm 10mm 10mm" }}>
+                    <div class="o-section">
+                        <h2 class="section-heading">
+                            {model.WorkSection.Heading.Title}
                         </h2>
-                        <div style={{ display: "grid", rowGap: "8px" }}>
-                            {model.CategorizedListSections.Content.map((x, i) => {
-                                let color = i % 2 === 0 ? "#f1f1f1" : "#ffffff";
-                                return (
-                                    <div
-                                        style={{
-                                            display: "grid",
-                                            gridTemplateColumns: "repeat(4, 1fr)",
-                                            marginLeft: "20px",
-                                            backgroundColor: color,
-                                            borderRadius: "6px",
-                                        }}>
-                                        {x.List.map((xx) => {
-                                            return <div class="grid-item">{xx}</div>;
-                                        })}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                    <div
-                        style={{
-                            margin: "12px 0",
-                            borderBottom: "1px solid #ccc",
-                            color: "transparent",
-                        }}
-                    />
-                    <div>
-                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ fontSize: 16 }} class={model.WorkSection.Heading.Svg}></i>
-                            </div>
-                            <span style={{ marginLeft: "4px" }} class="section-heading">
-                                {model.WorkSection.Heading.Title}
-                            </span>
-                        </h2>
-                        <div style={{ marginLeft: "20px" }}>
+                        <hr />
+                        <div>
                             {
                                 model.WorkSection.Content.map(x => {
                                     return (
@@ -346,107 +303,89 @@ export interface Props {
                                                 style={{ display: "flex", justifyContent: "space-between" }}
                                             >
                                                 <div style={{ fontWeight: "bold" }}>
-                                                    {x.Company} – {x.Title}
+                                                    {x.Title} - {x.Company}
+                                                    <a style={{ fontWeight: "normal" }} href={x.Link.Src}>{x.Link.Text}</a>
                                                 </div>
                                                 <div style={{ alignItems: "center", display: "flex" }}>
                                                     {x.Period}
                                                 </div>
                                             </div>
-                                            <div>
-                                                {x.Text}
-                                                <a href={x.Link.Src}>{x.Link.Text}</a>
-                                            </div>
+                                            <ul>
+                                                {x.Bullets.map(bullet => <li>{bullet}</li>)}
+                                                <li><span style={{ fontWeight: "bold" }}>Technologies:</span> {x.Technologies}</li>
+                                            </ul>
                                         </div>
                                     );
                                 })
                             }
                         </div>
                     </div>
-                    <div
-                        style={{
-                            margin: "12px 0",
-                            borderBottom: "1px solid #ccc",
-                            color: "transparent",
-                        }}
-                    />
-                    <div>
-                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ fontSize: 16 }} class={model.PersonalProjectsSection.Heading.Svg}></i>
-                            </div>
-                            <span style={{ marginLeft: "4px" }} class="section-heading">
-                                {model.PersonalProjectsSection.Heading.Title}
-                            </span>
+                    <div class="o-section">
+                        <h2 class="section-heading">
+                            {model.PersonalProjectsSection.Heading.Title}
                         </h2>
-                        <div style={{ marginLeft: "20px" }}>
+                        <hr />
+                        <div>
                             {model.PersonalProjectsSection.Content.map(x => {
-                                if (x.Type.name === "plain") {
-                                    return (
-                                        <div class="mb-0 o-list-item-std-vertical-margin">
+                                return (
+                                    <div style={{ position: "relative", marginBottom: "10px" }}>
+                                        <div
+                                            class="o-std-margin-bottom"
+                                            style={{ display: "flex", justifyContent: "space-between" }}
+                                        >
+                                            <div style={{ fontWeight: "bold" }}>
+                                                {x.ProjectName}{" "}
+                                                {x.Title ? ` - ${x.Title}` : null}
+                                                <a style={{ fontWeight: "normal" }} href={x.Link.Src}>{x.Link.Text}</a>
+                                            </div>
+                                            <div style={{ alignItems: "center", display: "flex" }}>
+                                                {x.Period}
+                                            </div>
+                                        </div>
+                                        <div>
                                             {x.Text}
-                                            {x.Link ? <a href={x.Link.Src}>{x.Link.Text}</a> : null} 
                                         </div>
-                                    );
-                                }
-                                if (x.Type.name === "titled") {
-                                    return (
-                                        <div style={{ position: "relative", marginBottom: "10px" }}>
-                                            <div
-                                                class="o-std-margin-bottom"
-                                                style={{ display: "flex", justifyContent: "space-between" }}
-                                            >
-                                                <div style={{ fontWeight: "bold" }}>
-                                                    {x.Type.titledPayload.projectName} – {x.Type.titledPayload.title}
-                                                </div>
-                                                <div style={{ alignItems: "center", display: "flex" }}>
-                                                    {x.Type.titledPayload.period}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                {x.Text}
-                                                <a href={x.Link.Src}>{x.Link.Text}</a>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                                return null;
+                                    </div>
+                                );
                             })}
                         </div>
                     </div>
-                    <div
-                        style={{
-                            margin: "12px 0",
-                            borderBottom: "1px solid #ccc",
-                            color: "transparent",
-                        }}
-                    />
-                    <div>
-                        <h2 style={{ display: "flex", marginBottom: "0.4em", fontSize: "1.5em" }}>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ fontSize: 16 }} class={model.EducationSection.Heading.Svg}></i>
-                            </div>
-                            <span style={{ marginLeft: "4px" }} class="section-heading">
-                                {model.EducationSection.Heading.Title}
-                            </span>
+                    <div class="o-section">
+                        <h2 class="section-heading">
+                            {model.CategorizedListSections.Heading.Title}
                         </h2>
+                        <hr />
                         <div>
-                            <ul>
-                                {model.EducationSection.Content.map(x => {
-                                    return (
-                                        <li 
-                                            class="o-list-item-std-vertical-margin"
-                                            style={{ position: "relative" }}
-                                        >
-                                            <div>
-                                                {x.Text}
-                                            </div>
-                                            <div style={{ position: "absolute", right: 0, top: 0 }}>
-                                                {x.DateFinished}
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                            {model.CategorizedListSections.Content.map(x => {
+                                return (
+                                    <div class="o-list-item-std-vertical-margin">
+                                        <span style={{ fontWeight: "bold" }}>{x.CategoryName}:</span> {x.List.join(", ")}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div class="o-section">
+                        <h2 class="section-heading">
+                            {model.EducationSection.Heading.Title}
+                        </h2>
+                        <hr />
+                        <div>
+                            {model.EducationSection.Content.map(x => {
+                                return (
+                                    <div
+                                        class="o-list-item-std-vertical-margin"
+                                        style={{ position: "relative" }}
+                                    >
+                                        <div>
+                                            {x.Text}
+                                        </div>
+                                        <div style={{ position: "absolute", right: 0, top: 0 }}>
+                                            {x.DateFinished}
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -463,20 +402,24 @@ export interface Props {
     --primary-hl-color: rgb(255, 161, 54); 
 }
 
-@media print {
-  .hidden-print {
-    display: none !important;
-  }
-}
-
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
     font-family: "Arial";
-    color: #4b4b4b;
 }
 
 a {
     color: var(--primary-hl-color);
     text-decoration: none;
+}
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+
+  /* orange prints as pale grey - keep links legible on paper */
+  a {
+    color: rgb(33, 37, 41);
+  }
 }
 
 .resume {
@@ -489,13 +432,25 @@ a {
 }
 
 .o-std-margin-bottom {
-    margin-bottom: 0.2em;
+    margin-bottom: 0.4em;
+}
+
+.o-section + .o-section {
+    margin-top: 1.6em;
+}
+
+hr {
+    margin: 0 0 0.6em 0;
+    border: 0;
+    border-top: 1px solid #ccc;
 }
 
 .section-heading {
     text-transform: uppercase;
     font-family: 'Arial';
-    font-size: 20px;
+    font-size: 12pt;
+    font-weight: 600;
+    margin-bottom: 0.4em;
 }
 
 .flex-gap {
@@ -507,22 +462,18 @@ a {
     margin: 0 0.8em;
 }
 
-.grid-item {
-    border-radius: 6px;
-    padding: 4px 14px;
-    overflow: clip;
-}
-
-/*
-Fix Bootstrap
-*/
-h2, .h2 {
+h2 {
     line-height: normal;
-    font-weight: 700;
+    font-size: 12pt;
+    font-weight: 600;
 }
 
 ul {
     margin-bottom: 0;
-    padding-left: 40px;
+    padding-left: 18px;
+}
+
+ul > li + li {
+    margin-top: 0.2em;
 }
 </style>
